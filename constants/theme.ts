@@ -1,30 +1,49 @@
 export const Colors = {
-  // Futuristic dark theme with cyan/light blue undertones
-  primary: '#0a0f1a',
-  primaryDark: '#050810',
-  primaryLight: '#141d2e',
-  accent: '#00d4ff',
-  accentLight: '#67e8f9',
-  accentDim: 'rgba(0, 212, 255, 0.15)',
-  background: '#060a12',
-  surface: '#0c1220',
-  surfaceLight: '#131c2d',
-  card: '#0f1726',
-  text: '#f0f6fc',
-  textSecondary: '#94a3b8',
-  textMuted: '#64748b',
-  green: '#00ff9d',
-  greenLight: '#5eead4',
-  greenDim: 'rgba(0, 255, 157, 0.12)',
-  red: '#ff3b6e',
-  redLight: '#ff6b8a',
-  redDim: 'rgba(255, 59, 110, 0.12)',
-  border: 'rgba(0, 212, 255, 0.12)',
-  borderLight: 'rgba(0, 212, 255, 0.25)',
-  tabBar: '#080d16',
+  // Modern dark theme with orange to mustard yellow gradient accents
+  primary: '#1a1a1a',
+  primaryDark: '#121212',
+  primaryLight: '#2a2a2a',
+  
+  // Orange to Mustard Yellow gradient colors
+  accent: '#FF6B35',           // Vibrant orange
+  accentLight: '#FF8C5A',      // Lighter orange
+  accentMustard: '#E8A838',    // Mustard yellow
+  accentGold: '#F5C142',       // Bright gold
+  accentDim: 'rgba(255, 107, 53, 0.15)',
+  
+  // Gradient definitions (for use with LinearGradient)
+  gradientStart: '#FF6B35',    // Orange
+  gradientEnd: '#E8A838',      // Mustard yellow
+  
+  background: '#0f0f0f',
+  surface: '#1a1a1a',
+  surfaceLight: '#242424',
+  card: '#1e1e1e',
+  cardLight: '#2a2a2a',
+  
+  text: '#ffffff',
+  textSecondary: '#b0b0b0',
+  textMuted: '#707070',
+  textDark: '#1a1a1a',
+  
+  green: '#4ade80',
+  greenLight: '#86efac',
+  greenDim: 'rgba(74, 222, 128, 0.15)',
+  
+  red: '#f87171',
+  redLight: '#fca5a5',
+  redDim: 'rgba(248, 113, 113, 0.15)',
+  
+  border: 'rgba(255, 107, 53, 0.2)',
+  borderLight: 'rgba(255, 107, 53, 0.35)',
+  borderMuted: 'rgba(255, 255, 255, 0.1)',
+  
+  tabBar: '#121212',
   white: '#ffffff',
   black: '#000000',
-  glow: 'rgba(0, 212, 255, 0.4)',
+  
+  glow: 'rgba(255, 107, 53, 0.4)',
+  glowMustard: 'rgba(232, 168, 56, 0.4)',
 };
 
 export const Spacing = {
@@ -57,17 +76,24 @@ export const BorderRadius = {
 
 export const Shadows = {
   glow: {
-    shadowColor: '#00d4ff',
+    shadowColor: '#FF6B35',
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.3,
     shadowRadius: 8,
     elevation: 8,
   },
   glowSm: {
-    shadowColor: '#00d4ff',
+    shadowColor: '#FF6B35',
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 4,
+  },
+  card: {
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 12,
+    elevation: 6,
   },
 };
