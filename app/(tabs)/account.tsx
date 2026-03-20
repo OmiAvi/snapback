@@ -15,7 +15,9 @@ import { Colors, Spacing, FontSize, BorderRadius } from '@/constants/theme';
 function SectionHeader({ title, icon }: { title: string; icon: string }) {
   return (
     <View style={styles.sectionHeader}>
-      <Ionicons name={icon as any} size={18} color={Colors.accent} />
+      <View style={styles.sectionHeaderIcon}>
+        <Ionicons name={icon as any} size={14} color={Colors.accent} />
+      </View>
       <Text style={styles.sectionTitle}>{title}</Text>
     </View>
   );
@@ -232,7 +234,7 @@ export default function AccountScreen() {
       </View>
 
       <View style={styles.footer}>
-        <Text style={styles.footerText}>OnIt v1.0.0 · March Madness 2024</Text>
+        <Text style={styles.footerText}>SNAPBACK v1.0.0</Text>
         <Text style={styles.footerDisclaimer}>
           For entertainment purposes only. Not real financial advice.
         </Text>
@@ -257,21 +259,23 @@ const styles = StyleSheet.create({
     gap: Spacing.md,
     borderBottomWidth: 1,
     borderBottomColor: Colors.border,
+    position: 'relative',
+    overflow: 'hidden',
   },
   avatarLarge: {
     width: 64,
     height: 64,
     borderRadius: 32,
-    backgroundColor: Colors.primaryLight,
+    backgroundColor: Colors.accentDim,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 2,
     borderColor: Colors.accent,
   },
   avatarLargeText: {
-    color: Colors.white,
+    color: Colors.accent,
     fontSize: FontSize.xl,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   profileInfo: {
     flex: 1,
@@ -280,7 +284,7 @@ const styles = StyleSheet.create({
   profileName: {
     color: Colors.text,
     fontSize: FontSize.xl,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   profileEmail: {
     color: Colors.textSecondary,
@@ -291,11 +295,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 4,
     marginTop: 4,
+    backgroundColor: Colors.greenDim,
+    paddingHorizontal: Spacing.sm,
+    paddingVertical: 2,
+    borderRadius: BorderRadius.sm,
+    alignSelf: 'flex-start',
   },
   verifiedText: {
     color: Colors.green,
     fontSize: FontSize.xs,
     fontWeight: '600',
+    letterSpacing: 0.3,
   },
   statsRow: {
     flexDirection: 'row',
@@ -315,13 +325,15 @@ const styles = StyleSheet.create({
   statValue: {
     color: Colors.text,
     fontSize: FontSize.md,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   statLabel: {
     color: Colors.textMuted,
-    fontSize: FontSize.xs,
+    fontSize: 10,
     marginTop: 2,
     textAlign: 'center',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
   statDivider: {
     width: 1,
@@ -347,10 +359,20 @@ const styles = StyleSheet.create({
     borderBottomColor: Colors.border,
     backgroundColor: Colors.card,
   },
+  sectionHeaderIcon: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: Colors.accentDim,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   sectionTitle: {
     color: Colors.text,
-    fontSize: FontSize.md,
-    fontWeight: 'bold',
+    fontSize: FontSize.sm,
+    fontWeight: '700',
+    letterSpacing: 0.5,
+    textTransform: 'uppercase',
   },
   depositGrid: {
     flexDirection: 'row',
@@ -361,7 +383,7 @@ const styles = StyleSheet.create({
   depositBtn: {
     flex: 1,
     minWidth: '22%',
-    backgroundColor: Colors.primaryLight,
+    backgroundColor: Colors.surfaceLight,
     borderRadius: BorderRadius.md,
     paddingVertical: Spacing.md,
     alignItems: 'center',
@@ -371,12 +393,14 @@ const styles = StyleSheet.create({
   depositAmount: {
     color: Colors.accent,
     fontSize: FontSize.lg,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   depositLabel: {
-    color: Colors.textSecondary,
-    fontSize: FontSize.xs,
+    color: Colors.textMuted,
+    fontSize: 10,
     marginTop: 2,
+    textTransform: 'uppercase',
+    letterSpacing: 0.3,
   },
   emptySection: {
     padding: Spacing.lg,
@@ -398,14 +422,16 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: Colors.primaryLight,
+    backgroundColor: Colors.accentDim,
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: Colors.borderLight,
   },
   portfolioAvatarText: {
-    color: Colors.white,
+    color: Colors.accent,
     fontSize: FontSize.sm,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   portfolioInfo: {
     flex: 1,
@@ -426,7 +452,7 @@ const styles = StyleSheet.create({
   portfolioValue: {
     color: Colors.text,
     fontSize: FontSize.md,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   portfolioGain: {
     fontSize: FontSize.xs,
@@ -455,10 +481,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   txIconBuy: {
-    backgroundColor: 'rgba(0,200,83,0.15)',
+    backgroundColor: Colors.greenDim,
   },
   txIconSell: {
-    backgroundColor: 'rgba(255,23,68,0.15)',
+    backgroundColor: Colors.redDim,
   },
   txInfo: {
     flex: 1,
@@ -478,7 +504,7 @@ const styles = StyleSheet.create({
   },
   txTotal: {
     fontSize: FontSize.md,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   txDate: {
     color: Colors.textMuted,
@@ -498,7 +524,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
   },
   settingRowDanger: {
-    backgroundColor: 'rgba(255,23,68,0.05)',
+    backgroundColor: Colors.redDim,
   },
   settingLabel: {
     flex: 1,
@@ -515,7 +541,9 @@ const styles = StyleSheet.create({
   },
   footerText: {
     color: Colors.textMuted,
-    fontSize: FontSize.xs,
+    fontSize: 10,
+    letterSpacing: 1,
+    textTransform: 'uppercase',
   },
   footerDisclaimer: {
     color: Colors.textMuted,

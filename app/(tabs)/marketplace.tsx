@@ -21,7 +21,7 @@ function PriceTag({ price, change, changePercent }: { price: number; change: num
       <Text style={styles.price}>${price.toFixed(2)}</Text>
       <View style={[styles.changeBadge, isPositive ? styles.changeBadgeGreen : styles.changeBadgeRed]}>
         <Ionicons
-          name={isPositive ? 'trending-up' : 'trending-down'}
+          name={isPositive ? 'caret-up' : 'caret-down'}
           size={10}
           color={isPositive ? Colors.green : Colors.red}
         />
@@ -37,15 +37,15 @@ function PlayerRow({ player, onPress }: { player: Player; onPress: () => void })
   const isPositive = player.priceChange >= 0;
   return (
     <TouchableOpacity style={styles.playerRow} onPress={onPress} activeOpacity={0.7}>
-      <View style={styles.avatarCircle}>
+      <View style={[styles.avatarCircle, player.isHot && styles.avatarCircleHot]}>
         <Text style={styles.avatarText}>{player.name.split(' ').map(n => n[0]).join('').slice(0, 2)}</Text>
       </View>
       <View style={styles.playerInfo}>
         <View style={styles.playerNameRow}>
           <Text style={styles.playerName} numberOfLines={1}>{player.name}</Text>
-          {player.isHot && <View style={styles.hotBadge}><Text style={styles.hotText}>🔥 HOT</Text></View>}
+          {player.isHot && <View style={styles.hotBadge}><Text style={styles.hotText}>HOT</Text></View>}
         </View>
-        <Text style={styles.playerMeta}>{player.team} · {player.position} · #{player.jersey}</Text>
+        <Text style={styles.playerMeta}>{player.team} | {player.position} | #{player.jersey}</Text>
       </View>
       <PriceTag price={player.stockPrice} change={player.priceChange} changePercent={player.priceChangePercent} />
     </TouchableOpacity>
@@ -56,6 +56,7 @@ function HotPlayerCard({ player, onPress }: { player: Player; onPress: () => voi
   const isPositive = player.priceChange >= 0;
   return (
     <TouchableOpacity style={styles.hotCard} onPress={onPress} activeOpacity={0.7}>
+      <View style={styles.hotCardGlow} />
       <View style={styles.hotAvatarCircle}>
         <Text style={styles.hotAvatarText}>{player.name.split(' ').map(n => n[0]).join('').slice(0, 2)}</Text>
       </View>
@@ -63,6 +64,11 @@ function HotPlayerCard({ player, onPress }: { player: Player; onPress: () => voi
       <Text style={styles.hotTeamName}>{player.team}</Text>
       <Text style={styles.hotPrice}>${player.stockPrice.toFixed(2)}</Text>
       <View style={[styles.hotChangeBadge, isPositive ? styles.changeBadgeGreen : styles.changeBadgeRed]}>
+        <Ionicons
+          name={isPositive ? 'caret-up' : 'caret-down'}
+          size={10}
+          color={isPositive ? Colors.green : Colors.red}
+        />
         <Text style={[styles.hotChangeText, isPositive ? styles.changeTextGreen : styles.changeTextRed]}>
           {isPositive ? '+' : ''}{player.priceChangePercent.toFixed(1)}%
         </Text>
@@ -113,10 +119,10 @@ export default function MarketplaceScreen() {
   };
 
   const filters: { key: 'all' | 'hot' | 'gainers' | 'losers'; label: string }[] = [
-    { key: 'all', label: 'All' },
-    { key: 'hot', label: '🔥 Hot' },
-    { key: 'gainers', label: '📈 Gainers' },
-    { key: 'losers', label: '📉 Losers' },
+    { key: 'all', label: 'ALL' },
+    { key: 'hot', label: 'HOT' },
+    { key: 'gainers', label: 'GAINERS' },
+    { key: 'losers', label: 'LOSERS' },
   ];
 
   return (
@@ -149,7 +155,12 @@ export default function MarketplaceScreen() {
           <View>
             {!searchQuery && activeFilter === 'all' && (
               <View style={styles.hotSection}>
-                <Text style={styles.sectionTitle}>🔥 Hot Players</Text>
+                <View style={styles.sectionTitleContainer}>
+                  <View style={styles.sectionTitleIcon}>
+                    <Ionicons name="flame" size={14} color={Colors.accent} />
+                  </View>
+                  <Text style={styles.sectionTitle}>TRENDING NOW</Text>
+                </View>
                 <FlatList
                   horizontal
                   data={hotPlayers}
@@ -214,9 +225,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: Colors.card,
-    borderRadius: BorderRadius.round,
+    borderRadius: BorderRadius.md,
     paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.sm,
+    paddingVertical: Spacing.sm + 2,
     gap: Spacing.sm,
     borderWidth: 1,
     borderColor: Colors.border,
@@ -233,12 +244,26 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: Colors.border,
   },
-  sectionTitle: {
-    color: Colors.text,
-    fontSize: FontSize.lg,
-    fontWeight: 'bold',
+  sectionTitleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.sm,
     paddingHorizontal: Spacing.md,
     marginBottom: Spacing.sm,
+  },
+  sectionTitleIcon: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: Colors.accentDim,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  sectionTitle: {
+    color: Colors.text,
+    fontSize: FontSize.sm,
+    fontWeight: '700',
+    letterSpacing: 1,
   },
   hotListContent: {
     paddingHorizontal: Spacing.md,
@@ -249,23 +274,36 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.md,
     padding: Spacing.md,
     alignItems: 'center',
-    width: 110,
+    width: 115,
     borderWidth: 1,
     borderColor: Colors.border,
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  hotCardGlow: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    backgroundColor: Colors.accent,
+    opacity: 0.5,
   },
   hotAvatarCircle: {
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: Colors.primaryLight,
+    backgroundColor: Colors.accentDim,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: Spacing.xs,
+    borderWidth: 1,
+    borderColor: Colors.borderLight,
   },
   hotAvatarText: {
-    color: Colors.white,
+    color: Colors.accent,
     fontSize: FontSize.md,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   hotPlayerName: {
     color: Colors.text,
@@ -278,21 +316,25 @@ const styles = StyleSheet.create({
     color: Colors.textMuted,
     fontSize: FontSize.xs,
     marginBottom: Spacing.xs,
+    letterSpacing: 0.3,
   },
   hotPrice: {
     color: Colors.text,
     fontSize: FontSize.sm,
-    fontWeight: 'bold',
+    fontWeight: '700',
     marginBottom: 4,
   },
   hotChangeBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: Spacing.xs,
     paddingVertical: 2,
     borderRadius: BorderRadius.sm,
+    gap: 2,
   },
   hotChangeText: {
     fontSize: FontSize.xs,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   filterRow: {
     flexDirection: 'row',
@@ -304,22 +346,23 @@ const styles = StyleSheet.create({
   filterBtn: {
     paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.xs + 2,
-    borderRadius: BorderRadius.round,
+    borderRadius: BorderRadius.sm,
     backgroundColor: Colors.card,
     borderWidth: 1,
     borderColor: Colors.border,
   },
   filterBtnActive: {
-    backgroundColor: Colors.accent,
+    backgroundColor: Colors.accentDim,
     borderColor: Colors.accent,
   },
   filterText: {
-    color: Colors.textSecondary,
-    fontSize: FontSize.sm,
-    fontWeight: '600',
+    color: Colors.textMuted,
+    fontSize: FontSize.xs,
+    fontWeight: '700',
+    letterSpacing: 0.5,
   },
   filterTextActive: {
-    color: Colors.primaryDark,
+    color: Colors.accent,
   },
   listHeader: {
     flexDirection: 'row',
@@ -328,33 +371,42 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.xs,
     borderBottomWidth: 1,
     borderBottomColor: Colors.border,
+    backgroundColor: Colors.surface,
   },
   listHeaderText: {
     color: Colors.textMuted,
-    fontSize: FontSize.xs,
+    fontSize: 10,
     fontWeight: '600',
+    letterSpacing: 1,
   },
   playerRow: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.sm + 2,
+    paddingVertical: Spacing.sm + 4,
     borderBottomWidth: 1,
     borderBottomColor: Colors.border,
     gap: Spacing.sm,
+    backgroundColor: Colors.background,
   },
   avatarCircle: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: Colors.primaryLight,
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    backgroundColor: Colors.surfaceLight,
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: Colors.border,
+  },
+  avatarCircleHot: {
+    backgroundColor: Colors.accentDim,
+    borderColor: Colors.borderLight,
   },
   avatarText: {
-    color: Colors.white,
+    color: Colors.textSecondary,
     fontSize: FontSize.sm,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   playerInfo: {
     flex: 1,
@@ -370,20 +422,24 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   hotBadge: {
-    backgroundColor: 'rgba(255,127,0,0.15)',
-    paddingHorizontal: 4,
-    paddingVertical: 1,
+    backgroundColor: Colors.accentDim,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
     borderRadius: BorderRadius.sm,
+    borderWidth: 1,
+    borderColor: Colors.borderLight,
   },
   hotText: {
-    color: '#ff7f00',
-    fontSize: 9,
-    fontWeight: 'bold',
+    color: Colors.accent,
+    fontSize: 8,
+    fontWeight: '700',
+    letterSpacing: 0.5,
   },
   playerMeta: {
     color: Colors.textMuted,
     fontSize: FontSize.xs,
     marginTop: 2,
+    letterSpacing: 0.3,
   },
   priceContainer: {
     alignItems: 'flex-end',
@@ -392,7 +448,7 @@ const styles = StyleSheet.create({
   price: {
     color: Colors.text,
     fontSize: FontSize.md,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   changeBadge: {
     flexDirection: 'row',
@@ -403,14 +459,14 @@ const styles = StyleSheet.create({
     gap: 2,
   },
   changeBadgeGreen: {
-    backgroundColor: 'rgba(0,200,83,0.15)',
+    backgroundColor: Colors.greenDim,
   },
   changeBadgeRed: {
-    backgroundColor: 'rgba(255,23,68,0.15)',
+    backgroundColor: Colors.redDim,
   },
   changeText: {
     fontSize: FontSize.xs,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   changeTextGreen: {
     color: Colors.green,
