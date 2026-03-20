@@ -278,7 +278,7 @@ export default function BracketScreen() {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor={Colors.surface} />
+      <StatusBar barStyle="light-content" backgroundColor={Colors.primaryDark} />
 
       {/* Toggle Tabs */}
       <View style={styles.toggleContainer}>
@@ -479,10 +479,11 @@ const styles = StyleSheet.create({
   toggleText: {
     color: Colors.textMuted,
     fontSize: FontSize.sm,
-    fontWeight: '600',
+    fontWeight: '700',
+    letterSpacing: 0.5,
   },
   toggleTextActive: {
-    color: Colors.white,
+    color: Colors.primaryDark,
   },
   bracketScrollContent: {
     paddingHorizontal: Spacing.md,

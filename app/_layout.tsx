@@ -1,11 +1,11 @@
 import { Stack } from 'expo-router';
-import { PaperProvider, MD3LightTheme } from 'react-native-paper';
+import { PaperProvider, MD3DarkTheme } from 'react-native-paper';
 import { Colors } from '@/constants/theme';
 
 const theme = {
-  ...MD3LightTheme,
+  ...MD3DarkTheme,
   colors: {
-    ...MD3LightTheme.colors,
+    ...MD3DarkTheme.colors,
     primary: Colors.accent,
     background: Colors.background,
     surface: Colors.surface,
@@ -21,15 +21,14 @@ export default function RootLayout() {
       <Stack 
         screenOptions={{ 
           headerStyle: { 
-            backgroundColor: Colors.surface,
-            elevation: 0,
-            shadowOpacity: 0,
+            backgroundColor: Colors.primaryDark,
           }, 
           headerTintColor: Colors.accent,
           headerTitleStyle: {
             color: Colors.text,
             fontWeight: '700',
-            fontSize: 18,
+            fontSize: 16,
+            letterSpacing: 0.5,
           },
           contentStyle: {
             backgroundColor: Colors.background,
@@ -40,14 +39,14 @@ export default function RootLayout() {
         <Stack.Screen 
           name="team/[id]" 
           options={{ 
-            title: 'Team Roster', 
+            title: 'TEAM ROSTER', 
             headerBackTitle: 'Back' 
           }} 
         />
         <Stack.Screen 
           name="player/[id]" 
           options={{ 
-            title: 'Player Profile', 
+            title: 'PLAYER PROFILE', 
             headerBackTitle: 'Back' 
           }} 
         />

@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { MOCK_USER, MOCK_PORTFOLIO, MOCK_TRANSACTIONS } from '@/constants/data';
-import { Colors, Spacing, FontSize, BorderRadius, Shadows } from '@/constants/theme';
+import { Colors, Spacing, FontSize, BorderRadius } from '@/constants/theme';
 
 function SectionHeader({ title, icon }: { title: string; icon: string }) {
   return (
@@ -89,7 +89,7 @@ export default function AccountScreen() {
       contentContainerStyle={styles.contentContainer}
       showsVerticalScrollIndicator={false}
     >
-      <StatusBar barStyle="dark-content" backgroundColor={Colors.surface} />
+      <StatusBar barStyle="light-content" backgroundColor={Colors.primaryDark} />
 
       {/* Profile Card */}
       <View style={styles.profileCard}>

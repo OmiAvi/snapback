@@ -1,7 +1,7 @@
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { View } from 'react-native';
-import { Colors, Shadows } from '@/constants/theme';
+import { Colors } from '@/constants/theme';
 
 export default function TabLayout() {
   return (
@@ -12,26 +12,27 @@ export default function TabLayout() {
         tabBarStyle: {
           backgroundColor: Colors.tabBar,
           borderTopColor: Colors.border,
-          borderTopWidth: 0,
-          paddingBottom: 8,
-          paddingTop: 8,
-          height: 70,
-          ...Shadows.soft,
+          borderTopWidth: 1,
+          paddingBottom: 6,
+          paddingTop: 6,
+          height: 65,
         },
         tabBarLabelStyle: {
-          fontSize: 11,
+          fontSize: 10,
           fontWeight: '600',
+          letterSpacing: 0.5,
+          textTransform: 'uppercase',
         },
         headerStyle: { 
-          backgroundColor: Colors.surface,
-          elevation: 0,
-          shadowOpacity: 0,
-          borderBottomWidth: 0,
+          backgroundColor: Colors.primaryDark,
+          borderBottomWidth: 1,
+          borderBottomColor: Colors.border,
         },
-        headerTintColor: Colors.text,
+        headerTintColor: Colors.accent,
         headerTitleStyle: { 
           fontWeight: '700', 
-          fontSize: 18,
+          fontSize: 16,
+          letterSpacing: 0.5,
           color: Colors.text,
         },
       }}
@@ -40,11 +41,11 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Bracket',
-          headerTitle: 'Snapback',
+          headerTitle: 'SNAPBACK',
           tabBarIcon: ({ color, focused }) => (
             <View style={{ alignItems: 'center' }}>
-              <Ionicons name={focused ? 'trophy' : 'trophy-outline'} size={24} color={color} />
-              {focused && <View style={{ width: 5, height: 5, borderRadius: 2.5, backgroundColor: Colors.accent, marginTop: 4 }} />}
+              <Ionicons name="trophy" size={22} color={color} />
+              {focused && <View style={{ width: 4, height: 4, borderRadius: 2, backgroundColor: Colors.accent, marginTop: 2 }} />}
             </View>
           ),
         }}
@@ -53,11 +54,11 @@ export default function TabLayout() {
         name="marketplace"
         options={{
           title: 'Market',
-          headerTitle: 'Player Market',
+          headerTitle: 'PLAYER MARKET',
           tabBarIcon: ({ color, focused }) => (
             <View style={{ alignItems: 'center' }}>
-              <Ionicons name={focused ? 'stats-chart' : 'stats-chart-outline'} size={24} color={color} />
-              {focused && <View style={{ width: 5, height: 5, borderRadius: 2.5, backgroundColor: Colors.accent, marginTop: 4 }} />}
+              <Ionicons name="trending-up" size={22} color={color} />
+              {focused && <View style={{ width: 4, height: 4, borderRadius: 2, backgroundColor: Colors.accent, marginTop: 2 }} />}
             </View>
           ),
         }}
@@ -66,11 +67,11 @@ export default function TabLayout() {
         name="account"
         options={{
           title: 'Account',
-          headerTitle: 'My Account',
+          headerTitle: 'MY ACCOUNT',
           tabBarIcon: ({ color, focused }) => (
             <View style={{ alignItems: 'center' }}>
-              <Ionicons name={focused ? 'person' : 'person-outline'} size={24} color={color} />
-              {focused && <View style={{ width: 5, height: 5, borderRadius: 2.5, backgroundColor: Colors.accent, marginTop: 4 }} />}
+              <Ionicons name="person" size={22} color={color} />
+              {focused && <View style={{ width: 4, height: 4, borderRadius: 2, backgroundColor: Colors.accent, marginTop: 2 }} />}
             </View>
           ),
         }}
