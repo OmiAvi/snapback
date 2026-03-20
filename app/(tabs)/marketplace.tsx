@@ -10,68 +10,101 @@ import {
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import Svg, { Polyline } from 'react-native-svg';
 import { ALL_PLAYERS } from '@/constants/data';
 import type { Player } from '@/constants/data';
-import { Colors, Spacing, FontSize, BorderRadius } from '@/constants/theme';
+import { Colors, Spacing, FontSize, BorderRadius, Shadows } from '@/constants/theme';
 
-function PriceTag({ price, change, changePercent }: { price: number; change: number; changePercent: number }) {
-  const isPositive = change >= 0;
+// Mini sparkline chart component
+function Sparkline({ data, isPositive, width = 60, height = 24 }: { 
+  data: number[]; 
+  isPositive: boolean;
+  width?: number;
+  height?: number;
+}) {
+  const min = Math.min(...data);
+  const max = Math.max(...data);
+  const range = max - min || 1;
+  
+  const points = data.map((value, index) => {
+    const x = (index / (data.length - 1)) * width;
+    const y = height - ((value - min) / range) * height;
+    return `${x},${y}`;
+  }).join(' ');
+
   return (
-    <View style={styles.priceContainer}>
-      <Text style={styles.price}>${price.toFixed(2)}</Text>
-      <View style={[styles.changeBadge, isPositive ? styles.changeBadgeGreen : styles.changeBadgeRed]}>
-        <Ionicons
-          name={isPositive ? 'caret-up' : 'caret-down'}
-          size={10}
-          color={isPositive ? Colors.green : Colors.red}
-        />
-        <Text style={[styles.changeText, isPositive ? styles.changeTextGreen : styles.changeTextRed]}>
-          {isPositive ? '+' : ''}{changePercent.toFixed(1)}%
-        </Text>
-      </View>
-    </View>
+    <Svg width={width} height={height}>
+      <Polyline
+        points={points}
+        fill="none"
+        stroke={isPositive ? Colors.green : Colors.red}
+        strokeWidth="1.5"
+      />
+    </Svg>
   );
+}
+
+// Generate fake sparkline data based on price change
+function generateSparklineData(isPositive: boolean): number[] {
+  const data = [];
+  let value = 50;
+  for (let i = 0; i < 20; i++) {
+    value += (Math.random() - (isPositive ? 0.4 : 0.6)) * 5;
+    data.push(value);
+  }
+  return data;
 }
 
 function PlayerRow({ player, onPress }: { player: Player; onPress: () => void }) {
   const isPositive = player.priceChange >= 0;
+  const sparklineData = useMemo(() => generateSparklineData(isPositive), [isPositive]);
+  
   return (
     <TouchableOpacity style={styles.playerRow} onPress={onPress} activeOpacity={0.7}>
-      <View style={[styles.avatarCircle, player.isHot && styles.avatarCircleHot]}>
-        <Text style={styles.avatarText}>{player.name.split(' ').map(n => n[0]).join('').slice(0, 2)}</Text>
+      <View style={styles.avatarCircle}>
+        <Text style={styles.avatarText}>
+          {player.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+        </Text>
       </View>
       <View style={styles.playerInfo}>
-        <View style={styles.playerNameRow}>
-          <Text style={styles.playerName} numberOfLines={1}>{player.name}</Text>
-          {player.isHot && <View style={styles.hotBadge}><Text style={styles.hotText}>HOT</Text></View>}
-        </View>
-        <Text style={styles.playerMeta}>{player.team} | {player.position} | #{player.jersey}</Text>
+        <Text style={styles.playerTicker}>{player.name.split(' ')[1]?.slice(0, 4).toUpperCase() || 'PLYR'}</Text>
+        <Text style={styles.playerName} numberOfLines={1}>{player.name}</Text>
       </View>
-      <PriceTag price={player.stockPrice} change={player.priceChange} changePercent={player.priceChangePercent} />
+      <View style={styles.sparklineContainer}>
+        <Sparkline data={sparklineData} isPositive={isPositive} />
+      </View>
+      <View style={styles.priceContainer}>
+        <Text style={styles.price}>${player.stockPrice.toFixed(2)}</Text>
+        <Text style={[styles.changeText, isPositive ? styles.changeTextGreen : styles.changeTextRed]}>
+          {isPositive ? '+' : ''}{player.priceChangePercent.toFixed(2)}%
+        </Text>
+      </View>
     </TouchableOpacity>
   );
 }
 
-function HotPlayerCard({ player, onPress }: { player: Player; onPress: () => void }) {
+function WishlistCard({ player, onPress }: { player: Player; onPress: () => void }) {
   const isPositive = player.priceChange >= 0;
+  const sparklineData = useMemo(() => generateSparklineData(isPositive), [isPositive]);
+
   return (
-    <TouchableOpacity style={styles.hotCard} onPress={onPress} activeOpacity={0.7}>
-      <View style={styles.hotCardGlow} />
-      <View style={styles.hotAvatarCircle}>
-        <Text style={styles.hotAvatarText}>{player.name.split(' ').map(n => n[0]).join('').slice(0, 2)}</Text>
+    <TouchableOpacity style={styles.wishlistCard} onPress={onPress} activeOpacity={0.7}>
+      <View style={styles.wishlistHeader}>
+        <View style={styles.wishlistAvatar}>
+          <Text style={styles.wishlistAvatarText}>
+            {player.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+          </Text>
+        </View>
+        <View style={styles.wishlistInfo}>
+          <Text style={styles.wishlistTicker}>{player.name.split(' ')[1]?.slice(0, 4).toUpperCase() || 'PLYR'}</Text>
+          <Text style={styles.wishlistName} numberOfLines={1}>{player.team}</Text>
+        </View>
       </View>
-      <Text style={styles.hotPlayerName} numberOfLines={1}>{player.name}</Text>
-      <Text style={styles.hotTeamName}>{player.team}</Text>
-      <Text style={styles.hotPrice}>${player.stockPrice.toFixed(2)}</Text>
-      <View style={[styles.hotChangeBadge, isPositive ? styles.changeBadgeGreen : styles.changeBadgeRed]}>
-        <Ionicons
-          name={isPositive ? 'caret-up' : 'caret-down'}
-          size={10}
-          color={isPositive ? Colors.green : Colors.red}
-        />
-        <Text style={[styles.hotChangeText, isPositive ? styles.changeTextGreen : styles.changeTextRed]}>
-          {isPositive ? '+' : ''}{player.priceChangePercent.toFixed(1)}%
-        </Text>
+      <Text style={[styles.wishlistChange, isPositive ? styles.changeTextGreen : styles.changeTextRed]}>
+        {isPositive ? '+' : ''}{player.priceChangePercent.toFixed(2)}%
+      </Text>
+      <View style={styles.wishlistSparkline}>
+        <Sparkline data={sparklineData} isPositive={isPositive} width={100} height={30} />
       </View>
     </TouchableOpacity>
   );
@@ -82,8 +115,8 @@ export default function MarketplaceScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState<'all' | 'hot' | 'gainers' | 'losers'>('all');
 
-  const hotPlayers = useMemo(
-    () => ALL_PLAYERS.filter(p => p.isHot).slice(0, 6),
+  const wishlistPlayers = useMemo(
+    () => ALL_PLAYERS.filter(p => p.isHot).slice(0, 4),
     []
   );
 
@@ -119,31 +152,30 @@ export default function MarketplaceScreen() {
   };
 
   const filters: { key: 'all' | 'hot' | 'gainers' | 'losers'; label: string }[] = [
-    { key: 'all', label: 'ALL' },
-    { key: 'hot', label: 'HOT' },
-    { key: 'gainers', label: 'GAINERS' },
-    { key: 'losers', label: 'LOSERS' },
+    { key: 'all', label: 'All' },
+    { key: 'hot', label: 'Hot' },
+    { key: 'gainers', label: 'Gainers' },
+    { key: 'losers', label: 'Losers' },
   ];
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={Colors.primaryDark} />
+      <StatusBar barStyle="dark-content" backgroundColor={Colors.background} />
 
+      {/* Search Bar */}
       <View style={styles.searchContainer}>
         <View style={styles.searchBar}>
           <Ionicons name="search" size={18} color={Colors.textMuted} />
           <TextInput
             style={styles.searchInput}
-            placeholder="Search players or teams..."
+            placeholder="Search players"
             placeholderTextColor={Colors.textMuted}
             value={searchQuery}
             onChangeText={setSearchQuery}
           />
-          {searchQuery.length > 0 && (
-            <TouchableOpacity onPress={() => setSearchQuery('')}>
-              <Ionicons name="close-circle" size={18} color={Colors.textMuted} />
-            </TouchableOpacity>
-          )}
+          <TouchableOpacity style={styles.filterIcon}>
+            <Ionicons name="options-outline" size={18} color={Colors.textMuted} />
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -153,27 +185,29 @@ export default function MarketplaceScreen() {
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <View>
+            {/* Wishlist Section */}
             {!searchQuery && activeFilter === 'all' && (
-              <View style={styles.hotSection}>
-                <View style={styles.sectionTitleContainer}>
-                  <View style={styles.sectionTitleIcon}>
-                    <Ionicons name="flame" size={14} color={Colors.accent} />
-                  </View>
-                  <Text style={styles.sectionTitle}>TRENDING NOW</Text>
+              <View style={styles.wishlistSection}>
+                <View style={styles.sectionHeader}>
+                  <Text style={styles.sectionTitle}>Wishlist</Text>
+                  <TouchableOpacity>
+                    <Ionicons name="add-circle-outline" size={24} color={Colors.accent} />
+                  </TouchableOpacity>
                 </View>
                 <FlatList
                   horizontal
-                  data={hotPlayers}
-                  keyExtractor={item => `hot-${item.id}`}
+                  data={wishlistPlayers}
+                  keyExtractor={item => `wishlist-${item.id}`}
                   renderItem={({ item }) => (
-                    <HotPlayerCard player={item} onPress={() => handlePlayerPress(item)} />
+                    <WishlistCard player={item} onPress={() => handlePlayerPress(item)} />
                   )}
                   showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={styles.hotListContent}
+                  contentContainerStyle={styles.wishlistContent}
                 />
               </View>
             )}
 
+            {/* Filter Pills */}
             <View style={styles.filterRow}>
               {filters.map(f => (
                 <TouchableOpacity
@@ -188,9 +222,9 @@ export default function MarketplaceScreen() {
               ))}
             </View>
 
-            <View style={styles.listHeader}>
-              <Text style={styles.listHeaderText}>PLAYER</Text>
-              <Text style={styles.listHeaderText}>PRICE / CHANGE</Text>
+            {/* Stocks Section Header */}
+            <View style={styles.stocksHeader}>
+              <Text style={styles.stocksTitle}>Stocks</Text>
             </View>
           </View>
         }
@@ -216,16 +250,14 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
   },
   searchContainer: {
-    backgroundColor: Colors.surface,
-    padding: Spacing.md,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.border,
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.sm,
   },
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.card,
-    borderRadius: BorderRadius.md,
+    backgroundColor: Colors.surface,
+    borderRadius: BorderRadius.round,
     paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.sm + 2,
     gap: Spacing.sm,
@@ -238,235 +270,159 @@ const styles = StyleSheet.create({
     fontSize: FontSize.md,
     padding: 0,
   },
-  hotSection: {
-    paddingTop: Spacing.md,
-    paddingBottom: Spacing.sm,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.border,
+  filterIcon: {
+    padding: Spacing.xs,
   },
-  sectionTitleContainer: {
+  wishlistSection: {
+    paddingTop: Spacing.md,
+    paddingBottom: Spacing.lg,
+  },
+  sectionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: Spacing.sm,
+    justifyContent: 'space-between',
     paddingHorizontal: Spacing.md,
-    marginBottom: Spacing.sm,
-  },
-  sectionTitleIcon: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: Colors.accentDim,
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginBottom: Spacing.md,
   },
   sectionTitle: {
     color: Colors.text,
-    fontSize: FontSize.sm,
+    fontSize: FontSize.xl,
     fontWeight: '700',
-    letterSpacing: 1,
   },
-  hotListContent: {
+  wishlistContent: {
     paddingHorizontal: Spacing.md,
     gap: Spacing.sm,
   },
-  hotCard: {
+  wishlistCard: {
     backgroundColor: Colors.card,
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.lg,
     padding: Spacing.md,
-    alignItems: 'center',
-    width: 115,
+    width: 180,
     borderWidth: 1,
     borderColor: Colors.border,
-    position: 'relative',
-    overflow: 'hidden',
+    ...Shadows.card,
   },
-  hotCardGlow: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 2,
-    backgroundColor: Colors.accent,
-    opacity: 0.5,
+  wishlistHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.sm,
+    marginBottom: Spacing.sm,
   },
-  hotAvatarCircle: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    backgroundColor: Colors.accentDim,
+  wishlistAvatar: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: Colors.surface,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: Spacing.xs,
-    borderWidth: 1,
-    borderColor: Colors.borderLight,
   },
-  hotAvatarText: {
-    color: Colors.accent,
-    fontSize: FontSize.md,
-    fontWeight: '700',
-  },
-  hotPlayerName: {
-    color: Colors.text,
-    fontSize: FontSize.xs,
-    fontWeight: '600',
-    textAlign: 'center',
-    marginBottom: 2,
-  },
-  hotTeamName: {
-    color: Colors.textMuted,
-    fontSize: FontSize.xs,
-    marginBottom: Spacing.xs,
-    letterSpacing: 0.3,
-  },
-  hotPrice: {
+  wishlistAvatarText: {
     color: Colors.text,
     fontSize: FontSize.sm,
     fontWeight: '700',
-    marginBottom: 4,
   },
-  hotChangeBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: Spacing.xs,
-    paddingVertical: 2,
-    borderRadius: BorderRadius.sm,
-    gap: 2,
+  wishlistInfo: {
+    flex: 1,
   },
-  hotChangeText: {
-    fontSize: FontSize.xs,
+  wishlistTicker: {
+    color: Colors.text,
+    fontSize: FontSize.md,
     fontWeight: '700',
+  },
+  wishlistName: {
+    color: Colors.textMuted,
+    fontSize: FontSize.xs,
+  },
+  wishlistChange: {
+    fontSize: FontSize.md,
+    fontWeight: '600',
+    marginBottom: Spacing.sm,
+  },
+  wishlistSparkline: {
+    alignItems: 'flex-end',
   },
   filterRow: {
     flexDirection: 'row',
     paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.sm,
     gap: Spacing.sm,
-    backgroundColor: Colors.background,
   },
   filterBtn: {
     paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.xs + 2,
-    borderRadius: BorderRadius.sm,
-    backgroundColor: Colors.card,
-    borderWidth: 1,
-    borderColor: Colors.border,
+    paddingVertical: Spacing.sm,
+    borderRadius: BorderRadius.round,
+    backgroundColor: Colors.surface,
   },
   filterBtnActive: {
-    backgroundColor: Colors.accentDim,
-    borderColor: Colors.accent,
+    backgroundColor: Colors.text,
   },
   filterText: {
     color: Colors.textMuted,
-    fontSize: FontSize.xs,
-    fontWeight: '700',
-    letterSpacing: 0.5,
+    fontSize: FontSize.sm,
+    fontWeight: '600',
   },
   filterTextActive: {
-    color: Colors.accent,
+    color: Colors.white,
   },
-  listHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  stocksHeader: {
     paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.xs,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.border,
-    backgroundColor: Colors.surface,
+    paddingVertical: Spacing.md,
   },
-  listHeaderText: {
-    color: Colors.textMuted,
-    fontSize: 10,
-    fontWeight: '600',
-    letterSpacing: 1,
+  stocksTitle: {
+    color: Colors.text,
+    fontSize: FontSize.xl,
+    fontWeight: '700',
   },
   playerRow: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.sm + 4,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.border,
+    paddingVertical: Spacing.md,
     gap: Spacing.sm,
     backgroundColor: Colors.background,
   },
   avatarCircle: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
-    backgroundColor: Colors.surfaceLight,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: Colors.surface,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: Colors.border,
-  },
-  avatarCircleHot: {
-    backgroundColor: Colors.accentDim,
-    borderColor: Colors.borderLight,
   },
   avatarText: {
-    color: Colors.textSecondary,
+    color: Colors.text,
     fontSize: FontSize.sm,
     fontWeight: '700',
   },
   playerInfo: {
     flex: 1,
   },
-  playerNameRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.xs,
-  },
-  playerName: {
+  playerTicker: {
     color: Colors.text,
     fontSize: FontSize.md,
-    fontWeight: '600',
-  },
-  hotBadge: {
-    backgroundColor: Colors.accentDim,
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: BorderRadius.sm,
-    borderWidth: 1,
-    borderColor: Colors.borderLight,
-  },
-  hotText: {
-    color: Colors.accent,
-    fontSize: 8,
     fontWeight: '700',
-    letterSpacing: 0.5,
   },
-  playerMeta: {
+  playerName: {
     color: Colors.textMuted,
     fontSize: FontSize.xs,
-    marginTop: 2,
-    letterSpacing: 0.3,
+    marginTop: 1,
+  },
+  sparklineContainer: {
+    width: 60,
+    height: 24,
   },
   priceContainer: {
     alignItems: 'flex-end',
-    gap: 3,
+    minWidth: 70,
   },
   price: {
     color: Colors.text,
     fontSize: FontSize.md,
     fontWeight: '700',
   },
-  changeBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: Spacing.xs,
-    paddingVertical: 2,
-    borderRadius: BorderRadius.sm,
-    gap: 2,
-  },
-  changeBadgeGreen: {
-    backgroundColor: Colors.greenDim,
-  },
-  changeBadgeRed: {
-    backgroundColor: Colors.redDim,
-  },
   changeText: {
-    fontSize: FontSize.xs,
-    fontWeight: '700',
+    fontSize: FontSize.sm,
+    fontWeight: '600',
   },
   changeTextGreen: {
     color: Colors.green,

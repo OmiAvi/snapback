@@ -11,7 +11,7 @@ import {
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { BRACKET, TEAMS } from '@/constants/data';
-import { Colors, Spacing, FontSize, BorderRadius } from '@/constants/theme';
+import { Colors, Spacing, FontSize, BorderRadius, Shadows } from '@/constants/theme';
 import type { Team } from '@/constants/data';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
@@ -278,7 +278,7 @@ export default function BracketScreen() {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={Colors.primaryDark} />
+      <StatusBar barStyle="dark-content" backgroundColor={Colors.background} />
 
       {/* Toggle Tabs */}
       <View style={styles.toggleContainer}>
@@ -462,28 +462,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: Colors.surface,
     margin: Spacing.md,
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.round,
     padding: 4,
-    borderWidth: 1,
-    borderColor: Colors.border,
   },
   toggleBtn: {
     flex: 1,
-    paddingVertical: Spacing.sm,
+    paddingVertical: Spacing.sm + 2,
     alignItems: 'center',
-    borderRadius: BorderRadius.sm,
+    borderRadius: BorderRadius.round,
   },
   toggleBtnActive: {
-    backgroundColor: Colors.accent,
+    backgroundColor: Colors.text,
   },
   toggleText: {
     color: Colors.textMuted,
     fontSize: FontSize.sm,
-    fontWeight: '700',
-    letterSpacing: 0.5,
+    fontWeight: '600',
   },
   toggleTextActive: {
-    color: Colors.primaryDark,
+    color: Colors.white,
   },
   bracketScrollContent: {
     paddingHorizontal: Spacing.md,
@@ -506,10 +503,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.xs,
   },
   regionLabel: {
-    color: Colors.textMuted,
-    fontSize: 10,
-    fontWeight: '700',
-    letterSpacing: 1,
+    color: Colors.textSecondary,
+    fontSize: FontSize.xs,
+    fontWeight: '600',
     marginBottom: Spacing.sm,
   },
   matchupsColumn: {
@@ -522,6 +518,7 @@ const styles = StyleSheet.create({
     padding: Spacing.xs,
     borderWidth: 1,
     borderColor: Colors.border,
+    ...Shadows.sm,
   },
   matchupDivider: {
     width: 30,
@@ -531,7 +528,7 @@ const styles = StyleSheet.create({
   },
   teamLogo: {
     borderRadius: BorderRadius.sm,
-    backgroundColor: Colors.surfaceLight,
+    backgroundColor: Colors.surface,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
@@ -539,28 +536,29 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   teamLogoActive: {
-    borderColor: Colors.borderLight,
+    borderColor: Colors.green,
+    borderWidth: 2,
   },
   teamLogoSelected: {
-    backgroundColor: Colors.accentDim,
-    borderColor: Colors.accent,
+    backgroundColor: Colors.greenLight,
+    borderColor: Colors.green,
     borderWidth: 2,
   },
   teamLogoText: {
-    color: Colors.textMuted,
+    color: Colors.textSecondary,
     fontWeight: '700',
   },
   teamLogoTextActive: {
-    color: Colors.textSecondary,
+    color: Colors.text,
   },
   teamLogoTextSelected: {
-    color: Colors.accent,
+    color: Colors.green,
   },
   seedIndicator: {
     position: 'absolute',
     bottom: -4,
     right: -4,
-    backgroundColor: Colors.surface,
+    backgroundColor: Colors.white,
     borderRadius: 6,
     width: 14,
     height: 14,
@@ -570,16 +568,16 @@ const styles = StyleSheet.create({
     borderColor: Colors.border,
   },
   seedIndicatorSelected: {
-    backgroundColor: Colors.accent,
-    borderColor: Colors.accent,
+    backgroundColor: Colors.green,
+    borderColor: Colors.green,
   },
   seedIndicatorText: {
-    color: Colors.textMuted,
+    color: Colors.textSecondary,
     fontSize: 8,
     fontWeight: '700',
   },
   seedIndicatorTextSelected: {
-    color: Colors.primaryDark,
+    color: Colors.white,
   },
   roundColumn: {
     alignItems: 'center',
@@ -596,7 +594,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: BorderRadius.md,
-    backgroundColor: Colors.surfaceLight,
+    backgroundColor: Colors.surface,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
@@ -606,13 +604,13 @@ const styles = StyleSheet.create({
   emptySlotText: {
     color: Colors.textMuted,
     fontSize: FontSize.lg,
-    fontWeight: '700',
+    fontWeight: '600',
   },
   emptySlotSmall: {
     width: 36,
     height: 36,
     borderRadius: BorderRadius.sm,
-    backgroundColor: Colors.surfaceLight,
+    backgroundColor: Colors.surface,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
@@ -622,7 +620,7 @@ const styles = StyleSheet.create({
   emptySlotTextSmall: {
     color: Colors.textMuted,
     fontSize: FontSize.sm,
-    fontWeight: '700',
+    fontWeight: '600',
   },
   roundLabel: {
     color: Colors.textMuted,
@@ -650,7 +648,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: Colors.accentDim,
+    backgroundColor: Colors.accentLight,
     borderWidth: 2,
     borderColor: Colors.accent,
     alignItems: 'center',
@@ -659,13 +657,12 @@ const styles = StyleSheet.create({
   championPlaceholderSmall: {
     color: Colors.accent,
     fontSize: FontSize.xl,
-    fontWeight: '700',
+    fontWeight: '600',
   },
   finalFourLabel: {
-    color: Colors.textMuted,
-    fontSize: 8,
-    fontWeight: '700',
-    letterSpacing: 1,
+    color: Colors.textSecondary,
+    fontSize: 10,
+    fontWeight: '600',
     marginTop: Spacing.xs,
   },
   // Final Four View Styles
@@ -676,9 +673,8 @@ const styles = StyleSheet.create({
   },
   finalFourTitle: {
     color: Colors.text,
-    fontSize: FontSize.lg,
+    fontSize: FontSize.xl,
     fontWeight: '700',
-    letterSpacing: 1,
     marginBottom: Spacing.lg,
   },
   finalFourBracket: {
@@ -700,33 +696,33 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: Colors.accentDim,
+    backgroundColor: Colors.accentLight,
     borderWidth: 2,
     borderColor: Colors.accent,
     alignItems: 'center',
     justifyContent: 'center',
+    ...Shadows.md,
   },
   championInitials: {
     color: Colors.accent,
     fontSize: FontSize.xxl,
-    fontWeight: '700',
+    fontWeight: '600',
   },
   championPlaceholder: {
     color: Colors.accent,
     fontSize: FontSize.xxl,
-    fontWeight: '700',
+    fontWeight: '600',
   },
   championLabel: {
-    color: Colors.textMuted,
+    color: Colors.textSecondary,
     fontSize: 10,
-    fontWeight: '700',
-    letterSpacing: 0.5,
+    fontWeight: '600',
     marginTop: Spacing.sm,
   },
   championName: {
     color: Colors.accent,
     fontSize: FontSize.md,
-    fontWeight: '700',
+    fontWeight: '600',
     marginTop: 2,
   },
   hint: {
@@ -738,23 +734,20 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.sm,
     paddingHorizontal: Spacing.md,
     backgroundColor: Colors.surface,
-    borderRadius: BorderRadius.md,
-    borderWidth: 1,
-    borderColor: Colors.border,
+    borderRadius: BorderRadius.round,
     alignSelf: 'center',
   },
   hintIcon: {
     width: 20,
     height: 20,
     borderRadius: 10,
-    backgroundColor: Colors.accentDim,
+    backgroundColor: Colors.accentLight,
     alignItems: 'center',
     justifyContent: 'center',
   },
   hintText: {
-    color: Colors.textMuted,
+    color: Colors.textSecondary,
     fontSize: FontSize.xs,
-    letterSpacing: 0.3,
   },
   bracketLine: {
     width: 20,

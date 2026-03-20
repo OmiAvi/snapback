@@ -11,7 +11,7 @@ import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { TEAMS } from '@/constants/data';
 import type { Player } from '@/constants/data';
-import { Colors, Spacing, FontSize, BorderRadius } from '@/constants/theme';
+import { Colors, Spacing, FontSize, BorderRadius, Shadows } from '@/constants/theme';
 
 function PlayerCard({ player, onPress }: { player: Player; onPress: () => void }) {
   const isPositive = player.priceChange >= 0;
@@ -56,7 +56,7 @@ function PlayerCard({ player, onPress }: { player: Player; onPress: () => void }
             {isPositive ? '+' : ''}{player.priceChangePercent.toFixed(1)}%
           </Text>
         </View>
-        <Ionicons name="chevron-forward" size={14} color={Colors.accent} style={{ marginTop: 4 }} />
+        <Ionicons name="chevron-forward" size={14} color={Colors.textMuted} style={{ marginTop: 4 }} />
       </View>
     </TouchableOpacity>
   );
@@ -83,7 +83,7 @@ export default function TeamScreen() {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={Colors.primaryDark} />
+      <StatusBar barStyle="dark-content" backgroundColor={Colors.background} />
       <Stack.Screen options={{ title: team.name }} />
 
       <View style={styles.teamHeader}>
@@ -160,12 +160,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: Colors.surface,
+    backgroundColor: Colors.background,
     padding: Spacing.md,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.border,
-    position: 'relative',
-    overflow: 'hidden',
   },
   teamHeaderLeft: {
     flexDirection: 'row',
@@ -179,12 +175,10 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Colors.accentDim,
-    borderWidth: 1,
-    borderColor: Colors.accent,
+    backgroundColor: Colors.surface,
   },
   seedText: {
-    color: Colors.accent,
+    color: Colors.text,
     fontSize: FontSize.sm,
     fontWeight: '700',
   },
@@ -203,26 +197,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   recordValue: {
-    color: Colors.accent,
+    color: Colors.text,
     fontSize: FontSize.xl,
     fontWeight: '700',
   },
   recordLabel: {
     color: Colors.textMuted,
-    fontSize: 10,
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
+    fontSize: FontSize.xs,
   },
   teamStats: {
     flexDirection: 'row',
     backgroundColor: Colors.card,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.border,
+    marginHorizontal: Spacing.md,
+    marginTop: Spacing.sm,
+    borderRadius: BorderRadius.lg,
+    borderWidth: 1,
+    borderColor: Colors.border,
+    ...Shadows.card,
   },
   teamStatItem: {
     flex: 1,
     alignItems: 'center',
-    paddingVertical: Spacing.sm + 2,
+    paddingVertical: Spacing.md,
   },
   teamStatValue: {
     color: Colors.text,
@@ -231,10 +227,8 @@ const styles = StyleSheet.create({
   },
   teamStatLabel: {
     color: Colors.textMuted,
-    fontSize: 10,
+    fontSize: FontSize.xs,
     marginTop: 2,
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
   },
   teamStatDivider: {
     width: 1,
@@ -246,67 +240,52 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.sm,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.border,
-    backgroundColor: Colors.surface,
+    paddingVertical: Spacing.md,
+    marginTop: Spacing.md,
   },
   listHeaderText: {
-    color: Colors.textMuted,
-    fontSize: 10,
+    color: Colors.text,
+    fontSize: FontSize.lg,
     fontWeight: '700',
-    letterSpacing: 1,
-    textTransform: 'uppercase',
   },
   listHeaderSub: {
-    color: Colors.accent,
-    fontSize: FontSize.xs,
-    letterSpacing: 0.3,
+    color: Colors.textMuted,
+    fontSize: FontSize.sm,
   },
   playerCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.surface,
+    backgroundColor: Colors.card,
     marginHorizontal: Spacing.md,
     marginTop: Spacing.sm,
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.lg,
     padding: Spacing.md,
     borderWidth: 1,
     borderColor: Colors.border,
     gap: Spacing.sm,
-    position: 'relative',
-    overflow: 'hidden',
+    ...Shadows.card,
   },
   playerCardGlow: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 1,
-    backgroundColor: Colors.accent,
-    opacity: 0.2,
+    display: 'none',
   },
   jerseyBadge: {
     width: 44,
     height: 44,
-    borderRadius: BorderRadius.md,
-    backgroundColor: Colors.surfaceLight,
+    borderRadius: 22,
+    backgroundColor: Colors.surface,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: Colors.border,
   },
   jerseyBadgeHot: {
-    backgroundColor: Colors.accentDim,
-    borderColor: Colors.borderLight,
+    backgroundColor: Colors.greenLight,
   },
   jerseyText: {
-    color: Colors.textSecondary,
+    color: Colors.text,
     fontSize: FontSize.sm,
     fontWeight: '700',
   },
   jerseyTextHot: {
-    color: Colors.accent,
+    color: Colors.green,
   },
   playerInfo: {
     flex: 1,
@@ -325,16 +304,13 @@ const styles = StyleSheet.create({
   hotBadge: {
     paddingHorizontal: 6,
     paddingVertical: 2,
-    borderRadius: BorderRadius.sm,
-    backgroundColor: Colors.accentDim,
-    borderWidth: 1,
-    borderColor: Colors.borderLight,
+    borderRadius: BorderRadius.round,
+    backgroundColor: Colors.greenLight,
   },
   hotText: {
     fontSize: 8,
     fontWeight: '700',
-    color: Colors.accent,
-    letterSpacing: 0.5,
+    color: Colors.green,
   },
   playerMeta: {
     flexDirection: 'row',
@@ -342,12 +318,10 @@ const styles = StyleSheet.create({
     gap: Spacing.sm,
   },
   metaBadge: {
-    backgroundColor: Colors.card,
+    backgroundColor: Colors.surface,
     paddingHorizontal: Spacing.xs + 2,
     paddingVertical: 2,
-    borderRadius: BorderRadius.sm,
-    borderWidth: 1,
-    borderColor: Colors.border,
+    borderRadius: BorderRadius.round,
   },
   metaText: {
     color: Colors.textSecondary,
@@ -366,12 +340,10 @@ const styles = StyleSheet.create({
   statChip: {
     color: Colors.textSecondary,
     fontSize: FontSize.xs,
-    backgroundColor: Colors.card,
+    backgroundColor: Colors.surface,
     paddingHorizontal: 6,
     paddingVertical: 2,
-    borderRadius: BorderRadius.sm,
-    borderWidth: 1,
-    borderColor: Colors.border,
+    borderRadius: BorderRadius.round,
   },
   priceBlock: {
     alignItems: 'flex-end',
@@ -391,10 +363,10 @@ const styles = StyleSheet.create({
     marginTop: 3,
   },
   changeBadgeGreen: {
-    backgroundColor: Colors.greenDim,
+    backgroundColor: Colors.greenLight,
   },
   changeBadgeRed: {
-    backgroundColor: Colors.redDim,
+    backgroundColor: Colors.redLight,
   },
   changeText: {
     fontSize: FontSize.xs,
