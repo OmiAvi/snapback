@@ -18,6 +18,7 @@ function StatBox({ label, value }: { label: string; value: string }) {
     <View style={styles.statBox}>
       <Text style={styles.statValue}>{value}</Text>
       <Text style={styles.statLabel}>{label}</Text>
+      <View style={styles.statBoxGlow} />
     </View>
   );
 }
@@ -280,14 +281,16 @@ const styles = StyleSheet.create({
     fontSize: FontSize.lg,
   },
   backButton: {
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.accentDim,
     paddingHorizontal: Spacing.lg,
     paddingVertical: Spacing.sm,
     borderRadius: BorderRadius.md,
     marginTop: Spacing.sm,
+    borderWidth: 1,
+    borderColor: Colors.accent,
   },
   backButtonText: {
-    color: Colors.white,
+    color: Colors.accent,
     fontWeight: '600',
   },
   scrollContent: {
@@ -301,12 +304,14 @@ const styles = StyleSheet.create({
     gap: Spacing.lg,
     borderBottomWidth: 1,
     borderBottomColor: Colors.border,
+    position: 'relative',
+    overflow: 'hidden',
   },
   photoPlaceholder: {
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: Colors.primaryLight,
+    backgroundColor: Colors.accentDim,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 2,
@@ -314,9 +319,9 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   photoInitials: {
-    color: Colors.white,
+    color: Colors.accent,
     fontSize: FontSize.xxxl,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   jerseyOverlay: {
     position: 'absolute',
@@ -330,7 +335,7 @@ const styles = StyleSheet.create({
   jerseyNum: {
     color: Colors.primaryDark,
     fontSize: FontSize.xs,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   heroInfo: {
     flex: 1,
@@ -339,7 +344,7 @@ const styles = StyleSheet.create({
   heroName: {
     color: Colors.text,
     fontSize: FontSize.xxl,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   heroBadges: {
     flexDirection: 'row',
@@ -350,22 +355,24 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.card,
     paddingHorizontal: Spacing.sm,
     paddingVertical: 3,
-    borderRadius: BorderRadius.round,
+    borderRadius: BorderRadius.sm,
     borderWidth: 1,
     borderColor: Colors.border,
   },
   badgeHot: {
-    backgroundColor: 'rgba(255,127,0,0.15)',
-    borderColor: '#ff7f00',
+    backgroundColor: Colors.accentDim,
+    borderColor: Colors.accent,
   },
   badgeText: {
     color: Colors.textSecondary,
     fontSize: FontSize.xs,
     fontWeight: '600',
+    letterSpacing: 0.3,
   },
   heroMeta: {
     color: Colors.textMuted,
     fontSize: FontSize.xs,
+    letterSpacing: 0.3,
   },
   priceSection: {
     backgroundColor: Colors.surface,
@@ -373,6 +380,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: Colors.border,
     alignItems: 'center',
+    position: 'relative',
+    overflow: 'hidden',
   },
   priceMain: {
     flexDirection: 'row',
@@ -382,7 +391,7 @@ const styles = StyleSheet.create({
   bigPrice: {
     color: Colors.text,
     fontSize: FontSize.title,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   priceBadge: {
     flexDirection: 'row',
@@ -390,17 +399,21 @@ const styles = StyleSheet.create({
     gap: Spacing.xs,
     paddingHorizontal: Spacing.sm,
     paddingVertical: Spacing.xs,
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.sm,
   },
   priceBadgeGreen: {
-    backgroundColor: 'rgba(0,200,83,0.15)',
+    backgroundColor: Colors.greenDim,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 255, 157, 0.3)',
   },
   priceBadgeRed: {
-    backgroundColor: 'rgba(255,23,68,0.15)',
+    backgroundColor: Colors.redDim,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 59, 110, 0.3)',
   },
   priceChangeText: {
     fontSize: FontSize.md,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   textGreen: {
     color: Colors.green,
@@ -410,8 +423,10 @@ const styles = StyleSheet.create({
   },
   priceLabel: {
     color: Colors.textMuted,
-    fontSize: FontSize.xs,
+    fontSize: 10,
     marginTop: 4,
+    textTransform: 'uppercase',
+    letterSpacing: 1,
   },
   chartContainer: {
     backgroundColor: Colors.surface,
@@ -424,9 +439,11 @@ const styles = StyleSheet.create({
   },
   chartLabel: {
     color: Colors.textMuted,
-    fontSize: FontSize.xs,
+    fontSize: 10,
     fontWeight: '600',
     marginBottom: Spacing.sm,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
   chartPlaceholder: {
     height: 80,
@@ -437,12 +454,12 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   chartGreen: {
-    backgroundColor: 'rgba(0,200,83,0.08)',
+    backgroundColor: Colors.greenDim,
     borderTopWidth: 2,
     borderTopColor: Colors.green,
   },
   chartRed: {
-    backgroundColor: 'rgba(255,23,68,0.08)',
+    backgroundColor: Colors.redDim,
     borderTopWidth: 2,
     borderTopColor: Colors.red,
   },
@@ -462,9 +479,10 @@ const styles = StyleSheet.create({
   },
   chartAnnotation: {
     fontSize: FontSize.sm,
-    fontWeight: 'bold',
+    fontWeight: '700',
     textAlign: 'center',
     paddingTop: Spacing.xs,
+    letterSpacing: 0.5,
   },
   statsSection: {
     backgroundColor: Colors.surface,
@@ -476,10 +494,10 @@ const styles = StyleSheet.create({
     borderColor: Colors.border,
   },
   sectionTitle: {
-    color: Colors.textSecondary,
-    fontSize: FontSize.sm,
-    fontWeight: '600',
-    letterSpacing: 0.5,
+    color: Colors.textMuted,
+    fontSize: 10,
+    fontWeight: '700',
+    letterSpacing: 1,
     marginBottom: Spacing.md,
     textTransform: 'uppercase',
   },
@@ -497,16 +515,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderColor: Colors.border,
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  statBoxGlow: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    backgroundColor: Colors.accent,
+    opacity: 0.3,
   },
   statValue: {
     color: Colors.accent,
     fontSize: FontSize.xl,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   statLabel: {
     color: Colors.textMuted,
-    fontSize: FontSize.xs,
+    fontSize: 10,
     marginTop: 2,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
   tradeSection: {
     backgroundColor: Colors.surface,
@@ -523,9 +554,11 @@ const styles = StyleSheet.create({
     gap: Spacing.sm,
   },
   sharesLabel: {
-    color: Colors.textSecondary,
-    fontSize: FontSize.sm,
-    fontWeight: '600',
+    color: Colors.textMuted,
+    fontSize: 10,
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
   },
   sharesRow: {
     flexDirection: 'row',
@@ -548,14 +581,14 @@ const styles = StyleSheet.create({
   sharesValue: {
     color: Colors.text,
     fontSize: FontSize.xxxl,
-    fontWeight: 'bold',
+    fontWeight: '700',
     minWidth: 40,
     textAlign: 'center',
   },
   totalCost: {
     color: Colors.accent,
     fontSize: FontSize.lg,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   tradeButtons: {
     flexDirection: 'row',
@@ -573,15 +606,17 @@ const styles = StyleSheet.create({
   },
   buyButtonText: {
     color: Colors.primaryDark,
-    fontSize: FontSize.lg,
-    fontWeight: 'bold',
+    fontSize: FontSize.md,
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
   sellButton: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Colors.red,
+    backgroundColor: Colors.redDim,
     borderRadius: BorderRadius.md,
     paddingVertical: Spacing.md,
     gap: Spacing.sm,
@@ -589,9 +624,11 @@ const styles = StyleSheet.create({
     borderColor: Colors.red,
   },
   sellButtonText: {
-    color: Colors.white,
-    fontSize: FontSize.lg,
-    fontWeight: 'bold',
+    color: Colors.red,
+    fontSize: FontSize.md,
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
   marketInfo: {
     backgroundColor: Colors.surface,
@@ -611,11 +648,12 @@ const styles = StyleSheet.create({
   },
   infoLabel: {
     color: Colors.textMuted,
-    fontSize: FontSize.md,
+    fontSize: FontSize.sm,
+    letterSpacing: 0.3,
   },
   infoValue: {
     color: Colors.text,
-    fontSize: FontSize.md,
+    fontSize: FontSize.sm,
     fontWeight: '600',
   },
   disclaimer: {
@@ -624,6 +662,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: Spacing.md,
     paddingTop: Spacing.lg,
-    fontStyle: 'italic',
+    letterSpacing: 0.3,
   },
 });

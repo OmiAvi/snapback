@@ -10,6 +10,7 @@
     "export:web": "expo export --platform web --output-dir /tmp/expo-web-build"
   },
   "dependencies": {
+    "@expo/vector-icons": "^15.1.1",
     "@react-navigation/bottom-tabs": "^7.15.6",
     "@react-navigation/native": "^7.1.34",
     "expo": "~55.0.8",

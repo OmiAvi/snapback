@@ -17,8 +17,9 @@ function PlayerCard({ player, onPress }: { player: Player; onPress: () => void }
   const isPositive = player.priceChange >= 0;
   return (
     <TouchableOpacity style={styles.playerCard} onPress={onPress} activeOpacity={0.7}>
-      <View style={styles.jerseyBadge}>
-        <Text style={styles.jerseyText}>#{player.jersey}</Text>
+      <View style={styles.playerCardGlow} />
+      <View style={[styles.jerseyBadge, player.isHot && styles.jerseyBadgeHot]}>
+        <Text style={[styles.jerseyText, player.isHot && styles.jerseyTextHot]}>#{player.jersey}</Text>
       </View>
 
       <View style={styles.playerInfo}>
@@ -26,7 +27,7 @@ function PlayerCard({ player, onPress }: { player: Player; onPress: () => void }
           <Text style={styles.playerName}>{player.name}</Text>
           {player.isHot && (
             <View style={styles.hotBadge}>
-              <Text style={styles.hotText}>🔥</Text>
+              <Text style={styles.hotText}>HOT</Text>
             </View>
           )}
         </View>
@@ -34,7 +35,7 @@ function PlayerCard({ player, onPress }: { player: Player; onPress: () => void }
           <View style={styles.metaBadge}>
             <Text style={styles.metaText}>{player.position}</Text>
           </View>
-          <Text style={styles.metaExtra}>{player.year} · {player.height}</Text>
+          <Text style={styles.metaExtra}>{player.year} | {player.height}</Text>
         </View>
         <View style={styles.statsRow}>
           <Text style={styles.statChip}>{player.stats.ppg} PPG</Text>
@@ -47,7 +48,7 @@ function PlayerCard({ player, onPress }: { player: Player; onPress: () => void }
         <Text style={styles.stockPrice}>${player.stockPrice.toFixed(2)}</Text>
         <View style={[styles.changeBadge, isPositive ? styles.changeBadgeGreen : styles.changeBadgeRed]}>
           <Ionicons
-            name={isPositive ? 'arrow-up' : 'arrow-down'}
+            name={isPositive ? 'caret-up' : 'caret-down'}
             size={10}
             color={isPositive ? Colors.green : Colors.red}
           />
@@ -55,7 +56,7 @@ function PlayerCard({ player, onPress }: { player: Player; onPress: () => void }
             {isPositive ? '+' : ''}{player.priceChangePercent.toFixed(1)}%
           </Text>
         </View>
-        <Ionicons name="chevron-forward" size={14} color={Colors.textMuted} style={{ marginTop: 4 }} />
+        <Ionicons name="chevron-forward" size={14} color={Colors.accent} style={{ marginTop: 4 }} />
       </View>
     </TouchableOpacity>
   );
@@ -163,6 +164,8 @@ const styles = StyleSheet.create({
     padding: Spacing.md,
     borderBottomWidth: 1,
     borderBottomColor: Colors.border,
+    position: 'relative',
+    overflow: 'hidden',
   },
   teamHeaderLeft: {
     flexDirection: 'row',
@@ -176,21 +179,25 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: Colors.accentDim,
+    borderWidth: 1,
+    borderColor: Colors.accent,
   },
   seedText: {
-    color: Colors.white,
+    color: Colors.accent,
     fontSize: FontSize.sm,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   teamName: {
     color: Colors.text,
     fontSize: FontSize.lg,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   teamMeta: {
     color: Colors.textMuted,
     fontSize: FontSize.xs,
     marginTop: 2,
+    letterSpacing: 0.3,
   },
   teamRecord: {
     alignItems: 'center',
@@ -198,11 +205,13 @@ const styles = StyleSheet.create({
   recordValue: {
     color: Colors.accent,
     fontSize: FontSize.xl,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   recordLabel: {
     color: Colors.textMuted,
-    fontSize: FontSize.xs,
+    fontSize: 10,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
   teamStats: {
     flexDirection: 'row',
@@ -218,12 +227,14 @@ const styles = StyleSheet.create({
   teamStatValue: {
     color: Colors.text,
     fontSize: FontSize.md,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   teamStatLabel: {
     color: Colors.textMuted,
-    fontSize: FontSize.xs,
+    fontSize: 10,
     marginTop: 2,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
   teamStatDivider: {
     width: 1,
@@ -238,16 +249,19 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.sm,
     borderBottomWidth: 1,
     borderBottomColor: Colors.border,
+    backgroundColor: Colors.surface,
   },
   listHeaderText: {
     color: Colors.textMuted,
-    fontSize: FontSize.xs,
-    fontWeight: '600',
-    letterSpacing: 0.5,
+    fontSize: 10,
+    fontWeight: '700',
+    letterSpacing: 1,
+    textTransform: 'uppercase',
   },
   listHeaderSub: {
     color: Colors.accent,
     fontSize: FontSize.xs,
+    letterSpacing: 0.3,
   },
   playerCard: {
     flexDirection: 'row',
@@ -260,21 +274,39 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.border,
     gap: Spacing.sm,
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  playerCardGlow: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 1,
+    backgroundColor: Colors.accent,
+    opacity: 0.2,
   },
   jerseyBadge: {
     width: 44,
     height: 44,
     borderRadius: BorderRadius.md,
-    backgroundColor: Colors.primaryLight,
+    backgroundColor: Colors.surfaceLight,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
     borderColor: Colors.border,
   },
+  jerseyBadgeHot: {
+    backgroundColor: Colors.accentDim,
+    borderColor: Colors.borderLight,
+  },
   jerseyText: {
-    color: Colors.accent,
+    color: Colors.textSecondary,
     fontSize: FontSize.sm,
-    fontWeight: 'bold',
+    fontWeight: '700',
+  },
+  jerseyTextHot: {
+    color: Colors.accent,
   },
   playerInfo: {
     flex: 1,
@@ -291,13 +323,18 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   hotBadge: {
-    paddingHorizontal: 4,
-    paddingVertical: 1,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
     borderRadius: BorderRadius.sm,
-    backgroundColor: 'rgba(255,127,0,0.15)',
+    backgroundColor: Colors.accentDim,
+    borderWidth: 1,
+    borderColor: Colors.borderLight,
   },
   hotText: {
-    fontSize: 10,
+    fontSize: 8,
+    fontWeight: '700',
+    color: Colors.accent,
+    letterSpacing: 0.5,
   },
   playerMeta: {
     flexDirection: 'row',
@@ -320,6 +357,7 @@ const styles = StyleSheet.create({
   metaExtra: {
     color: Colors.textMuted,
     fontSize: FontSize.xs,
+    letterSpacing: 0.3,
   },
   statsRow: {
     flexDirection: 'row',
@@ -332,6 +370,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     paddingVertical: 2,
     borderRadius: BorderRadius.sm,
+    borderWidth: 1,
+    borderColor: Colors.border,
   },
   priceBlock: {
     alignItems: 'flex-end',
@@ -339,7 +379,7 @@ const styles = StyleSheet.create({
   stockPrice: {
     color: Colors.text,
     fontSize: FontSize.md,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   changeBadge: {
     flexDirection: 'row',
@@ -351,14 +391,14 @@ const styles = StyleSheet.create({
     marginTop: 3,
   },
   changeBadgeGreen: {
-    backgroundColor: 'rgba(0,200,83,0.15)',
+    backgroundColor: Colors.greenDim,
   },
   changeBadgeRed: {
-    backgroundColor: 'rgba(255,23,68,0.15)',
+    backgroundColor: Colors.redDim,
   },
   changeText: {
     fontSize: FontSize.xs,
-    fontWeight: 'bold',
+    fontWeight: '700',
   },
   changeGreen: {
     color: Colors.green,
