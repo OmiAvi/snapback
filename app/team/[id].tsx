@@ -88,7 +88,7 @@ export default function TeamScreen() {
 
       <View style={styles.teamHeader}>
         <View style={styles.teamHeaderLeft}>
-          <View style={[styles.seedBadge, { backgroundColor: team.color || Colors.primary }]}>
+          <View style={styles.seedBadge}>
             <Text style={styles.seedText}>#{team.seed}</Text>
           </View>
           <View>
