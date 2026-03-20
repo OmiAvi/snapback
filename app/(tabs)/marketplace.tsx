@@ -12,7 +12,7 @@ import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { ALL_PLAYERS } from '@/constants/data';
 import type { Player } from '@/constants/data';
-import { Colors, Spacing, FontSize, BorderRadius } from '@/constants/theme';
+import { Colors, Spacing, FontSize, BorderRadius, Shadows } from '@/constants/theme';
 
 function PriceTag({ price, change, changePercent }: { price: number; change: number; changePercent: number }) {
   const isPositive = change >= 0;
@@ -127,7 +127,7 @@ export default function MarketplaceScreen() {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={Colors.primaryDark} />
+      <StatusBar barStyle="dark-content" backgroundColor={Colors.surface} />
 
       <View style={styles.searchContainer}>
         <View style={styles.searchBar}>
@@ -224,13 +224,11 @@ const styles = StyleSheet.create({
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.card,
-    borderRadius: BorderRadius.md,
+    backgroundColor: Colors.surfaceLight,
+    borderRadius: BorderRadius.round,
     paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.sm + 2,
+    paddingVertical: Spacing.sm + 4,
     gap: Spacing.sm,
-    borderWidth: 1,
-    borderColor: Colors.border,
   },
   searchInput: {
     flex: 1,
@@ -271,23 +269,21 @@ const styles = StyleSheet.create({
   },
   hotCard: {
     backgroundColor: Colors.card,
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.lg,
     padding: Spacing.md,
     alignItems: 'center',
-    width: 115,
-    borderWidth: 1,
-    borderColor: Colors.border,
-    position: 'relative',
-    overflow: 'hidden',
+    width: 120,
+    ...Shadows.card,
   },
   hotCardGlow: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    height: 2,
+    height: 3,
     backgroundColor: Colors.accent,
-    opacity: 0.5,
+    borderTopLeftRadius: BorderRadius.lg,
+    borderTopRightRadius: BorderRadius.lg,
   },
   hotAvatarCircle: {
     width: 44,
@@ -344,25 +340,21 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
   },
   filterBtn: {
-    paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.xs + 2,
-    borderRadius: BorderRadius.sm,
-    backgroundColor: Colors.card,
-    borderWidth: 1,
-    borderColor: Colors.border,
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.sm,
+    borderRadius: BorderRadius.round,
+    backgroundColor: Colors.surfaceLight,
   },
   filterBtnActive: {
-    backgroundColor: Colors.accentDim,
-    borderColor: Colors.accent,
+    backgroundColor: Colors.text,
   },
   filterText: {
     color: Colors.textMuted,
-    fontSize: FontSize.xs,
-    fontWeight: '700',
-    letterSpacing: 0.5,
+    fontSize: FontSize.sm,
+    fontWeight: '600',
   },
   filterTextActive: {
-    color: Colors.accent,
+    color: Colors.white,
   },
   listHeader: {
     flexDirection: 'row',
@@ -383,25 +375,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.sm + 4,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.border,
+    paddingVertical: Spacing.md,
     gap: Spacing.sm,
-    backgroundColor: Colors.background,
+    backgroundColor: Colors.surface,
+    marginHorizontal: Spacing.md,
+    marginTop: Spacing.sm,
+    borderRadius: BorderRadius.lg,
+    ...Shadows.soft,
   },
   avatarCircle: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     backgroundColor: Colors.surfaceLight,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: Colors.border,
   },
   avatarCircleHot: {
     backgroundColor: Colors.accentDim,
-    borderColor: Colors.borderLight,
   },
   avatarText: {
     color: Colors.textSecondary,
