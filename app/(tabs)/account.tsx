@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { MOCK_USER, MOCK_PORTFOLIO, MOCK_TRANSACTIONS } from '@/constants/data';
-import { Colors, Spacing, FontSize, BorderRadius } from '@/constants/theme';
+import { Colors, Spacing, FontSize, BorderRadius, Shadows } from '@/constants/theme';
 
 function SectionHeader({ title, icon }: { title: string; icon: string }) {
   return (
@@ -89,7 +89,7 @@ export default function AccountScreen() {
       contentContainerStyle={styles.contentContainer}
       showsVerticalScrollIndicator={false}
     >
-      <StatusBar barStyle="light-content" backgroundColor={Colors.primaryDark} />
+      <StatusBar barStyle="dark-content" backgroundColor={Colors.background} />
 
       {/* Profile Card */}
       <View style={styles.profileCard}>
@@ -254,26 +254,20 @@ const styles = StyleSheet.create({
   profileCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.surface,
+    backgroundColor: Colors.background,
     padding: Spacing.lg,
     gap: Spacing.md,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.border,
-    position: 'relative',
-    overflow: 'hidden',
   },
   avatarLarge: {
     width: 64,
     height: 64,
     borderRadius: 32,
-    backgroundColor: Colors.accentDim,
+    backgroundColor: Colors.surface,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 2,
-    borderColor: Colors.accent,
   },
   avatarLargeText: {
-    color: Colors.accent,
+    color: Colors.text,
     fontSize: FontSize.xl,
     fontWeight: '700',
   },
@@ -295,27 +289,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 4,
     marginTop: 4,
-    backgroundColor: Colors.greenDim,
-    paddingHorizontal: Spacing.sm,
-    paddingVertical: 2,
-    borderRadius: BorderRadius.sm,
-    alignSelf: 'flex-start',
   },
   verifiedText: {
     color: Colors.green,
     fontSize: FontSize.xs,
     fontWeight: '600',
-    letterSpacing: 0.3,
   },
   statsRow: {
     flexDirection: 'row',
     backgroundColor: Colors.card,
     marginHorizontal: Spacing.md,
     marginTop: Spacing.md,
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.lg,
     borderWidth: 1,
     borderColor: Colors.border,
     overflow: 'hidden',
+    ...Shadows.card,
   },
   statCard: {
     flex: 1,
@@ -332,8 +321,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginTop: 2,
     textAlign: 'center',
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
   },
   statDivider: {
     width: 1,
@@ -341,38 +328,36 @@ const styles = StyleSheet.create({
     marginVertical: Spacing.sm,
   },
   section: {
-    backgroundColor: Colors.surface,
+    backgroundColor: Colors.card,
     marginHorizontal: Spacing.md,
     marginTop: Spacing.md,
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.lg,
     borderWidth: 1,
     borderColor: Colors.border,
     overflow: 'hidden',
+    ...Shadows.card,
   },
   sectionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.sm,
     paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.sm + 2,
+    paddingVertical: Spacing.md,
     borderBottomWidth: 1,
     borderBottomColor: Colors.border,
-    backgroundColor: Colors.card,
   },
   sectionHeaderIcon: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: Colors.accentDim,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: Colors.accentLight,
     alignItems: 'center',
     justifyContent: 'center',
   },
   sectionTitle: {
     color: Colors.text,
-    fontSize: FontSize.sm,
-    fontWeight: '700',
-    letterSpacing: 0.5,
-    textTransform: 'uppercase',
+    fontSize: FontSize.md,
+    fontWeight: '600',
   },
   depositGrid: {
     flexDirection: 'row',
@@ -383,12 +368,10 @@ const styles = StyleSheet.create({
   depositBtn: {
     flex: 1,
     minWidth: '22%',
-    backgroundColor: Colors.surfaceLight,
+    backgroundColor: Colors.surface,
     borderRadius: BorderRadius.md,
     paddingVertical: Spacing.md,
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: Colors.border,
   },
   depositAmount: {
     color: Colors.accent,
@@ -399,8 +382,6 @@ const styles = StyleSheet.create({
     color: Colors.textMuted,
     fontSize: 10,
     marginTop: 2,
-    textTransform: 'uppercase',
-    letterSpacing: 0.3,
   },
   emptySection: {
     padding: Spacing.lg,
@@ -422,14 +403,12 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: Colors.accentDim,
+    backgroundColor: Colors.surface,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: Colors.borderLight,
   },
   portfolioAvatarText: {
-    color: Colors.accent,
+    color: Colors.text,
     fontSize: FontSize.sm,
     fontWeight: '700',
   },
@@ -541,9 +520,7 @@ const styles = StyleSheet.create({
   },
   footerText: {
     color: Colors.textMuted,
-    fontSize: 10,
-    letterSpacing: 1,
-    textTransform: 'uppercase',
+    fontSize: FontSize.xs,
   },
   footerDisclaimer: {
     color: Colors.textMuted,

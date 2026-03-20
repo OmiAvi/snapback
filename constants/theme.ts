@@ -1,49 +1,48 @@
 export const Colors = {
-  // Modern dark theme with orange to mustard yellow gradient accents
-  primary: '#1a1a1a',
-  primaryDark: '#121212',
-  primaryLight: '#2a2a2a',
+  // Clean, modern LIGHT theme like StockWave
+  primary: '#4A5CFF',        // Blue accent (for buttons, actions)
+  primaryDark: '#3847E0',    // Darker blue
+  primaryLight: '#6B7AFF',   // Lighter blue
   
-  // Orange to Mustard Yellow gradient colors
-  accent: '#FF6B35',           // Vibrant orange
-  accentLight: '#FF8C5A',      // Lighter orange
-  accentMustard: '#E8A838',    // Mustard yellow
-  accentGold: '#F5C142',       // Bright gold
-  accentDim: 'rgba(255, 107, 53, 0.15)',
+  // Main accent - blue for primary actions
+  accent: '#4A5CFF',
+  accentLight: '#E8EAFF',
+  accentDim: 'rgba(74, 92, 255, 0.1)',
   
-  // Gradient definitions (for use with LinearGradient)
-  gradientStart: '#FF6B35',    // Orange
-  gradientEnd: '#E8A838',      // Mustard yellow
+  // Backgrounds - Light theme
+  background: '#FFFFFF',
+  surface: '#F8F9FA',
+  surfaceLight: '#F0F1F3',
+  card: '#FFFFFF',
+  cardLight: '#FAFBFC',
   
-  background: '#0f0f0f',
-  surface: '#1a1a1a',
-  surfaceLight: '#242424',
-  card: '#1e1e1e',
-  cardLight: '#2a2a2a',
+  // Text - Dark on light
+  text: '#1A1D26',
+  textSecondary: '#6B7280',
+  textMuted: '#9CA3AF',
+  textLight: '#FFFFFF',
   
-  text: '#ffffff',
-  textSecondary: '#b0b0b0',
-  textMuted: '#707070',
-  textDark: '#1a1a1a',
+  // Stock colors - Green for gains, Red for losses
+  green: '#22C55E',
+  greenLight: '#DCFCE7',
+  greenDim: 'rgba(34, 197, 94, 0.1)',
   
-  green: '#4ade80',
-  greenLight: '#86efac',
-  greenDim: 'rgba(74, 222, 128, 0.15)',
+  red: '#EF4444',
+  redLight: '#FEE2E2',
+  redDim: 'rgba(239, 68, 68, 0.1)',
   
-  red: '#f87171',
-  redLight: '#fca5a5',
-  redDim: 'rgba(248, 113, 113, 0.15)',
+  // Borders - Subtle gray borders
+  border: '#E5E7EB',
+  borderLight: '#F3F4F6',
+  borderMuted: '#E5E7EB',
   
-  border: 'rgba(255, 107, 53, 0.2)',
-  borderLight: 'rgba(255, 107, 53, 0.35)',
-  borderMuted: 'rgba(255, 255, 255, 0.1)',
-  
-  tabBar: '#121212',
-  white: '#ffffff',
+  // Tab bar - Light
+  tabBar: '#FFFFFF',
+  white: '#FFFFFF',
   black: '#000000',
   
-  glow: 'rgba(255, 107, 53, 0.4)',
-  glowMustard: 'rgba(232, 168, 56, 0.4)',
+  // Transparent overlays
+  overlay: 'rgba(0, 0, 0, 0.05)',
 };
 
 export const Spacing = {
@@ -67,33 +66,40 @@ export const FontSize = {
 };
 
 export const BorderRadius = {
-  sm: 4,
-  md: 8,
-  lg: 12,
-  xl: 16,
+  sm: 6,
+  md: 10,
+  lg: 14,
+  xl: 18,
   round: 999,
 };
 
 export const Shadows = {
-  glow: {
-    shadowColor: '#FF6B35',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
+  sm: {
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 1,
   },
-  glowSm: {
-    shadowColor: '#FF6B35',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 4,
+  md: {
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  lg: {
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
+    elevation: 5,
   },
   card: {
     shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 12,
-    elevation: 6,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
+    elevation: 2,
   },
 };
