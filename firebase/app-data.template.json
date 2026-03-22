@@ -1,0 +1,95 @@
+{
+  "teams": {
+    "duke": {
+      "id": "duke",
+      "name": "Duke Blue Devils",
+      "shortName": "Duke",
+      "seed": 2,
+      "region": "East",
+      "conference": "ACC",
+      "record": "28-6",
+      "color": "#003087",
+      "players": [
+        {
+          "id": "duke-p1",
+          "name": "Player Name",
+          "team": "Duke",
+          "teamId": "duke",
+          "position": "G",
+          "jersey": 3,
+          "stockPrice": 34.5,
+          "priceChange": 1.2,
+          "priceChangePercent": 3.6,
+          "stats": {
+            "ppg": 16.2,
+            "rpg": 4.1,
+            "apg": 5.3
+          },
+          "year": "Sophomore",
+          "height": "6'4\"",
+          "hometown": "Durham, NC",
+          "isHot": true
+        }
+      ]
+    },
+    "drake": {
+      "id": "drake",
+      "name": "Drake Bulldogs",
+      "shortName": "Drake",
+      "seed": 15,
+      "region": "East",
+      "conference": "MVC",
+      "record": "29-4",
+      "color": "#0057B8",
+      "players": []
+    }
+  },
+  "bracket": [
+    {
+      "region": "East",
+      "matchups": [
+        {
+          "id": "east-1",
+          "region": "East",
+          "round": 1,
+          "gameDate": "Mar 20",
+          "gameTime": "6:10 PM",
+          "topSeed": {
+            "id": "duke",
+            "name": "Duke Blue Devils",
+            "shortName": "Duke",
+            "seed": 2,
+            "region": "East",
+            "conference": "ACC",
+            "record": "28-6",
+            "color": "#003087",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "drake",
+            "name": "Drake Bulldogs",
+            "shortName": "Drake",
+            "seed": 15,
+            "region": "East",
+            "conference": "MVC",
+            "record": "29-4",
+            "color": "#0057B8",
+            "players": []
+          }
+        }
+      ]
+    },
+    {
+      "region": "West",
+      "matchups": []
+    },
+    {
+      "region": "South",
+      "matchups": []
+    },
+    {
+      "region": "Midwest",
+      "matchups": []
+    }
+  ]
+}

@@ -1,161 +1,126 @@
-import React, { useState } from 'react';
+import React, { useMemo } from 'react';
 import {
-  View,
-  Text,
+  ActivityIndicator,
+  Image,
   ScrollView,
-  TouchableOpacity,
-  StyleSheet,
   StatusBar,
-  Dimensions,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  useWindowDimensions,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { BRACKET, TEAMS } from '@/constants/data';
-import { Colors, Spacing, FontSize, BorderRadius, Shadows } from '@/constants/theme';
+import { useAppData } from '@/context/app-data-context';
 import type { Team } from '@/constants/data';
+import { getTeamLogoUri } from '@/constants/team-logos';
+import { BorderRadius, Colors, FontSize, Shadows, Spacing } from '@/constants/theme';
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
+type Matchup = {
+  topSeed: Team;
+  bottomSeed: Team;
+};
 
-// Team logo button component
-function TeamLogo({ 
-  team, 
-  isSelected, 
-  onPress, 
-  size = 'md' 
-}: { 
-  team: Team; 
-  isSelected?: boolean; 
-  onPress: () => void;
-  size?: 'sm' | 'md' | 'lg';
+function TeamBadge({
+  team,
+  compact = false,
+}: {
+  team: Team;
+  compact?: boolean;
 }) {
-  const hasPlayers = team.players.length > 0;
-  const sizeStyles = {
-    sm: { width: 36, height: 36, fontSize: 10 },
-    md: { width: 44, height: 44, fontSize: 12 },
-    lg: { width: 56, height: 56, fontSize: 14 },
-  };
-  const s = sizeStyles[size];
-  
-  // Get initials from team short name
+  const logoUri = getTeamLogoUri(team.id);
   const initials = team.shortName
     .split(' ')
-    .map(word => word[0])
+    .map((word) => word[0])
     .join('')
     .slice(0, 3)
     .toUpperCase();
 
   return (
-    <TouchableOpacity 
-      style={[
-        styles.teamLogo, 
-        { width: s.width, height: s.height },
-        isSelected && styles.teamLogoSelected,
-        hasPlayers && styles.teamLogoActive,
-      ]} 
-      onPress={onPress}
-      activeOpacity={0.7}
-    >
-      <Text style={[
-        styles.teamLogoText, 
-        { fontSize: s.fontSize },
-        isSelected && styles.teamLogoTextSelected,
-        hasPlayers && styles.teamLogoTextActive,
-      ]}>
-        {initials}
-      </Text>
-      <View style={[
-        styles.seedIndicator,
-        isSelected && styles.seedIndicatorSelected,
-      ]}>
-        <Text style={[
-          styles.seedIndicatorText,
-          isSelected && styles.seedIndicatorTextSelected,
-        ]}>
-          {team.seed}
+    <View style={[styles.teamBadge, compact && styles.teamBadgeCompact]}>
+      <View style={[styles.teamLogoShell, compact && styles.teamLogoShellCompact]}>
+        {logoUri ? (
+          <Image
+            source={{ uri: logoUri }}
+            style={[styles.teamLogoImage, compact && styles.teamLogoImageCompact]}
+            resizeMode="contain"
+          />
+        ) : (
+          <Text style={[styles.teamLogoFallback, compact && styles.teamLogoFallbackCompact]}>
+            {initials}
+          </Text>
+        )}
+      </View>
+      <View style={styles.teamMeta}>
+        <View style={styles.teamMetaRow}>
+          <Text style={styles.seedPill}>{team.seed}</Text>
+          <Text style={styles.teamShortName} numberOfLines={1}>
+            {team.shortName}
+          </Text>
+        </View>
+        <Text style={styles.teamRecord} numberOfLines={1}>
+          {team.record}
         </Text>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 }
 
-// Bracket connector line
-function BracketLine({ direction }: { direction: 'right' | 'left' }) {
-  return (
-    <View style={[
-      styles.bracketLine,
-      direction === 'left' && styles.bracketLineLeft,
-    ]} />
-  );
-}
-
-// Matchup component for bracket view
-function BracketMatchup({ 
-  team1, 
-  team2, 
-  selectedTeam,
-  onTeamSelect,
+function MatchupCard({
+  matchup,
   onTeamPress,
-}: { 
-  team1: Team; 
-  team2: Team;
-  selectedTeam?: string;
-  onTeamSelect: (team: Team) => void;
+}: {
+  matchup: Matchup;
   onTeamPress: (team: Team) => void;
 }) {
   return (
-    <View style={styles.matchupContainer}>
+    <View style={styles.matchupCard}>
       <TouchableOpacity
-        onPress={() => team1.players.length > 0 ? onTeamPress(team1) : onTeamSelect(team1)}
-        onLongPress={() => team1.players.length > 0 && onTeamPress(team1)}
+        activeOpacity={0.82}
+        style={styles.teamPressable}
+        onPress={() => onTeamPress(matchup.topSeed)}
       >
-        <TeamLogo 
-          team={team1} 
-          isSelected={selectedTeam === team1.id}
-          onPress={() => onTeamSelect(team1)}
-        />
+        <TeamBadge team={matchup.topSeed} />
       </TouchableOpacity>
-      <View style={styles.matchupDivider} />
+      <View style={styles.matchupDividerWrap}>
+        <View style={styles.matchupDivider} />
+        <Text style={styles.matchupLabel}>VS</Text>
+        <View style={styles.matchupDivider} />
+      </View>
       <TouchableOpacity
-        onPress={() => team2.players.length > 0 ? onTeamPress(team2) : onTeamSelect(team2)}
-        onLongPress={() => team2.players.length > 0 && onTeamPress(team2)}
+        activeOpacity={0.82}
+        style={styles.teamPressable}
+        onPress={() => onTeamPress(matchup.bottomSeed)}
       >
-        <TeamLogo 
-          team={team2} 
-          isSelected={selectedTeam === team2.id}
-          onPress={() => onTeamSelect(team2)}
-        />
+        <TeamBadge team={matchup.bottomSeed} />
       </TouchableOpacity>
     </View>
   );
 }
 
-// Region bracket column
-function RegionColumn({ 
-  region, 
-  matchups, 
-  selections,
-  onTeamSelect,
+function RegionSection({
+  region,
+  matchups,
   onTeamPress,
-}: { 
+  cardWidth,
+}: {
   region: string;
-  matchups: { topSeed: Team; bottomSeed: Team }[];
-  selections: Record<string, string>;
-  onTeamSelect: (team: Team) => void;
+  matchups: Matchup[];
   onTeamPress: (team: Team) => void;
+  cardWidth: number;
 }) {
   return (
-    <View style={styles.regionColumn}>
-      <Text style={styles.regionLabel}>{region.toUpperCase()}</Text>
-      <View style={styles.matchupsColumn}>
-        {matchups.slice(0, 4).map((matchup, index) => (
-          <BracketMatchup
-            key={`${region}-${index}`}
-            team1={matchup.topSeed}
-            team2={matchup.bottomSeed}
-            selectedTeam={selections[`${region}-${index}`]}
-            onTeamSelect={(team) => {
-              onTeamSelect(team);
-            }}
+    <View style={[styles.regionSection, { width: cardWidth }]}>
+      <View style={styles.regionHeader}>
+        <Text style={styles.regionTitle}>{region}</Text>
+        <Text style={styles.regionSubtitle}>{matchups.length} first-round matchups</Text>
+      </View>
+      <View style={styles.regionBody}>
+        {matchups.map((matchup, index) => (
+          <MatchupCard
+            key={`${region}-${index}-${matchup.topSeed.id}-${matchup.bottomSeed.id}`}
+            matchup={matchup}
             onTeamPress={onTeamPress}
           />
         ))}
@@ -164,578 +129,279 @@ function RegionColumn({
   );
 }
 
-// Final Four view
-function FinalFourView({ 
-  selections, 
-  onTeamPress 
-}: { 
-  selections: Record<string, Team | null>;
-  onTeamPress: (team: Team) => void;
-}) {
-  const finalFourTeams = [
-    selections.eastWinner,
-    selections.westWinner,
-    selections.southWinner,
-    selections.midwestWinner,
-  ];
-
-  const champion = selections.champion;
-
-  return (
-    <View style={styles.finalFourContainer}>
-      <Text style={styles.finalFourTitle}>FINAL FOUR</Text>
-      
-      <View style={styles.finalFourBracket}>
-        <View style={styles.finalFourSide}>
-          {finalFourTeams.slice(0, 2).map((team, index) => (
-            <View key={index} style={styles.finalFourSlot}>
-              {team ? (
-                <TeamLogo 
-                  team={team} 
-                  size="lg"
-                  onPress={() => onTeamPress(team)}
-                  isSelected={champion?.id === team.id}
-                />
-              ) : (
-                <View style={styles.emptySlot}>
-                  <Text style={styles.emptySlotText}>?</Text>
-                </View>
-              )}
-            </View>
-          ))}
-        </View>
-
-        <View style={styles.championContainer}>
-          <View style={styles.championCircle}>
-            {champion ? (
-              <>
-                <Text style={styles.championInitials}>
-                  {champion.shortName.split(' ').map(w => w[0]).join('').slice(0, 3)}
-                </Text>
-              </>
-            ) : (
-              <Text style={styles.championPlaceholder}>?</Text>
-            )}
-          </View>
-          <Text style={styles.championLabel}>MY CHAMPION</Text>
-          <Text style={styles.championName}>
-            {champion?.shortName || 'SELECT WINNER'}
-          </Text>
-        </View>
-
-        <View style={styles.finalFourSide}>
-          {finalFourTeams.slice(2, 4).map((team, index) => (
-            <View key={index} style={styles.finalFourSlot}>
-              {team ? (
-                <TeamLogo 
-                  team={team} 
-                  size="lg"
-                  onPress={() => onTeamPress(team)}
-                  isSelected={champion?.id === team.id}
-                />
-              ) : (
-                <View style={styles.emptySlot}>
-                  <Text style={styles.emptySlotText}>?</Text>
-                </View>
-              )}
-            </View>
-          ))}
-        </View>
-      </View>
-    </View>
-  );
-}
-
 export default function BracketScreen() {
   const router = useRouter();
-  const [activeView, setActiveView] = useState<'bracket' | 'finalfour'>('bracket');
-  const [selections, setSelections] = useState<Record<string, string>>({});
-  const [finalFourSelections, setFinalFourSelections] = useState<Record<string, Team | null>>({
-    eastWinner: null,
-    westWinner: null,
-    southWinner: null,
-    midwestWinner: null,
-    champion: null,
-  });
+  const { width } = useWindowDimensions();
+  const { bracket, isLoading } = useAppData();
+
+  const sections = useMemo(
+    () =>
+      ['East', 'West', 'South', 'Midwest'].map((region) => ({
+        region,
+        matchups: bracket.find((entry) => entry.region === region)?.matchups ?? [],
+      })),
+    [bracket]
+  );
+
+  const cardWidth =
+    width >= 900
+      ? Math.min(360, (width - Spacing.md * 3) / 2)
+      : width - Spacing.md * 2;
 
   const handleTeamPress = (team: Team) => {
-    if (team.players.length > 0) {
-      router.push(`/team/${team.id}`);
-    }
+    router.push(`/team/${team.id}`);
   };
 
-  const handleTeamSelect = (team: Team) => {
-    // For now, just navigate to team if they have players
-    if (team.players.length > 0) {
-      router.push(`/team/${team.id}`);
-    }
-  };
-
-  const eastMatchups = BRACKET.find(b => b.region === 'East')?.matchups || [];
-  const westMatchups = BRACKET.find(b => b.region === 'West')?.matchups || [];
-  const southMatchups = BRACKET.find(b => b.region === 'South')?.matchups || [];
-  const midwestMatchups = BRACKET.find(b => b.region === 'Midwest')?.matchups || [];
+  if (isLoading) {
+    return (
+      <View style={[styles.screen, styles.loadingContainer]}>
+        <ActivityIndicator size="large" color={Colors.accent} />
+        <Text style={styles.loadingText}>Loading bracket...</Text>
+      </View>
+    );
+  }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.screen}>
       <StatusBar barStyle="dark-content" backgroundColor={Colors.background} />
 
-      {/* Toggle Tabs */}
-      <View style={styles.toggleContainer}>
-        <TouchableOpacity
-          style={[styles.toggleBtn, activeView === 'bracket' && styles.toggleBtnActive]}
-          onPress={() => setActiveView('bracket')}
-        >
-          <Text style={[styles.toggleText, activeView === 'bracket' && styles.toggleTextActive]}>
-            FULL BRACKET
+      <ScrollView
+        style={styles.content}
+        contentContainerStyle={styles.contentContainer}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.headerCard}>
+          <Text style={styles.headerEyebrow}>2026 Tournament</Text>
+          <Text style={styles.headerTitle}>Bracket Board</Text>
+          <Text style={styles.headerDescription}>
+            View each school's roster, stats, and stock prices by tapping on their logo.
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.toggleBtn, activeView === 'finalfour' && styles.toggleBtnActive]}
-          onPress={() => setActiveView('finalfour')}
-        >
-          <Text style={[styles.toggleText, activeView === 'finalfour' && styles.toggleTextActive]}>
-            FINAL FOUR
-          </Text>
-        </TouchableOpacity>
-      </View>
+        </View>
 
-      {activeView === 'bracket' ? (
-        <ScrollView 
-          horizontal 
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.bracketScrollContent}
-        >
-          <ScrollView 
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={styles.bracketVerticalContent}
-          >
-            <View style={styles.bracketContainer}>
-              {/* Left side - East & South */}
-              <View style={styles.bracketHalf}>
-                <RegionColumn
-                  region="East"
-                  matchups={eastMatchups}
-                  selections={selections}
-                  onTeamSelect={handleTeamSelect}
-                  onTeamPress={handleTeamPress}
-                />
-                <View style={styles.roundColumn}>
-                  {/* Round 2 placeholders */}
-                  {[0, 1].map(i => (
-                    <View key={i} style={styles.advancedSlot}>
-                      <View style={styles.emptySlotSmall}>
-                        <Text style={styles.emptySlotTextSmall}>?</Text>
-                      </View>
-                    </View>
-                  ))}
-                </View>
-                <View style={styles.roundColumn}>
-                  <View style={styles.advancedSlotLarge}>
-                    <View style={styles.emptySlotSmall}>
-                      <Text style={styles.emptySlotTextSmall}>?</Text>
-                    </View>
-                    <Text style={styles.roundLabel}>ELITE 8</Text>
-                  </View>
-                </View>
-              </View>
+        <View style={styles.regionGrid}>
+          {sections.map(({ region, matchups }) => (
+            <RegionSection
+              key={region}
+              region={region}
+              matchups={matchups}
+              onTeamPress={handleTeamPress}
+              cardWidth={cardWidth}
+            />
+          ))}
+        </View>
 
-              {/* Center - Final Four */}
-              <View style={styles.centerSection}>
-                <View style={styles.finalFourCenter}>
-                  <View style={styles.finalFourSlotCenter}>
-                    <View style={styles.emptySlotSmall}>
-                      <Text style={styles.emptySlotTextSmall}>?</Text>
-                    </View>
-                  </View>
-                  
-                  <View style={styles.championSection}>
-                    <View style={styles.championCircleSmall}>
-                      <Text style={styles.championPlaceholderSmall}>?</Text>
-                    </View>
-                    <Text style={styles.finalFourLabel}>FINAL FOUR</Text>
-                  </View>
-
-                  <View style={styles.finalFourSlotCenter}>
-                    <View style={styles.emptySlotSmall}>
-                      <Text style={styles.emptySlotTextSmall}>?</Text>
-                    </View>
-                  </View>
-                </View>
-              </View>
-
-              {/* Right side - West & Midwest */}
-              <View style={styles.bracketHalf}>
-                <View style={styles.roundColumn}>
-                  <View style={styles.advancedSlotLarge}>
-                    <View style={styles.emptySlotSmall}>
-                      <Text style={styles.emptySlotTextSmall}>?</Text>
-                    </View>
-                    <Text style={styles.roundLabel}>ELITE 8</Text>
-                  </View>
-                </View>
-                <View style={styles.roundColumn}>
-                  {[0, 1].map(i => (
-                    <View key={i} style={styles.advancedSlot}>
-                      <View style={styles.emptySlotSmall}>
-                        <Text style={styles.emptySlotTextSmall}>?</Text>
-                      </View>
-                    </View>
-                  ))}
-                </View>
-                <RegionColumn
-                  region="West"
-                  matchups={westMatchups}
-                  selections={selections}
-                  onTeamSelect={handleTeamSelect}
-                  onTeamPress={handleTeamPress}
-                />
-              </View>
-            </View>
-
-            {/* Bottom regions */}
-            <View style={styles.bracketContainer}>
-              <View style={styles.bracketHalf}>
-                <RegionColumn
-                  region="South"
-                  matchups={southMatchups}
-                  selections={selections}
-                  onTeamSelect={handleTeamSelect}
-                  onTeamPress={handleTeamPress}
-                />
-                <View style={styles.roundColumn}>
-                  {[0, 1].map(i => (
-                    <View key={i} style={styles.advancedSlot}>
-                      <View style={styles.emptySlotSmall}>
-                        <Text style={styles.emptySlotTextSmall}>?</Text>
-                      </View>
-                    </View>
-                  ))}
-                </View>
-              </View>
-
-              <View style={styles.bracketHalf}>
-                <View style={styles.roundColumn}>
-                  {[0, 1].map(i => (
-                    <View key={i} style={styles.advancedSlot}>
-                      <View style={styles.emptySlotSmall}>
-                        <Text style={styles.emptySlotTextSmall}>?</Text>
-                      </View>
-                    </View>
-                  ))}
-                </View>
-                <RegionColumn
-                  region="Midwest"
-                  matchups={midwestMatchups}
-                  selections={selections}
-                  onTeamSelect={handleTeamSelect}
-                  onTeamPress={handleTeamPress}
-                />
-              </View>
-            </View>
-
-            {/* Hint */}
-            <View style={styles.hint}>
-              <View style={styles.hintIcon}>
-                <Ionicons name="flash" size={12} color={Colors.accent} />
-              </View>
-              <Text style={styles.hintText}>Tap team logo to view players and trade stocks</Text>
-            </View>
-          </ScrollView>
-        </ScrollView>
-      ) : (
-        <FinalFourView 
-          selections={finalFourSelections}
-          onTeamPress={handleTeamPress}
-        />
-      )}
+        <View style={styles.hint}>
+          <View style={styles.hintIcon}>
+            <Ionicons name="flash" size={12} color={Colors.accent} />
+          </View>
+          <Text style={styles.hintText}>Tap a team logo to view players and trade stocks</Text>
+        </View>
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
     backgroundColor: Colors.background,
   },
-  toggleContainer: {
-    flexDirection: 'row',
-    backgroundColor: Colors.surface,
-    margin: Spacing.md,
-    borderRadius: BorderRadius.round,
-    padding: 4,
-  },
-  toggleBtn: {
-    flex: 1,
-    paddingVertical: Spacing.sm + 2,
+  loadingContainer: {
     alignItems: 'center',
-    borderRadius: BorderRadius.round,
-  },
-  toggleBtnActive: {
-    backgroundColor: Colors.text,
-  },
-  toggleText: {
-    color: Colors.textMuted,
-    fontSize: FontSize.sm,
-    fontWeight: '600',
-  },
-  toggleTextActive: {
-    color: Colors.white,
-  },
-  bracketScrollContent: {
-    paddingHorizontal: Spacing.md,
-  },
-  bracketVerticalContent: {
-    paddingBottom: Spacing.xxl,
-  },
-  bracketContainer: {
-    flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'flex-start',
-    marginBottom: Spacing.lg,
+    gap: Spacing.sm,
   },
-  bracketHalf: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  regionColumn: {
-    alignItems: 'center',
-    paddingHorizontal: Spacing.xs,
-  },
-  regionLabel: {
+  loadingText: {
     color: Colors.textSecondary,
-    fontSize: FontSize.xs,
-    fontWeight: '600',
-    marginBottom: Spacing.sm,
+    fontSize: FontSize.md,
   },
-  matchupsColumn: {
+  content: {
+    flex: 1,
+  },
+  contentContainer: {
+    paddingHorizontal: Spacing.md,
+    paddingBottom: Spacing.xxl,
     gap: Spacing.md,
   },
-  matchupContainer: {
-    alignItems: 'center',
+  headerCard: {
     backgroundColor: Colors.card,
-    borderRadius: BorderRadius.md,
-    padding: Spacing.xs,
+    borderRadius: BorderRadius.lg,
+    padding: Spacing.lg,
     borderWidth: 1,
     borderColor: Colors.border,
-    ...Shadows.sm,
+    ...Shadows.card,
   },
-  matchupDivider: {
-    width: 30,
-    height: 1,
-    backgroundColor: Colors.border,
-    marginVertical: Spacing.xs,
-  },
-  teamLogo: {
-    borderRadius: BorderRadius.sm,
-    backgroundColor: Colors.surface,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: Colors.border,
-    position: 'relative',
-  },
-  teamLogoActive: {
-    borderColor: Colors.green,
-    borderWidth: 2,
-  },
-  teamLogoSelected: {
-    backgroundColor: Colors.greenLight,
-    borderColor: Colors.green,
-    borderWidth: 2,
-  },
-  teamLogoText: {
-    color: Colors.textSecondary,
-    fontWeight: '700',
-  },
-  teamLogoTextActive: {
-    color: Colors.text,
-  },
-  teamLogoTextSelected: {
-    color: Colors.green,
-  },
-  seedIndicator: {
-    position: 'absolute',
-    bottom: -4,
-    right: -4,
-    backgroundColor: Colors.white,
-    borderRadius: 6,
-    width: 14,
-    height: 14,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: Colors.border,
-  },
-  seedIndicatorSelected: {
-    backgroundColor: Colors.green,
-    borderColor: Colors.green,
-  },
-  seedIndicatorText: {
-    color: Colors.textSecondary,
-    fontSize: 8,
-    fontWeight: '700',
-  },
-  seedIndicatorTextSelected: {
-    color: Colors.white,
-  },
-  roundColumn: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: Spacing.xs,
-  },
-  advancedSlot: {
-    marginVertical: Spacing.lg,
-  },
-  advancedSlotLarge: {
-    alignItems: 'center',
-  },
-  emptySlot: {
-    width: 56,
-    height: 56,
-    borderRadius: BorderRadius.md,
-    backgroundColor: Colors.surface,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: Colors.border,
-    borderStyle: 'dashed',
-  },
-  emptySlotText: {
-    color: Colors.textMuted,
-    fontSize: FontSize.lg,
-    fontWeight: '600',
-  },
-  emptySlotSmall: {
-    width: 36,
-    height: 36,
-    borderRadius: BorderRadius.sm,
-    backgroundColor: Colors.surface,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: Colors.border,
-    borderStyle: 'dashed',
-  },
-  emptySlotTextSmall: {
-    color: Colors.textMuted,
-    fontSize: FontSize.sm,
-    fontWeight: '600',
-  },
-  roundLabel: {
-    color: Colors.textMuted,
-    fontSize: 8,
-    fontWeight: '700',
-    letterSpacing: 0.5,
-    marginTop: 4,
-  },
-  centerSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: Spacing.md,
-  },
-  finalFourCenter: {
-    alignItems: 'center',
-  },
-  finalFourSlotCenter: {
-    marginVertical: Spacing.sm,
-  },
-  championSection: {
-    alignItems: 'center',
-    marginVertical: Spacing.md,
-  },
-  championCircleSmall: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    backgroundColor: Colors.accentLight,
-    borderWidth: 2,
-    borderColor: Colors.accent,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  championPlaceholderSmall: {
+  headerEyebrow: {
     color: Colors.accent,
-    fontSize: FontSize.xl,
-    fontWeight: '600',
-  },
-  finalFourLabel: {
-    color: Colors.textSecondary,
-    fontSize: 10,
-    fontWeight: '600',
-    marginTop: Spacing.xs,
-  },
-  // Final Four View Styles
-  finalFourContainer: {
-    flex: 1,
-    alignItems: 'center',
-    paddingTop: Spacing.lg,
-  },
-  finalFourTitle: {
-    color: Colors.text,
-    fontSize: FontSize.xl,
+    fontSize: FontSize.xs,
     fontWeight: '700',
-    marginBottom: Spacing.lg,
+    letterSpacing: 0.7,
+    textTransform: 'uppercase',
+    marginBottom: Spacing.xs,
   },
-  finalFourBracket: {
+  headerTitle: {
+    color: Colors.text,
+    fontSize: FontSize.xxl,
+    fontWeight: '800',
+    marginBottom: Spacing.xs,
+  },
+  headerDescription: {
+    color: Colors.textSecondary,
+    fontSize: FontSize.md,
+    lineHeight: 20,
+  },
+  regionGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: Spacing.md,
+    justifyContent: 'center',
+  },
+  regionSection: {
+    backgroundColor: Colors.card,
+    borderRadius: BorderRadius.lg,
+    borderWidth: 1,
+    borderColor: Colors.border,
+    overflow: 'hidden',
+    ...Shadows.card,
+  },
+  regionHeader: {
+    paddingHorizontal: Spacing.lg,
+    paddingTop: Spacing.lg,
+    paddingBottom: Spacing.md,
+    backgroundColor: Colors.surface,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.borderLight,
+  },
+  regionTitle: {
+    color: Colors.text,
+    fontSize: FontSize.lg,
+    fontWeight: '800',
+  },
+  regionSubtitle: {
+    color: Colors.textSecondary,
+    fontSize: FontSize.sm,
+    marginTop: 2,
+  },
+  regionBody: {
+    padding: Spacing.md,
+    gap: Spacing.sm,
+  },
+  matchupCard: {
+    backgroundColor: Colors.cardLight,
+    borderRadius: BorderRadius.md,
+    borderWidth: 1,
+    borderColor: Colors.borderLight,
+    paddingHorizontal: Spacing.sm,
+    paddingVertical: Spacing.sm,
+    gap: Spacing.sm,
+  },
+  teamPressable: {
+    borderRadius: BorderRadius.md,
+  },
+  matchupDividerWrap: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: Spacing.sm,
+    paddingHorizontal: Spacing.sm,
+  },
+  matchupDivider: {
+    flex: 1,
+    height: 1,
+    backgroundColor: Colors.border,
+  },
+  matchupLabel: {
+    color: Colors.textMuted,
+    fontSize: FontSize.xs,
+    fontWeight: '700',
+    letterSpacing: 0.5,
+  },
+  teamBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.sm,
+    padding: Spacing.xs,
+    borderRadius: BorderRadius.md,
+    backgroundColor: Colors.white,
+  },
+  teamBadgeCompact: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingVertical: Spacing.md,
+    paddingHorizontal: Spacing.sm,
+  },
+  teamLogoShell: {
+    width: 52,
+    height: 52,
+    borderRadius: 16,
+    backgroundColor: Colors.white,
+    borderWidth: 1,
+    borderColor: Colors.border,
+    alignItems: 'center',
     justifyContent: 'center',
   },
-  finalFourSide: {
-    gap: Spacing.xl,
+  teamLogoShellCompact: {
+    width: 72,
+    height: 72,
+    borderRadius: 22,
   },
-  finalFourSlot: {
-    alignItems: 'center',
+  teamLogoImage: {
+    width: 38,
+    height: 38,
   },
-  championContainer: {
-    alignItems: 'center',
-    marginHorizontal: Spacing.xl,
+  teamLogoImageCompact: {
+    width: 54,
+    height: 54,
   },
-  championCircle: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    backgroundColor: Colors.accentLight,
-    borderWidth: 2,
-    borderColor: Colors.accent,
-    alignItems: 'center',
-    justifyContent: 'center',
-    ...Shadows.md,
-  },
-  championInitials: {
-    color: Colors.accent,
-    fontSize: FontSize.xxl,
-    fontWeight: '600',
-  },
-  championPlaceholder: {
-    color: Colors.accent,
-    fontSize: FontSize.xxl,
-    fontWeight: '600',
-  },
-  championLabel: {
+  teamLogoFallback: {
     color: Colors.textSecondary,
-    fontSize: 10,
-    fontWeight: '600',
-    marginTop: Spacing.sm,
-  },
-  championName: {
-    color: Colors.accent,
     fontSize: FontSize.md,
-    fontWeight: '600',
-    marginTop: 2,
+    fontWeight: '800',
+  },
+  teamLogoFallbackCompact: {
+    fontSize: FontSize.xl,
+  },
+  teamMeta: {
+    flex: 1,
+    gap: 2,
+  },
+  teamMetaRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.xs,
+  },
+  seedPill: {
+    minWidth: 22,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: BorderRadius.round,
+    backgroundColor: Colors.accentLight,
+    color: Colors.accent,
+    fontSize: FontSize.xs,
+    fontWeight: '800',
+    overflow: 'hidden',
+    textAlign: 'center',
+  },
+  teamShortName: {
+    flex: 1,
+    color: Colors.text,
+    fontSize: FontSize.md,
+    fontWeight: '700',
+  },
+  teamRecord: {
+    color: Colors.textSecondary,
+    fontSize: FontSize.sm,
   },
   hint: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     gap: Spacing.sm,
-    marginTop: Spacing.lg,
     paddingVertical: Spacing.sm,
     paddingHorizontal: Spacing.md,
     backgroundColor: Colors.surface,
     borderRadius: BorderRadius.round,
     alignSelf: 'center',
+    marginTop: Spacing.xs,
   },
   hintIcon: {
     width: 20,
@@ -747,14 +413,7 @@ const styles = StyleSheet.create({
   },
   hintText: {
     color: Colors.textSecondary,
-    fontSize: FontSize.xs,
-  },
-  bracketLine: {
-    width: 20,
-    height: 1,
-    backgroundColor: Colors.border,
-  },
-  bracketLineLeft: {
-    transform: [{ scaleX: -1 }],
+    fontSize: FontSize.sm,
+    fontWeight: '500',
   },
 });

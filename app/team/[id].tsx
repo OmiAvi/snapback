@@ -6,20 +6,24 @@ import {
   TouchableOpacity,
   StyleSheet,
   StatusBar,
+  Image,
 } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { TEAMS } from '@/constants/data';
 import type { Player } from '@/constants/data';
 import { Colors, Spacing, FontSize, BorderRadius, Shadows } from '@/constants/theme';
+import { useAppData } from '@/context/app-data-context';
+import { getTeamLogoUri } from '@/constants/team-logos';
+import { getPlayerImageUri } from '@/utils/player-images';
 
 function PlayerCard({ player, onPress }: { player: Player; onPress: () => void }) {
   const isPositive = player.priceChange >= 0;
+  const playerImageUri = getPlayerImageUri(player);
   return (
     <TouchableOpacity style={styles.playerCard} onPress={onPress} activeOpacity={0.7}>
       <View style={styles.playerCardGlow} />
-      <View style={[styles.jerseyBadge, player.isHot && styles.jerseyBadgeHot]}>
-        <Text style={[styles.jerseyText, player.isHot && styles.jerseyTextHot]}>#{player.jersey}</Text>
+      <View style={[styles.playerHeadshotWrap, player.isHot && styles.playerHeadshotWrapHot]}>
+        <Image source={{ uri: playerImageUri }} style={styles.playerHeadshot} resizeMode="cover" />
       </View>
 
       <View style={styles.playerInfo}>
@@ -65,8 +69,9 @@ function PlayerCard({ player, onPress }: { player: Player; onPress: () => void }
 export default function TeamScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
+  const { teams } = useAppData();
 
-  const team = TEAMS[id as string];
+  const team = teams[id as string];
 
   if (!team) {
     return (
@@ -78,8 +83,11 @@ export default function TeamScreen() {
   }
 
   const sortedPlayers = [...team.players].sort((a, b) => b.stockPrice - a.stockPrice);
-  const avgPrice = team.players.reduce((s, p) => s + p.stockPrice, 0) / team.players.length;
+  const avgPrice = team.players.length
+    ? team.players.reduce((s, p) => s + p.stockPrice, 0) / team.players.length
+    : 0;
   const hotCount = team.players.filter(p => p.isHot).length;
+  const teamLogoUri = getTeamLogoUri(team.id);
 
   return (
     <View style={styles.container}>
@@ -88,12 +96,19 @@ export default function TeamScreen() {
 
       <View style={styles.teamHeader}>
         <View style={styles.teamHeaderLeft}>
-          <View style={styles.seedBadge}>
-            <Text style={styles.seedText}>#{team.seed}</Text>
+          <View style={styles.teamLogoWrap}>
+            {teamLogoUri ? (
+              <Image source={{ uri: teamLogoUri }} style={styles.teamLogo} resizeMode="contain" />
+            ) : (
+              <View style={styles.seedBadge}>
+                <Text style={styles.seedText}>#{team.seed}</Text>
+              </View>
+            )}
           </View>
           <View>
             <Text style={styles.teamName}>{team.name}</Text>
             <Text style={styles.teamMeta}>{team.region} Region · {team.conference}</Text>
+            <Text style={styles.teamSubMeta}>Seed #{team.seed} · {team.shortName}</Text>
           </View>
         </View>
         <View style={styles.teamRecord}>
@@ -109,7 +124,9 @@ export default function TeamScreen() {
         </View>
         <View style={styles.teamStatDivider} />
         <View style={styles.teamStatItem}>
-          <Text style={[styles.teamStatValue, { color: Colors.accent }]}>${avgPrice.toFixed(2)}</Text>
+          <Text style={[styles.teamStatValue, { color: Colors.accent }]}>
+            {team.players.length ? `$${avgPrice.toFixed(2)}` : '--'}
+          </Text>
           <Text style={styles.teamStatLabel}>Avg Price</Text>
         </View>
         <View style={styles.teamStatDivider} />
@@ -121,21 +138,33 @@ export default function TeamScreen() {
 
       <View style={styles.listHeader}>
         <Text style={styles.listHeaderText}>PLAYER STOCKS</Text>
-        <Text style={styles.listHeaderSub}>Tap to buy/sell</Text>
+        <Text style={styles.listHeaderSub}>
+          {team.players.length ? 'Tap to buy/sell' : 'School profile and roster'}
+        </Text>
       </View>
 
-      <FlatList
-        data={sortedPlayers}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <PlayerCard
-            player={item}
-            onPress={() => router.push(`/player/${item.id}`)}
-          />
-        )}
-        contentContainerStyle={styles.listContent}
-        showsVerticalScrollIndicator={false}
-      />
+      {team.players.length ? (
+        <FlatList
+          data={sortedPlayers}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => (
+            <PlayerCard
+              player={item}
+              onPress={() => router.push(`/player/${item.id}`)}
+            />
+          )}
+          contentContainerStyle={styles.listContent}
+          showsVerticalScrollIndicator={false}
+        />
+      ) : (
+        <View style={styles.emptyRosterCard}>
+          <Ionicons name="school-outline" size={28} color={Colors.accent} />
+          <Text style={styles.emptyRosterTitle}>School profile loaded</Text>
+          <Text style={styles.emptyRosterText}>
+            Team info is available here, but the player list for this school has not been added yet.
+          </Text>
+        </View>
+      )}
     </View>
   );
 }
@@ -165,9 +194,24 @@ const styles = StyleSheet.create({
   },
   teamHeaderLeft: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     gap: Spacing.md,
     flex: 1,
+  },
+  teamLogoWrap: {
+    width: 52,
+    height: 52,
+    borderRadius: 16,
+    backgroundColor: Colors.white,
+    borderWidth: 1,
+    borderColor: Colors.border,
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  teamLogo: {
+    width: 40,
+    height: 40,
   },
   seedBadge: {
     width: 40,
@@ -192,6 +236,11 @@ const styles = StyleSheet.create({
     fontSize: FontSize.xs,
     marginTop: 2,
     letterSpacing: 0.3,
+  },
+  teamSubMeta: {
+    color: Colors.textSecondary,
+    fontSize: FontSize.xs,
+    marginTop: 4,
   },
   teamRecord: {
     alignItems: 'center',
@@ -252,6 +301,29 @@ const styles = StyleSheet.create({
     color: Colors.textMuted,
     fontSize: FontSize.sm,
   },
+  emptyRosterCard: {
+    marginHorizontal: Spacing.md,
+    marginTop: Spacing.sm,
+    padding: Spacing.lg,
+    backgroundColor: Colors.card,
+    borderRadius: BorderRadius.lg,
+    borderWidth: 1,
+    borderColor: Colors.border,
+    alignItems: 'center',
+    gap: Spacing.sm,
+    ...Shadows.card,
+  },
+  emptyRosterTitle: {
+    color: Colors.text,
+    fontSize: FontSize.lg,
+    fontWeight: '700',
+  },
+  emptyRosterText: {
+    color: Colors.textSecondary,
+    fontSize: FontSize.md,
+    textAlign: 'center',
+    lineHeight: 20,
+  },
   playerCard: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -268,24 +340,22 @@ const styles = StyleSheet.create({
   playerCardGlow: {
     display: 'none',
   },
-  jerseyBadge: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
+  playerHeadshotWrap: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
     backgroundColor: Colors.surface,
-    alignItems: 'center',
-    justifyContent: 'center',
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: Colors.border,
   },
-  jerseyBadgeHot: {
-    backgroundColor: Colors.greenLight,
+  playerHeadshotWrapHot: {
+    borderColor: Colors.green,
+    borderWidth: 2,
   },
-  jerseyText: {
-    color: Colors.text,
-    fontSize: FontSize.sm,
-    fontWeight: '700',
-  },
-  jerseyTextHot: {
-    color: Colors.green,
+  playerHeadshot: {
+    width: '100%',
+    height: '100%',
   },
   playerInfo: {
     flex: 1,

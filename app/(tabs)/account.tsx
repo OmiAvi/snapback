@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo } from 'react';
 import {
   View,
   Text,
@@ -7,10 +7,16 @@ import {
   StyleSheet,
   Alert,
   StatusBar,
+  Image,
 } from 'react-native';
+import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { MOCK_USER, MOCK_PORTFOLIO, MOCK_TRANSACTIONS } from '@/constants/data';
+import { MOCK_USER } from '@/constants/data';
 import { Colors, Spacing, FontSize, BorderRadius, Shadows } from '@/constants/theme';
+import { useTrading } from '@/context/trading-context';
+import { useAuth } from '@/context/auth-context';
+import { useAppData } from '@/context/app-data-context';
+import { getPlayerImageUri } from '@/utils/player-images';
 
 function SectionHeader({ title, icon }: { title: string; icon: string }) {
   return (
@@ -33,14 +39,21 @@ function StatCard({ label, value, valueColor }: { label: string; value: string; 
 }
 
 export default function AccountScreen() {
-  const [balance, setBalance] = useState(MOCK_USER.balance);
+  const { balance, portfolio, transactions, depositFunds } = useTrading();
+  const { signOutUser } = useAuth();
+  const { allPlayers } = useAppData();
 
-  const portfolioValue = MOCK_PORTFOLIO.reduce(
+  const playerById = useMemo(
+    () => new Map(allPlayers.map((player) => [player.id, player])),
+    [allPlayers]
+  );
+
+  const portfolioValue = portfolio.reduce(
     (sum, item) => sum + item.shares * item.currentPrice,
     0
   );
 
-  const totalGain = MOCK_PORTFOLIO.reduce(
+  const totalGain = portfolio.reduce(
     (sum, item) => sum + item.shares * (item.currentPrice - item.avgBuyPrice),
     0
   );
@@ -54,7 +67,7 @@ export default function AccountScreen() {
         {
           text: 'Confirm',
           onPress: () => {
-            setBalance(prev => prev + amount);
+            depositFunds(amount);
             Alert.alert('Success', `$${amount.toFixed(0)} has been added to your account!`);
           },
         },
@@ -64,10 +77,14 @@ export default function AccountScreen() {
 
   const handleSetting = (setting: string) => {
     if (setting === 'Logout') {
-      Alert.alert('Logout', 'Are you sure you want to logout?', [
-        { text: 'Cancel', style: 'cancel' },
-        { text: 'Logout', style: 'destructive', onPress: () => Alert.alert('Logged out') },
-      ]);
+      void (async () => {
+        try {
+          await signOutUser();
+          router.replace('/login');
+        } catch (error) {
+          Alert.alert('Logout failed', 'We could not sign you out right now. Please try again.');
+        }
+      })();
     } else {
       Alert.alert(setting, `${setting} settings coming soon!`);
     }
@@ -146,21 +163,24 @@ export default function AccountScreen() {
       {/* Portfolio Section */}
       <View style={styles.section}>
         <SectionHeader title="My Portfolio" icon="pie-chart-outline" />
-        {MOCK_PORTFOLIO.length === 0 ? (
+        {portfolio.length === 0 ? (
           <View style={styles.emptySection}>
             <Text style={styles.emptySectionText}>No stocks owned yet</Text>
           </View>
         ) : (
-          MOCK_PORTFOLIO.map(item => {
+          portfolio.map(item => {
             const gain = item.shares * (item.currentPrice - item.avgBuyPrice);
             const gainPercent = ((item.currentPrice - item.avgBuyPrice) / item.avgBuyPrice) * 100;
             const isPositive = gain >= 0;
+            const player = playerById.get(item.playerId);
             return (
               <View key={item.playerId} style={styles.portfolioRow}>
                 <View style={styles.portfolioAvatar}>
-                  <Text style={styles.portfolioAvatarText}>
-                    {item.playerName.split(' ').map(n => n[0]).join('').slice(0, 2)}
-                  </Text>
+                  <Image
+                    source={{ uri: getPlayerImageUri({ name: item.playerName, headshotUrl: player?.headshotUrl }) }}
+                    style={styles.portfolioAvatarImage}
+                    resizeMode="cover"
+                  />
                 </View>
                 <View style={styles.portfolioInfo}>
                   <Text style={styles.portfolioName}>{item.playerName}</Text>
@@ -181,29 +201,35 @@ export default function AccountScreen() {
       {/* Transaction History */}
       <View style={styles.section}>
         <SectionHeader title="Account History" icon="time-outline" />
-        {MOCK_TRANSACTIONS.map(tx => (
-          <View key={tx.id} style={styles.txRow}>
-            <View style={[styles.txIcon, tx.type === 'buy' ? styles.txIconBuy : styles.txIconSell]}>
-              <Ionicons
-                name={tx.type === 'buy' ? 'arrow-down' : 'arrow-up'}
-                size={16}
-                color={tx.type === 'buy' ? Colors.green : Colors.red}
-              />
-            </View>
-            <View style={styles.txInfo}>
-              <Text style={styles.txName}>{tx.playerName}</Text>
-              <Text style={styles.txMeta}>
-                {tx.type === 'buy' ? 'Bought' : 'Sold'} {tx.shares} share{tx.shares !== 1 ? 's' : ''} @ ${tx.price.toFixed(2)}
-              </Text>
-            </View>
-            <View style={styles.txRight}>
-              <Text style={[styles.txTotal, tx.type === 'buy' ? styles.textRed : styles.textGreen]}>
-                {tx.type === 'buy' ? '-' : '+'}${tx.total.toFixed(2)}
-              </Text>
-              <Text style={styles.txDate}>{tx.date}</Text>
-            </View>
+        {transactions.length === 0 ? (
+          <View style={styles.emptySection}>
+            <Text style={styles.emptySectionText}>No account activity yet</Text>
           </View>
-        ))}
+        ) : (
+          transactions.map(tx => (
+            <View key={tx.id} style={styles.txRow}>
+              <View style={[styles.txIcon, tx.type === 'buy' ? styles.txIconBuy : styles.txIconSell]}>
+                <Ionicons
+                  name={tx.type === 'buy' ? 'arrow-down' : 'arrow-up'}
+                  size={16}
+                  color={tx.type === 'buy' ? Colors.green : Colors.red}
+                />
+              </View>
+              <View style={styles.txInfo}>
+                <Text style={styles.txName}>{tx.playerName}</Text>
+                <Text style={styles.txMeta}>
+                  {tx.type === 'buy' ? 'Bought' : 'Sold'} {tx.shares} share{tx.shares !== 1 ? 's' : ''} @ ${tx.price.toFixed(2)}
+                </Text>
+              </View>
+              <View style={styles.txRight}>
+                <Text style={[styles.txTotal, tx.type === 'buy' ? styles.textRed : styles.textGreen]}>
+                  {tx.type === 'buy' ? '-' : '+'}${tx.total.toFixed(2)}
+                </Text>
+                <Text style={styles.txDate}>{tx.date}</Text>
+              </View>
+            </View>
+          ))
+        )}
       </View>
 
       {/* Settings Section */}
@@ -406,11 +432,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.surface,
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
   },
-  portfolioAvatarText: {
-    color: Colors.text,
-    fontSize: FontSize.sm,
-    fontWeight: '700',
+  portfolioAvatarImage: {
+    width: '100%',
+    height: '100%',
   },
   portfolioInfo: {
     flex: 1,

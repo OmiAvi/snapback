@@ -7,13 +7,15 @@ import {
   TouchableOpacity,
   StyleSheet,
   StatusBar,
+  Image,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import Svg, { Polyline } from 'react-native-svg';
-import { ALL_PLAYERS } from '@/constants/data';
 import type { Player } from '@/constants/data';
 import { Colors, Spacing, FontSize, BorderRadius, Shadows } from '@/constants/theme';
+import { useAppData } from '@/context/app-data-context';
+import { getPlayerImageUri } from '@/utils/player-images';
 
 // Mini sparkline chart component
 function Sparkline({ data, isPositive, width = 60, height = 24 }: { 
@@ -62,9 +64,7 @@ function PlayerRow({ player, onPress }: { player: Player; onPress: () => void })
   return (
     <TouchableOpacity style={styles.playerRow} onPress={onPress} activeOpacity={0.7}>
       <View style={styles.avatarCircle}>
-        <Text style={styles.avatarText}>
-          {player.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
-        </Text>
+        <Image source={{ uri: getPlayerImageUri(player) }} style={styles.avatarImage} resizeMode="cover" />
       </View>
       <View style={styles.playerInfo}>
         <Text style={styles.playerTicker}>{player.name.split(' ')[1]?.slice(0, 4).toUpperCase() || 'PLYR'}</Text>
@@ -91,9 +91,7 @@ function WishlistCard({ player, onPress }: { player: Player; onPress: () => void
     <TouchableOpacity style={styles.wishlistCard} onPress={onPress} activeOpacity={0.7}>
       <View style={styles.wishlistHeader}>
         <View style={styles.wishlistAvatar}>
-          <Text style={styles.wishlistAvatarText}>
-            {player.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
-          </Text>
+          <Image source={{ uri: getPlayerImageUri(player) }} style={styles.wishlistAvatarImage} resizeMode="cover" />
         </View>
         <View style={styles.wishlistInfo}>
           <Text style={styles.wishlistTicker}>{player.name.split(' ')[1]?.slice(0, 4).toUpperCase() || 'PLYR'}</Text>
@@ -112,16 +110,17 @@ function WishlistCard({ player, onPress }: { player: Player; onPress: () => void
 
 export default function MarketplaceScreen() {
   const router = useRouter();
+  const { allPlayers } = useAppData();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState<'all' | 'hot' | 'gainers' | 'losers'>('all');
 
   const wishlistPlayers = useMemo(
-    () => ALL_PLAYERS.filter(p => p.isHot).slice(0, 4),
-    []
+    () => allPlayers.filter(p => p.isHot).slice(0, 4),
+    [allPlayers]
   );
 
   const filteredPlayers = useMemo(() => {
-    let players = [...ALL_PLAYERS];
+    let players = [...allPlayers];
 
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
@@ -145,7 +144,7 @@ export default function MarketplaceScreen() {
     }
 
     return players;
-  }, [searchQuery, activeFilter]);
+  }, [searchQuery, activeFilter, allPlayers]);
 
   const handlePlayerPress = (player: Player) => {
     router.push(`/player/${player.id}`);
@@ -315,11 +314,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.surface,
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
   },
-  wishlistAvatarText: {
-    color: Colors.text,
-    fontSize: FontSize.sm,
-    fontWeight: '700',
+  wishlistAvatarImage: {
+    width: '100%',
+    height: '100%',
   },
   wishlistInfo: {
     flex: 1,
@@ -388,11 +387,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.surface,
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
   },
-  avatarText: {
-    color: Colors.text,
-    fontSize: FontSize.sm,
-    fontWeight: '700',
+  avatarImage: {
+    width: '100%',
+    height: '100%',
   },
   playerInfo: {
     flex: 1,

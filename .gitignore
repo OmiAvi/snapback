@@ -1,5 +1,5 @@
 # Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
-
+firebase/service-account.json
 # dependencies
 node_modules/
 
@@ -39,3 +39,6 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# local scratch files
+/tmp

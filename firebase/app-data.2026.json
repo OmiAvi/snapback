@@ -1,0 +1,3209 @@
+{
+  "teams": {
+    "duke": {
+      "id": "duke",
+      "name": "Duke Blue Devils",
+      "shortName": "Duke",
+      "seed": 1,
+      "region": "East",
+      "conference": "ACC",
+      "record": "34-2",
+      "color": "#003087",
+      "players": [
+        {
+          "id": "duke-p1",
+          "name": "Cameron Boozer",
+          "team": "Duke",
+          "teamId": "duke",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5041935.png&w=350&h=254",
+          "position": "F",
+          "jersey": 12,
+          "stockPrice": 62,
+          "priceChange": 2.5,
+          "priceChangePercent": 4.2,
+          "stats": {
+            "ppg": 22.5,
+            "rpg": 10.2,
+            "apg": 4.2
+          },
+          "year": "Freshman",
+          "height": "6'9\"",
+          "hometown": "Miami, FL",
+          "isHot": true
+        },
+        {
+          "id": "duke-p2",
+          "name": "Cayden Boozer",
+          "team": "Duke",
+          "teamId": "duke",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5041937.png&w=350&h=254",
+          "position": "G",
+          "jersey": 2,
+          "stockPrice": 28,
+          "priceChange": 1.8,
+          "priceChangePercent": 6.9,
+          "stats": {
+            "ppg": 10.4,
+            "rpg": 3.8,
+            "apg": 4.9
+          },
+          "year": "Freshman",
+          "height": "6'4\"",
+          "hometown": "Miami, FL",
+          "isHot": true
+        },
+        {
+          "id": "duke-p3",
+          "name": "Isaiah Evans",
+          "team": "Duke",
+          "teamId": "duke",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5061585.png&w=350&h=254",
+          "position": "G/F",
+          "jersey": 5,
+          "stockPrice": 22,
+          "priceChange": 1.2,
+          "priceChangePercent": 5.8,
+          "stats": {
+            "ppg": 11.8,
+            "rpg": 4.6,
+            "apg": 1.5
+          },
+          "year": "Freshman",
+          "height": "6'8\"",
+          "hometown": "Boston, MA",
+          "isHot": true
+        },
+        {
+          "id": "duke-p4",
+          "name": "Patrick Ngongba II",
+          "team": "Duke",
+          "teamId": "duke",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4873209.png&w=350&h=254",
+          "position": "F",
+          "jersey": 11,
+          "stockPrice": 18,
+          "priceChange": -0.5,
+          "priceChangePercent": -2.7,
+          "stats": {
+            "ppg": 10.7,
+            "rpg": 6.0,
+            "apg": 1.1
+          },
+          "year": "Junior",
+          "height": "6'9\"",
+          "hometown": "Alpharetta, GA",
+          "isHot": false
+        },
+        {
+          "id": "duke-p5",
+          "name": "Dame Sarr",
+          "team": "Duke",
+          "teamId": "duke",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5287474.png&w=350&h=254",
+          "position": "G/F",
+          "jersey": 7,
+          "stockPrice": 15,
+          "priceChange": 0.8,
+          "priceChangePercent": 5.6,
+          "stats": {
+            "ppg": 7.2,
+            "rpg": 3.4,
+            "apg": 1.8
+          },
+          "year": "Freshman",
+          "height": "6'7\"",
+          "hometown": "Oderzo, Italy",
+          "isHot": false
+        },
+        {
+          "id": "duke-p6",
+          "name": "Maliq Brown",
+          "team": "Duke",
+          "teamId": "duke",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5105337.png&w=350&h=254",
+          "position": "F",
+          "jersey": 7,
+          "stockPrice": 10,
+          "priceChange": 0.3,
+          "priceChangePercent": 3.1,
+          "stats": {
+            "ppg": 4.8,
+            "rpg": 3.9,
+            "apg": 1.0
+          },
+          "year": "Senior",
+          "height": "6'8\"",
+          "hometown": "Culpeper, VA",
+          "isHot": false
+        },
+        {
+          "id": "duke-p7",
+          "name": "Caleb Foster",
+          "team": "Duke",
+          "teamId": "duke",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4711256.png&w=350&h=254",
+          "position": "G",
+          "jersey": 1,
+          "stockPrice": 12,
+          "priceChange": -1.0,
+          "priceChangePercent": -7.7,
+          "stats": {
+            "ppg": 8.5,
+            "rpg": 2.6,
+            "apg": 3.2
+          },
+          "year": "Junior",
+          "height": "6'4\"",
+          "hometown": "Boiling Springs, NC",
+          "isHot": false
+        },
+        {
+          "id": "duke-p8",
+          "name": "Nikolas Khamenia",
+          "team": "Duke",
+          "teamId": "duke",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5144124.png&w=350&h=254",
+          "position": "F",
+          "jersey": 10,
+          "stockPrice": 8,
+          "priceChange": 0.2,
+          "priceChangePercent": 2.6,
+          "stats": {
+            "ppg": 3.5,
+            "rpg": 2.8,
+            "apg": 0.5
+          },
+          "year": "Freshman",
+          "height": "6'8\"",
+          "hometown": "Los Angeles, CA",
+          "isHot": false
+        }
+      ]
+    },
+    "siena": {
+      "id": "siena",
+      "name": "Siena Saints",
+      "shortName": "Siena",
+      "seed": 16,
+      "region": "East",
+      "conference": "MAAC",
+      "record": "23-11",
+      "color": "#006A4E",
+      "players": [
+        {
+          "id": "siena-p1",
+          "name": "Gavin Doty",
+          "team": "Siena",
+          "teamId": "siena",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5242926.png&w=350&h=254",
+          "position": "G",
+          "jersey": 3,
+          "stockPrice": 12,
+          "priceChange": -0.5,
+          "priceChangePercent": -4.0,
+          "stats": {
+            "ppg": 17.9,
+            "rpg": 4.2,
+            "apg": 3.1
+          },
+          "year": "Sophomore",
+          "height": "6'3\"",
+          "hometown": "Albany, NY",
+          "isHot": false
+        }
+      ]
+    },
+    "ohio-state": {
+      "id": "ohio-state",
+      "name": "Ohio State Buckeyes",
+      "shortName": "Ohio St.",
+      "seed": 8,
+      "region": "East",
+      "conference": "Big Ten",
+      "record": "22-13",
+      "color": "#BB0000",
+      "players": [
+        {
+          "id": "osu-p1",
+          "name": "Bruce Thornton",
+          "team": "Ohio State",
+          "teamId": "ohio-state",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5105837.png&w=350&h=254",
+          "position": "G",
+          "jersey": 2,
+          "stockPrice": 35,
+          "priceChange": 1.8,
+          "priceChangePercent": 5.4,
+          "stats": {
+            "ppg": 19.4,
+            "rpg": 4.1,
+            "apg": 3.8
+          },
+          "year": "Senior",
+          "height": "6'2\"",
+          "hometown": "Lithonia, GA",
+          "isHot": true
+        }
+      ]
+    },
+    "tcu": {
+      "id": "tcu",
+      "name": "TCU Horned Frogs",
+      "shortName": "TCU",
+      "seed": 9,
+      "region": "East",
+      "conference": "Big 12",
+      "record": "22-12",
+      "color": "#4D1979",
+      "players": []
+    },
+    "st-johns": {
+      "id": "st-johns",
+      "name": "St. John's Red Storm",
+      "shortName": "St. John's",
+      "seed": 5,
+      "region": "East",
+      "conference": "Big East",
+      "record": "27-7",
+      "color": "#CC0000",
+      "players": [
+        {
+          "id": "stj-p1",
+          "name": "Zuby Ejiofor",
+          "team": "St. John's",
+          "teamId": "st-johns",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5106262.png&w=350&h=254",
+          "position": "F",
+          "jersey": 4,
+          "stockPrice": 32,
+          "priceChange": 1.6,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 18.1,
+            "rpg": 8.4,
+            "apg": 2.6
+          },
+          "year": "Senior",
+          "height": "6'9\"",
+          "hometown": "Haltom City, TX",
+          "isHot": true
+        }
+      ]
+    },
+    "northern-iowa": {
+      "id": "northern-iowa",
+      "name": "Northern Iowa Panthers",
+      "shortName": "N. Iowa",
+      "seed": 12,
+      "region": "East",
+      "conference": "MVC",
+      "record": "26-8",
+      "color": "#4B116F",
+      "players": []
+    },
+    "kansas": {
+      "id": "kansas",
+      "name": "Kansas Jayhawks",
+      "shortName": "Kansas",
+      "seed": 4,
+      "region": "East",
+      "conference": "Big 12",
+      "record": "23-11",
+      "color": "#0051A5",
+      "players": [
+        {
+          "id": "ku-p1",
+          "name": "Darryn Peterson",
+          "team": "Kansas",
+          "teamId": "kansas",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5041955.png&w=350&h=254",
+          "position": "G",
+          "jersey": 3,
+          "stockPrice": 38,
+          "priceChange": 2.1,
+          "priceChangePercent": 5.9,
+          "stats": {
+            "ppg": 17.6,
+            "rpg": 4.8,
+            "apg": 4.2
+          },
+          "year": "Freshman",
+          "height": "6'5\"",
+          "hometown": "Prolific Prep, CA",
+          "isHot": true
+        },
+        {
+          "id": "ku-p2",
+          "name": "Flory Bidunga",
+          "team": "Kansas",
+          "teamId": "kansas",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5044426.png&w=350&h=254",
+          "position": "C",
+          "jersey": 40,
+          "stockPrice": 16,
+          "priceChange": 0.8,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 10.2,
+            "rpg": 7.8,
+            "apg": 0.9
+          },
+          "year": "Freshman",
+          "height": "6'10\"",
+          "hometown": "Kinshasa, DRC",
+          "isHot": false
+        }
+      ]
+    },
+    "cal-baptist": {
+      "id": "cal-baptist",
+      "name": "California Baptist Lancers",
+      "shortName": "Cal Baptist",
+      "seed": 13,
+      "region": "East",
+      "conference": "WAC",
+      "record": "27-9",
+      "color": "#003DA5",
+      "players": [
+        {
+          "id": "cbap-p1",
+          "name": "Dominique Daniels Jr.",
+          "team": "Cal Baptist",
+          "teamId": "cal-baptist",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5178207.png&w=350&h=254",
+          "position": "G",
+          "jersey": 0,
+          "stockPrice": 28,
+          "priceChange": 1.4,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 23.2,
+            "rpg": 3.8,
+            "apg": 2.9
+          },
+          "year": "Senior",
+          "height": "5'10\"",
+          "hometown": "Compton, CA",
+          "isHot": true
+        }
+      ]
+    },
+    "louisville": {
+      "id": "louisville",
+      "name": "Louisville Cardinals",
+      "shortName": "Louisville",
+      "seed": 6,
+      "region": "East",
+      "conference": "ACC",
+      "record": "23-11",
+      "color": "#AD0000",
+      "players": [
+        {
+          "id": "lou-p1",
+          "name": "Mikel Brown Jr.",
+          "team": "Louisville",
+          "teamId": "louisville",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5101761.png&w=350&h=254",
+          "position": "G",
+          "jersey": 1,
+          "stockPrice": 40,
+          "priceChange": -2.1,
+          "priceChangePercent": -5.0,
+          "stats": {
+            "ppg": 18.2,
+            "rpg": 4.3,
+            "apg": 3.9
+          },
+          "year": "Freshman",
+          "height": "6'4\"",
+          "hometown": "Memphis, TN",
+          "isHot": false
+        }
+      ]
+    },
+    "south-florida": {
+      "id": "south-florida",
+      "name": "South Florida Bulls",
+      "shortName": "S. Florida",
+      "seed": 11,
+      "region": "East",
+      "conference": "AAC",
+      "record": "24-10",
+      "color": "#006747",
+      "players": [
+        {
+          "id": "usf-p1",
+          "name": "Izaiyah Nelson",
+          "team": "South Florida",
+          "teamId": "south-florida",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5107251.png&w=350&h=254",
+          "position": "F",
+          "jersey": 21,
+          "stockPrice": 18,
+          "priceChange": 0.9,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 17.8,
+            "rpg": 9.2,
+            "apg": 1.4
+          },
+          "year": "Senior",
+          "height": "6'10\"",
+          "hometown": "Tulsa, OK",
+          "isHot": false
+        }
+      ]
+    },
+    "michigan-state": {
+      "id": "michigan-state",
+      "name": "Michigan State Spartans",
+      "shortName": "Mich. St.",
+      "seed": 3,
+      "region": "East",
+      "conference": "Big Ten",
+      "record": "24-9",
+      "color": "#18453B",
+      "players": [
+        {
+          "id": "msu-p1",
+          "name": "Jeremy Fears Jr.",
+          "team": "Michigan State",
+          "teamId": "michigan-state",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4711255.png&w=350&h=254",
+          "position": "G",
+          "jersey": 1,
+          "stockPrice": 38,
+          "priceChange": 2.2,
+          "priceChangePercent": 6.1,
+          "stats": {
+            "ppg": 15.5,
+            "rpg": 3.8,
+            "apg": 9.1
+          },
+          "year": "Sophomore",
+          "height": "6'2\"",
+          "hometown": "Joliet, IL",
+          "isHot": true
+        },
+        {
+          "id": "msu-p2",
+          "name": "Jaxon Kohler",
+          "team": "Michigan State",
+          "teamId": "michigan-state",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5105815.png&w=350&h=254",
+          "position": "F",
+          "jersey": 0,
+          "stockPrice": 16,
+          "priceChange": 0.7,
+          "priceChangePercent": 4.6,
+          "stats": {
+            "ppg": 12.3,
+            "rpg": 6.8,
+            "apg": 1.2
+          },
+          "year": "Senior",
+          "height": "6'9\"",
+          "hometown": "Saginaw, MI",
+          "isHot": false
+        },
+        {
+          "id": "msu-p3",
+          "name": "Coen Carr",
+          "team": "Michigan State",
+          "teamId": "michigan-state",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4872740.png&w=350&h=254",
+          "position": "F",
+          "jersey": 2,
+          "stockPrice": 14,
+          "priceChange": 0.6,
+          "priceChangePercent": 4.5,
+          "stats": {
+            "ppg": 11.1,
+            "rpg": 5.2,
+            "apg": 1.9
+          },
+          "year": "Junior",
+          "height": "6'7\"",
+          "hometown": "Joliet, IL",
+          "isHot": false
+        }
+      ]
+    },
+    "north-dakota-state": {
+      "id": "north-dakota-state",
+      "name": "North Dakota State Bison",
+      "shortName": "NDSU",
+      "seed": 14,
+      "region": "East",
+      "conference": "Summit",
+      "record": "27-8",
+      "color": "#005643",
+      "players": []
+    },
+    "ucla": {
+      "id": "ucla",
+      "name": "UCLA Bruins",
+      "shortName": "UCLA",
+      "seed": 7,
+      "region": "East",
+      "conference": "Big Ten",
+      "record": "20-13",
+      "color": "#2D68C4",
+      "players": [
+        {
+          "id": "ucla-p1",
+          "name": "Donovan Dent",
+          "team": "UCLA",
+          "teamId": "ucla",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5107782.png&w=350&h=254",
+          "position": "G",
+          "jersey": 3,
+          "stockPrice": 30,
+          "priceChange": 1.9,
+          "priceChangePercent": 6.8,
+          "stats": {
+            "ppg": 16.4,
+            "rpg": 4.1,
+            "apg": 7.2
+          },
+          "year": "Junior",
+          "height": "6'2\"",
+          "hometown": "Las Vegas, NV",
+          "isHot": true
+        }
+      ]
+    },
+    "ucf": {
+      "id": "ucf",
+      "name": "UCF Knights",
+      "shortName": "UCF",
+      "seed": 10,
+      "region": "East",
+      "conference": "Big 12",
+      "record": "21-12",
+      "color": "#BA9B37",
+      "players": []
+    },
+    "uconn": {
+      "id": "uconn",
+      "name": "UConn Huskies",
+      "shortName": "UConn",
+      "seed": 2,
+      "region": "East",
+      "conference": "Big East",
+      "record": "27-7",
+      "color": "#000E2F",
+      "players": [
+        {
+          "id": "uconn-p1",
+          "name": "Alex Karaban",
+          "team": "UConn",
+          "teamId": "uconn",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4917149.png&w=350&h=254",
+          "position": "F",
+          "jersey": 11,
+          "stockPrice": 34,
+          "priceChange": 1.7,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 15.2,
+            "rpg": 6.4,
+            "apg": 2.3
+          },
+          "year": "Senior",
+          "height": "6'8\"",
+          "hometown": "East Longmeadow, MA",
+          "isHot": true
+        },
+        {
+          "id": "uconn-p2",
+          "name": "Tarris Reed Jr.",
+          "team": "UConn",
+          "teamId": "uconn",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5105809.png&w=350&h=254",
+          "position": "C",
+          "jersey": 5,
+          "stockPrice": 22,
+          "priceChange": 1.1,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 13.7,
+            "rpg": 8.1,
+            "apg": 1.1
+          },
+          "year": "Senior",
+          "height": "6'11\"",
+          "hometown": "Detroit, MI",
+          "isHot": true
+        },
+        {
+          "id": "uconn-p3",
+          "name": "Silas Demary Jr.",
+          "team": "UConn",
+          "teamId": "uconn",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5054083.png&w=350&h=254",
+          "position": "G",
+          "jersey": 35,
+          "stockPrice": 18,
+          "priceChange": 0.8,
+          "priceChangePercent": 4.7,
+          "stats": {
+            "ppg": 11.4,
+            "rpg": 3.2,
+            "apg": 4.8
+          },
+          "year": "Sophomore",
+          "height": "6'4\"",
+          "hometown": "Charlotte, NC",
+          "isHot": false
+        }
+      ]
+    },
+    "furman": {
+      "id": "furman",
+      "name": "Furman Paladins",
+      "shortName": "Furman",
+      "seed": 15,
+      "region": "East",
+      "conference": "SoCon",
+      "record": "26-8",
+      "color": "#582C83",
+      "players": []
+    },
+    "arizona": {
+      "id": "arizona",
+      "name": "Arizona Wildcats",
+      "shortName": "Arizona",
+      "seed": 1,
+      "region": "West",
+      "conference": "Big 12",
+      "record": "32-2",
+      "color": "#CC0033",
+      "players": [
+        {
+          "id": "ariz-p1",
+          "name": "Brayden Burries",
+          "team": "Arizona",
+          "teamId": "arizona",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5082206.png&w=350&h=254",
+          "position": "G",
+          "jersey": 4,
+          "stockPrice": 45,
+          "priceChange": 2.8,
+          "priceChangePercent": 6.6,
+          "stats": {
+            "ppg": 18.9,
+            "rpg": 4.7,
+            "apg": 3.1
+          },
+          "year": "Freshman",
+          "height": "6'4\"",
+          "hometown": "Scottsdale, AZ",
+          "isHot": true
+        },
+        {
+          "id": "ariz-p2",
+          "name": "Jaden Bradley",
+          "team": "Arizona",
+          "teamId": "arizona",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4432737.png&w=350&h=254",
+          "position": "G",
+          "jersey": 5,
+          "stockPrice": 22,
+          "priceChange": 1.0,
+          "priceChangePercent": 4.8,
+          "stats": {
+            "ppg": 13.4,
+            "rpg": 3.2,
+            "apg": 5.6
+          },
+          "year": "Senior",
+          "height": "6'3\"",
+          "hometown": "Norcross, GA",
+          "isHot": false
+        },
+        {
+          "id": "ariz-p3",
+          "name": "Koa Peat",
+          "team": "Arizona",
+          "teamId": "arizona",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5041953.png&w=350&h=254",
+          "position": "F",
+          "jersey": 21,
+          "stockPrice": 30,
+          "priceChange": 1.8,
+          "priceChangePercent": 6.4,
+          "stats": {
+            "ppg": 14.7,
+            "rpg": 6.3,
+            "apg": 2.0
+          },
+          "year": "Freshman",
+          "height": "6'8\"",
+          "hometown": "Gilbert, AZ",
+          "isHot": true
+        }
+      ]
+    },
+    "liu": {
+      "id": "liu",
+      "name": "LIU Sharks",
+      "shortName": "LIU",
+      "seed": 16,
+      "region": "West",
+      "conference": "NEC",
+      "record": "24-10",
+      "color": "#154734",
+      "players": []
+    },
+    "villanova": {
+      "id": "villanova",
+      "name": "Villanova Wildcats",
+      "shortName": "Villanova",
+      "seed": 8,
+      "region": "West",
+      "conference": "Big East",
+      "record": "22-12",
+      "color": "#003DA5",
+      "players": []
+    },
+    "utah-state": {
+      "id": "utah-state",
+      "name": "Utah State Aggies",
+      "shortName": "Utah St.",
+      "seed": 9,
+      "region": "West",
+      "conference": "Mountain West",
+      "record": "26-9",
+      "color": "#003263",
+      "players": []
+    },
+    "wisconsin": {
+      "id": "wisconsin",
+      "name": "Wisconsin Badgers",
+      "shortName": "Wisconsin",
+      "seed": 5,
+      "region": "West",
+      "conference": "Big Ten",
+      "record": "22-13",
+      "color": "#C5050C",
+      "players": [
+        {
+          "id": "wis-p1",
+          "name": "John Blackwell",
+          "team": "Wisconsin",
+          "teamId": "wisconsin",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5103630.png&w=350&h=254",
+          "position": "G",
+          "jersey": 25,
+          "stockPrice": 16,
+          "priceChange": -0.8,
+          "priceChangePercent": -4.8,
+          "stats": {
+            "ppg": 15.9,
+            "rpg": 4.2,
+            "apg": 2.8
+          },
+          "year": "Junior",
+          "height": "6'4\"",
+          "hometown": "Greencastle, IN",
+          "isHot": false
+        }
+      ]
+    },
+    "high-point": {
+      "id": "high-point",
+      "name": "High Point Panthers",
+      "shortName": "High Point",
+      "seed": 12,
+      "region": "West",
+      "conference": "Big South",
+      "record": "28-7",
+      "color": "#522398",
+      "players": [
+        {
+          "id": "chase-johnston-hp",
+          "name": "Chase Johnston",
+          "team": "High Point",
+          "teamId": "high-point",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4612709.png&w=350&h=254",
+          "highlightVideoUrl": "https://youtube.com/shorts/7DQWWfoe8Ec?si=7BRBiuvfKmwt12TI",
+          "position": "G",
+          "jersey": 25,
+          "stockPrice": 34.5,
+          "priceChange": 18.2,
+          "priceChangePercent": 111,
+          "stats": {
+            "ppg": 15.2,
+            "rpg": 2.8,
+            "apg": 1.9
+          },
+          "year": "Senior",
+          "height": "6'3\"",
+          "hometown": "Boca Raton, FL",
+          "isHot": true
+        }
+      ]
+    },
+    "arkansas": {
+      "id": "arkansas",
+      "name": "Arkansas Razorbacks",
+      "shortName": "Arkansas",
+      "seed": 4,
+      "region": "West",
+      "conference": "SEC",
+      "record": "27-8",
+      "color": "#9D2235",
+      "players": [
+        {
+          "id": "ark-p1",
+          "name": "Darius Acuff Jr.",
+          "team": "Arkansas",
+          "teamId": "arkansas",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5142620.png&w=350&h=254",
+          "position": "G",
+          "jersey": 0,
+          "stockPrice": 32,
+          "priceChange": 1.9,
+          "priceChangePercent": 6.3,
+          "stats": {
+            "ppg": 20.1,
+            "rpg": 4.4,
+            "apg": 4.7
+          },
+          "year": "Sophomore",
+          "height": "6'5\"",
+          "hometown": "Madison, AL",
+          "isHot": true
+        },
+        {
+          "id": "ark-p2",
+          "name": "Trevon Brazile",
+          "team": "Arkansas",
+          "teamId": "arkansas",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4698719.png&w=350&h=254",
+          "position": "F",
+          "jersey": 3,
+          "stockPrice": 19,
+          "priceChange": 1.0,
+          "priceChangePercent": 5.6,
+          "stats": {
+            "ppg": 14.3,
+            "rpg": 7.6,
+            "apg": 1.9
+          },
+          "year": "Junior",
+          "height": "6'10\"",
+          "hometown": "Springfield, MO",
+          "isHot": false
+        }
+      ]
+    },
+    "hawaii": {
+      "id": "hawaii",
+      "name": "Hawai'i Rainbow Warriors",
+      "shortName": "Hawai'i",
+      "seed": 13,
+      "region": "West",
+      "conference": "Big West",
+      "record": "26-8",
+      "color": "#024731",
+      "players": []
+    },
+    "byu": {
+      "id": "byu",
+      "name": "BYU Cougars",
+      "shortName": "BYU",
+      "seed": 6,
+      "region": "West",
+      "conference": "Big 12",
+      "record": "23-11",
+      "color": "#002E5D",
+      "players": [
+        {
+          "id": "byu-p1",
+          "name": "AJ Dybantsa",
+          "team": "BYU",
+          "teamId": "byu",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5142718.png&w=350&h=254",
+          "position": "F",
+          "jersey": 9,
+          "stockPrice": 55,
+          "priceChange": 3.2,
+          "priceChangePercent": 6.2,
+          "stats": {
+            "ppg": 21.4,
+            "rpg": 7.5,
+            "apg": 3.8
+          },
+          "year": "Freshman",
+          "height": "6'9\"",
+          "hometown": "North Attleborough, MA",
+          "isHot": true
+        }
+      ]
+    },
+    "texas": {
+      "id": "texas",
+      "name": "Texas Longhorns",
+      "shortName": "Texas",
+      "seed": 11,
+      "region": "West",
+      "conference": "SEC",
+      "record": "20-15",
+      "color": "#BF5700",
+      "players": [
+        {
+          "id": "tex-p1",
+          "name": "Tramon Mark",
+          "team": "Texas",
+          "teamId": "texas",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4432243.png&w=350&h=254",
+          "position": "G/F",
+          "jersey": 12,
+          "stockPrice": 12,
+          "priceChange": 1.4,
+          "priceChangePercent": 13.2,
+          "stats": {
+            "ppg": 15.3,
+            "rpg": 4.8,
+            "apg": 2.7
+          },
+          "year": "Senior",
+          "height": "6'5\"",
+          "hometown": "Houston, TX",
+          "isHot": true
+        }
+      ]
+    },
+    "gonzaga": {
+      "id": "gonzaga",
+      "name": "Gonzaga Bulldogs",
+      "shortName": "Gonzaga",
+      "seed": 3,
+      "region": "West",
+      "conference": "WCC",
+      "record": "26-8",
+      "color": "#002868",
+      "players": [
+        {
+          "id": "gonz-p1",
+          "name": "Graham Ike",
+          "team": "Gonzaga",
+          "teamId": "gonzaga",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4703396.png&w=350&h=254",
+          "position": "C",
+          "jersey": 13,
+          "stockPrice": 28,
+          "priceChange": 1.3,
+          "priceChangePercent": 4.9,
+          "stats": {
+            "ppg": 19.7,
+            "rpg": 8.2,
+            "apg": 1.6
+          },
+          "year": "Senior",
+          "height": "6'11\"",
+          "hometown": "Las Vegas, NV",
+          "isHot": true
+        },
+        {
+          "id": "gonz-p2",
+          "name": "Tyon Grant-Foster",
+          "team": "Gonzaga",
+          "teamId": "gonzaga",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4700527.png&w=350&h=254",
+          "position": "F",
+          "jersey": 4,
+          "stockPrice": 16,
+          "priceChange": 0.8,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 12.4,
+            "rpg": 5.7,
+            "apg": 2.1
+          },
+          "year": "Junior",
+          "height": "6'7\"",
+          "hometown": "Memphis, TN",
+          "isHot": false
+        }
+      ]
+    },
+    "kennesaw-state": {
+      "id": "kennesaw-state",
+      "name": "Kennesaw State Owls",
+      "shortName": "Kennesaw St.",
+      "seed": 14,
+      "region": "West",
+      "conference": "Atlantic Sun",
+      "record": "24-11",
+      "color": "#FDBB30",
+      "players": []
+    },
+    "miami-fl": {
+      "id": "miami-fl",
+      "name": "Miami (FL) Hurricanes",
+      "shortName": "Miami (FL)",
+      "seed": 7,
+      "region": "West",
+      "conference": "ACC",
+      "record": "21-12",
+      "color": "#005030",
+      "players": []
+    },
+    "missouri": {
+      "id": "missouri",
+      "name": "Missouri Tigers",
+      "shortName": "Missouri",
+      "seed": 10,
+      "region": "West",
+      "conference": "SEC",
+      "record": "22-12",
+      "color": "#F1B82D",
+      "players": []
+    },
+    "purdue": {
+      "id": "purdue",
+      "name": "Purdue Boilermakers",
+      "shortName": "Purdue",
+      "seed": 2,
+      "region": "West",
+      "conference": "Big Ten",
+      "record": "27-8",
+      "color": "#CEB888",
+      "players": [
+        {
+          "id": "pur-p1",
+          "name": "Braden Smith",
+          "team": "Purdue",
+          "teamId": "purdue",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5105854.png&w=350&h=254",
+          "position": "G",
+          "jersey": 3,
+          "stockPrice": 30,
+          "priceChange": 1.5,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 14.8,
+            "rpg": 5.9,
+            "apg": 7.8
+          },
+          "year": "Junior",
+          "height": "6'1\"",
+          "hometown": "Westfield, IN",
+          "isHot": true
+        },
+        {
+          "id": "pur-p2",
+          "name": "Trey Kaufman-Renn",
+          "team": "Purdue",
+          "teamId": "purdue",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4897438.png&w=350&h=254",
+          "position": "F",
+          "jersey": 4,
+          "stockPrice": 18,
+          "priceChange": 0.9,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 17.2,
+            "rpg": 7.1,
+            "apg": 1.8
+          },
+          "year": "Junior",
+          "height": "6'9\"",
+          "hometown": "Salem, IN",
+          "isHot": false
+        }
+      ]
+    },
+    "queens": {
+      "id": "queens",
+      "name": "Queens University Royals",
+      "shortName": "Queens",
+      "seed": 15,
+      "region": "West",
+      "conference": "Atlantic Sun",
+      "record": "25-10",
+      "color": "#522398",
+      "players": []
+    },
+    "michigan": {
+      "id": "michigan",
+      "name": "Michigan Wolverines",
+      "shortName": "Michigan",
+      "seed": 1,
+      "region": "Midwest",
+      "conference": "Big Ten",
+      "record": "31-3",
+      "color": "#00274C",
+      "players": [
+        {
+          "id": "mich-p1",
+          "name": "Yaxel Lendeborg",
+          "team": "Michigan",
+          "teamId": "michigan",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5175737.png&w=350&h=254",
+          "position": "F",
+          "jersey": 23,
+          "stockPrice": 48,
+          "priceChange": 2.6,
+          "priceChangePercent": 5.7,
+          "stats": {
+            "ppg": 14.7,
+            "rpg": 7.2,
+            "apg": 3.9
+          },
+          "year": "Senior",
+          "height": "6'9\"",
+          "hometown": "Pennsauken, NJ",
+          "isHot": true
+        },
+        {
+          "id": "mich-p2",
+          "name": "Morez Johnson Jr.",
+          "team": "Michigan",
+          "teamId": "michigan",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4873153.png&w=350&h=254",
+          "position": "F",
+          "jersey": 5,
+          "stockPrice": 22,
+          "priceChange": 1.0,
+          "priceChangePercent": 4.8,
+          "stats": {
+            "ppg": 13.1,
+            "rpg": 8.4,
+            "apg": 1.5
+          },
+          "year": "Sophomore",
+          "height": "6'9\"",
+          "hometown": "Chicago, IL",
+          "isHot": false
+        },
+        {
+          "id": "mich-p3",
+          "name": "Aday Mara",
+          "team": "Michigan",
+          "teamId": "michigan",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5174983.png&w=350&h=254",
+          "position": "C",
+          "jersey": 15,
+          "stockPrice": 20,
+          "priceChange": 0.9,
+          "priceChangePercent": 4.7,
+          "stats": {
+            "ppg": 10.4,
+            "rpg": 6.8,
+            "apg": 1.2
+          },
+          "year": "Junior",
+          "height": "7'3\"",
+          "hometown": "Manresa, Spain",
+          "isHot": false
+        },
+        {
+          "id": "mich-p4",
+          "name": "Elliot Cadeau",
+          "team": "Michigan",
+          "teamId": "michigan",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4869764.png&w=350&h=254",
+          "position": "G",
+          "jersey": 1,
+          "stockPrice": 18,
+          "priceChange": 1.1,
+          "priceChangePercent": 6.5,
+          "stats": {
+            "ppg": 11.8,
+            "rpg": 3.5,
+            "apg": 6.4
+          },
+          "year": "Sophomore",
+          "height": "6'2\"",
+          "hometown": "Rolesville, NC",
+          "isHot": true
+        },
+        {
+          "id": "mich-p5",
+          "name": "Nimari Burnett",
+          "team": "Michigan",
+          "teamId": "michigan",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4433138.png&w=350&h=254",
+          "position": "G",
+          "jersey": 4,
+          "stockPrice": 14,
+          "priceChange": 0.6,
+          "priceChangePercent": 4.5,
+          "stats": {
+            "ppg": 9.7,
+            "rpg": 3.1,
+            "apg": 2.4
+          },
+          "year": "Senior",
+          "height": "6'5\"",
+          "hometown": "San Antonio, TX",
+          "isHot": false
+        }
+      ]
+    },
+    "howard": {
+      "id": "howard",
+      "name": "Howard Bison",
+      "shortName": "Howard",
+      "seed": 16,
+      "region": "Midwest",
+      "conference": "MEAC",
+      "record": "20-14",
+      "color": "#003A63",
+      "players": []
+    },
+    "georgia": {
+      "id": "georgia",
+      "name": "Georgia Bulldogs",
+      "shortName": "Georgia",
+      "seed": 8,
+      "region": "Midwest",
+      "conference": "SEC",
+      "record": "21-13",
+      "color": "#BA0C2F",
+      "players": []
+    },
+    "saint-louis": {
+      "id": "saint-louis",
+      "name": "Saint Louis Billikens",
+      "shortName": "Saint Louis",
+      "seed": 9,
+      "region": "Midwest",
+      "conference": "Atlantic 10",
+      "record": "24-10",
+      "color": "#003DA5",
+      "players": []
+    },
+    "texas-tech": {
+      "id": "texas-tech",
+      "name": "Texas Tech Red Raiders",
+      "shortName": "Texas Tech",
+      "seed": 5,
+      "region": "Midwest",
+      "conference": "Big 12",
+      "record": "24-10",
+      "color": "#CC0000",
+      "players": []
+    },
+    "akron": {
+      "id": "akron",
+      "name": "Akron Zips",
+      "shortName": "Akron",
+      "seed": 12,
+      "region": "Midwest",
+      "conference": "MAC",
+      "record": "27-7",
+      "color": "#002147",
+      "players": []
+    },
+    "alabama": {
+      "id": "alabama",
+      "name": "Alabama Crimson Tide",
+      "shortName": "Alabama",
+      "seed": 4,
+      "region": "Midwest",
+      "conference": "SEC",
+      "record": "24-10",
+      "color": "#9E1B32",
+      "players": [
+        {
+          "id": "ala-p1",
+          "name": "Labaron Philon Jr.",
+          "team": "Alabama",
+          "teamId": "alabama",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4873090.png&w=350&h=254",
+          "position": "G",
+          "jersey": 0,
+          "stockPrice": 42,
+          "priceChange": 2.3,
+          "priceChangePercent": 5.8,
+          "stats": {
+            "ppg": 21.5,
+            "rpg": 4.4,
+            "apg": 4.8
+          },
+          "year": "Sophomore",
+          "height": "6'3\"",
+          "hometown": "Mobile, AL",
+          "isHot": true
+        },
+        {
+          "id": "ala-p2",
+          "name": "Aden Holloway",
+          "team": "Alabama",
+          "teamId": "alabama",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4684276.png&w=350&h=254",
+          "position": "G",
+          "jersey": 5,
+          "stockPrice": 20,
+          "priceChange": -3.5,
+          "priceChangePercent": -14.9,
+          "stats": {
+            "ppg": 16.8,
+            "rpg": 3.2,
+            "apg": 3.1
+          },
+          "year": "Junior",
+          "height": "6'1\"",
+          "hometown": "Auburn, AL",
+          "isHot": false
+        }
+      ]
+    },
+    "hofstra": {
+      "id": "hofstra",
+      "name": "Hofstra Pride",
+      "shortName": "Hofstra",
+      "seed": 13,
+      "region": "Midwest",
+      "conference": "CAA",
+      "record": "26-7",
+      "color": "#003591",
+      "players": [
+        {
+          "id": "hof-p1",
+          "name": "Cruz Davis",
+          "team": "Hofstra",
+          "teamId": "hofstra",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5107198.png&w=350&h=254",
+          "position": "G",
+          "jersey": 1,
+          "stockPrice": 22,
+          "priceChange": -1.4,
+          "priceChangePercent": -6.0,
+          "stats": {
+            "ppg": 20.2,
+            "rpg": 4.0,
+            "apg": 4.6
+          },
+          "year": "Junior",
+          "height": "6'3\"",
+          "hometown": "Columbus, OH",
+          "isHot": false
+        }
+      ]
+    },
+    "tennessee": {
+      "id": "tennessee",
+      "name": "Tennessee Volunteers",
+      "shortName": "Tennessee",
+      "seed": 6,
+      "region": "Midwest",
+      "conference": "SEC",
+      "record": "24-10",
+      "color": "#FF8200",
+      "players": [
+        {
+          "id": "tenn-p1",
+          "name": "Nate Ament",
+          "team": "Tennessee",
+          "teamId": "tennessee",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5164559.png&w=350&h=254",
+          "position": "F",
+          "jersey": 7,
+          "stockPrice": 28,
+          "priceChange": -1.2,
+          "priceChangePercent": -4.1,
+          "stats": {
+            "ppg": 16.4,
+            "rpg": 7.1,
+            "apg": 2.3
+          },
+          "year": "Freshman",
+          "height": "6'10\"",
+          "hometown": "Medford, OR",
+          "isHot": false
+        },
+        {
+          "id": "tenn-p2",
+          "name": "Ja'Kobi Gillespie",
+          "team": "Tennessee",
+          "teamId": "tennessee",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5107968.png&w=350&h=254",
+          "position": "G",
+          "jersey": 0,
+          "stockPrice": 22,
+          "priceChange": 1.8,
+          "priceChangePercent": 8.9,
+          "stats": {
+            "ppg": 18.0,
+            "rpg": 4.2,
+            "apg": 5.6
+          },
+          "year": "Senior",
+          "height": "6'3\"",
+          "hometown": "Greensboro, NC",
+          "isHot": true
+        }
+      ]
+    },
+    "miami-oh": {
+      "id": "miami-oh",
+      "name": "Miami (OH) RedHawks",
+      "shortName": "Miami (OH)",
+      "seed": 11,
+      "region": "Midwest",
+      "conference": "MAC",
+      "record": "31-5",
+      "color": "#B61E2E",
+      "players": [
+        {
+          "id": "mioh-p1",
+          "name": "Eian Elmer",
+          "team": "Miami (OH)",
+          "teamId": "miami-oh",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5093252.png&w=350&h=254",
+          "position": "F",
+          "jersey": 12,
+          "stockPrice": 10,
+          "priceChange": 0.5,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 12.8,
+            "rpg": 5.4,
+            "apg": 1.8
+          },
+          "year": "Junior",
+          "height": "6'6\"",
+          "hometown": "Kalamazoo, MI",
+          "isHot": false
+        }
+      ]
+    },
+    "virginia": {
+      "id": "virginia",
+      "name": "Virginia Cavaliers",
+      "shortName": "Virginia",
+      "seed": 3,
+      "region": "Midwest",
+      "conference": "ACC",
+      "record": "24-10",
+      "color": "#232D4B",
+      "players": [
+        {
+          "id": "uva-p1",
+          "name": "Malik Thomas",
+          "team": "Virginia",
+          "teamId": "virginia",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4683758.png&w=350&h=254",
+          "position": "G",
+          "jersey": 4,
+          "stockPrice": 22,
+          "priceChange": 1.1,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 17.3,
+            "rpg": 4.8,
+            "apg": 3.9
+          },
+          "year": "Junior",
+          "height": "6'5\"",
+          "hometown": "Richmond, VA",
+          "isHot": false
+        },
+        {
+          "id": "uva-p2",
+          "name": "Thijs de Ridder",
+          "team": "Virginia",
+          "teamId": "virginia",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5311846.png&w=350&h=254",
+          "position": "F",
+          "jersey": 15,
+          "stockPrice": 16,
+          "priceChange": 0.8,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 13.6,
+            "rpg": 6.2,
+            "apg": 2.1
+          },
+          "year": "Senior",
+          "height": "6'11\"",
+          "hometown": "Rotterdam, Netherlands",
+          "isHot": false
+        }
+      ]
+    },
+    "wright-state": {
+      "id": "wright-state",
+      "name": "Wright State Raiders",
+      "shortName": "Wright St.",
+      "seed": 14,
+      "region": "Midwest",
+      "conference": "Horizon",
+      "record": "25-9",
+      "color": "#006341",
+      "players": []
+    },
+    "kentucky": {
+      "id": "kentucky",
+      "name": "Kentucky Wildcats",
+      "shortName": "Kentucky",
+      "seed": 7,
+      "region": "Midwest",
+      "conference": "SEC",
+      "record": "20-14",
+      "color": "#0033A0",
+      "players": [
+        {
+          "id": "uk-p1",
+          "name": "Otega Oweh",
+          "team": "Kentucky",
+          "teamId": "kentucky",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5106270.png&w=350&h=254",
+          "position": "G/F",
+          "jersey": 0,
+          "stockPrice": 15,
+          "priceChange": 0.8,
+          "priceChangePercent": 5.6,
+          "stats": {
+            "ppg": 16.1,
+            "rpg": 4.8,
+            "apg": 2.4
+          },
+          "year": "Junior",
+          "height": "6'5\"",
+          "hometown": "Lagos, Nigeria",
+          "isHot": false
+        }
+      ]
+    },
+    "santa-clara": {
+      "id": "santa-clara",
+      "name": "Santa Clara Broncos",
+      "shortName": "Santa Clara",
+      "seed": 10,
+      "region": "Midwest",
+      "conference": "WCC",
+      "record": "25-9",
+      "color": "#862633",
+      "players": []
+    },
+    "iowa-state": {
+      "id": "iowa-state",
+      "name": "Iowa State Cyclones",
+      "shortName": "Iowa State",
+      "seed": 2,
+      "region": "Midwest",
+      "conference": "Big 12",
+      "record": "28-7",
+      "color": "#C8102E",
+      "players": [
+        {
+          "id": "isu-p1",
+          "name": "Joshua Jefferson",
+          "team": "Iowa State",
+          "teamId": "iowa-state",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4870564.png&w=350&h=254",
+          "position": "F",
+          "jersey": 0,
+          "stockPrice": 28,
+          "priceChange": 1.4,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 16.9,
+            "rpg": 7.6,
+            "apg": 4.9
+          },
+          "year": "Junior",
+          "height": "6'9\"",
+          "hometown": "Atlanta, GA",
+          "isHot": true
+        }
+      ]
+    },
+    "tennessee-state": {
+      "id": "tennessee-state",
+      "name": "Tennessee State Tigers",
+      "shortName": "Tenn. State",
+      "seed": 15,
+      "region": "Midwest",
+      "conference": "Ohio Valley",
+      "record": "23-11",
+      "color": "#4F2D7F",
+      "players": []
+    },
+    "florida": {
+      "id": "florida",
+      "name": "Florida Gators",
+      "shortName": "Florida",
+      "seed": 1,
+      "region": "South",
+      "conference": "SEC",
+      "record": "28-7",
+      "color": "#0021A5",
+      "players": [
+        {
+          "id": "fla-p1",
+          "name": "Thomas Haugh",
+          "team": "Florida",
+          "teamId": "florida",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5080489.png&w=350&h=254",
+          "position": "F",
+          "jersey": 15,
+          "stockPrice": 52,
+          "priceChange": 2.8,
+          "priceChangePercent": 5.7,
+          "stats": {
+            "ppg": 17.1,
+            "rpg": 6.2,
+            "apg": 2.1
+          },
+          "year": "Junior",
+          "height": "6'9\"",
+          "hometown": "Indianapolis, IN",
+          "isHot": true
+        },
+        {
+          "id": "fla-p2",
+          "name": "Alex Condon",
+          "team": "Florida",
+          "teamId": "florida",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5174657.png&w=350&h=254",
+          "position": "C",
+          "jersey": 20,
+          "stockPrice": 20,
+          "priceChange": 1.0,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 14.8,
+            "rpg": 8.1,
+            "apg": 1.9
+          },
+          "year": "Sophomore",
+          "height": "7'0\"",
+          "hometown": "Melbourne, Australia",
+          "isHot": false
+        },
+        {
+          "id": "fla-p3",
+          "name": "Rueben Chinyelu",
+          "team": "Florida",
+          "teamId": "florida",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5174971.png&w=350&h=254",
+          "position": "C",
+          "jersey": 9,
+          "stockPrice": 26,
+          "priceChange": 1.3,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 11.4,
+            "rpg": 11.7,
+            "apg": 0.9
+          },
+          "year": "Junior",
+          "height": "6'10\"",
+          "hometown": "Lagos, Nigeria",
+          "isHot": true
+        },
+        {
+          "id": "fla-p4",
+          "name": "Boogie Fland",
+          "team": "Florida",
+          "teamId": "florida",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5238195.png&w=350&h=254",
+          "position": "G",
+          "jersey": 3,
+          "stockPrice": 18,
+          "priceChange": 0.9,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 11.6,
+            "rpg": 3.1,
+            "apg": 4.2
+          },
+          "year": "Sophomore",
+          "height": "6'3\"",
+          "hometown": "Ossining, NY",
+          "isHot": false
+        },
+        {
+          "id": "fla-p5",
+          "name": "Xaivian Lee",
+          "team": "Florida",
+          "teamId": "florida",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5107169.png&w=350&h=254",
+          "position": "G",
+          "jersey": 1,
+          "stockPrice": 14,
+          "priceChange": 0.6,
+          "priceChangePercent": 4.5,
+          "stats": {
+            "ppg": 11.6,
+            "rpg": 3.4,
+            "apg": 4.2
+          },
+          "year": "Junior",
+          "height": "6'2\"",
+          "hometown": "Dallas, TX",
+          "isHot": false
+        }
+      ]
+    },
+    "prairie-view": {
+      "id": "prairie-view",
+      "name": "Prairie View A&M Panthers",
+      "shortName": "Prairie View",
+      "seed": 16,
+      "region": "South",
+      "conference": "SWAC",
+      "record": "22-12",
+      "color": "#4F2D7F",
+      "players": []
+    },
+    "clemson": {
+      "id": "clemson",
+      "name": "Clemson Tigers",
+      "shortName": "Clemson",
+      "seed": 8,
+      "region": "South",
+      "conference": "ACC",
+      "record": "21-12",
+      "color": "#F56600",
+      "players": []
+    },
+    "iowa": {
+      "id": "iowa",
+      "name": "Iowa Hawkeyes",
+      "shortName": "Iowa",
+      "seed": 9,
+      "region": "South",
+      "conference": "Big Ten",
+      "record": "20-13",
+      "color": "#FFCD00",
+      "players": [
+        {
+          "id": "iowa-p1",
+          "name": "Bennett Stirtz",
+          "team": "Iowa",
+          "teamId": "iowa",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5241364.png&w=350&h=254",
+          "position": "G",
+          "jersey": 3,
+          "stockPrice": 36,
+          "priceChange": 2.1,
+          "priceChangePercent": 6.2,
+          "stats": {
+            "ppg": 20.0,
+            "rpg": 4.1,
+            "apg": 4.5
+          },
+          "year": "Junior",
+          "height": "6'2\"",
+          "hometown": "Altoona, IA",
+          "isHot": true
+        }
+      ]
+    },
+    "vanderbilt": {
+      "id": "vanderbilt",
+      "name": "Vanderbilt Commodores",
+      "shortName": "Vanderbilt",
+      "seed": 5,
+      "region": "South",
+      "conference": "SEC",
+      "record": "24-10",
+      "color": "#866D4B",
+      "players": [
+        {
+          "id": "van-p1",
+          "name": "Tyler Tanner",
+          "team": "Vanderbilt",
+          "teamId": "vanderbilt",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5187600.png&w=350&h=254",
+          "position": "G",
+          "jersey": 1,
+          "stockPrice": 30,
+          "priceChange": 1.6,
+          "priceChangePercent": 5.6,
+          "stats": {
+            "ppg": 19.1,
+            "rpg": 4.4,
+            "apg": 5.1
+          },
+          "year": "Junior",
+          "height": "6'3\"",
+          "hometown": "Nashville, TN",
+          "isHot": true
+        }
+      ]
+    },
+    "mcneese": {
+      "id": "mcneese",
+      "name": "McNeese Cowboys",
+      "shortName": "McNeese",
+      "seed": 12,
+      "region": "South",
+      "conference": "Southland",
+      "record": "28-6",
+      "color": "#10539C",
+      "players": [
+        {
+          "id": "mcn-p1",
+          "name": "Larry Johnson",
+          "team": "McNeese",
+          "teamId": "mcneese",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5144375.png&w=350&h=254",
+          "position": "G",
+          "jersey": 4,
+          "stockPrice": 18,
+          "priceChange": 0.9,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 17.5,
+            "rpg": 5.5,
+            "apg": 2.8
+          },
+          "year": "Freshman",
+          "height": "6'4\"",
+          "hometown": "Lake Charles, LA",
+          "isHot": true
+        }
+      ]
+    },
+    "nebraska": {
+      "id": "nebraska",
+      "name": "Nebraska Cornhuskers",
+      "shortName": "Nebraska",
+      "seed": 4,
+      "region": "South",
+      "conference": "Big Ten",
+      "record": "22-12",
+      "color": "#E41C38",
+      "players": [
+        {
+          "id": "neb-p1",
+          "name": "Pryce Sandfort",
+          "team": "Nebraska",
+          "teamId": "nebraska",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4858604.png&w=350&h=254",
+          "position": "F",
+          "jersey": 21,
+          "stockPrice": 32,
+          "priceChange": 1.7,
+          "priceChangePercent": 5.6,
+          "stats": {
+            "ppg": 17.8,
+            "rpg": 5.3,
+            "apg": 2.4
+          },
+          "year": "Junior",
+          "height": "6'7\"",
+          "hometown": "Waukee, IA",
+          "isHot": true
+        }
+      ]
+    },
+    "troy": {
+      "id": "troy",
+      "name": "Troy Trojans",
+      "shortName": "Troy",
+      "seed": 13,
+      "region": "South",
+      "conference": "Sun Belt",
+      "record": "23-10",
+      "color": "#8B2232",
+      "players": []
+    },
+    "north-carolina": {
+      "id": "north-carolina",
+      "name": "North Carolina Tar Heels",
+      "shortName": "UNC",
+      "seed": 6,
+      "region": "South",
+      "conference": "ACC",
+      "record": "21-15",
+      "color": "#7BAFD4",
+      "players": [
+        {
+          "id": "unc-p1",
+          "name": "Henri Veesaar",
+          "team": "North Carolina",
+          "teamId": "north-carolina",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5105571.png&w=350&h=254",
+          "position": "C",
+          "jersey": 23,
+          "stockPrice": 26,
+          "priceChange": 1.3,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 16.2,
+            "rpg": 8.8,
+            "apg": 1.4
+          },
+          "year": "Junior",
+          "height": "7'0\"",
+          "hometown": "Tartu, Estonia",
+          "isHot": true
+        }
+      ]
+    },
+    "vcu": {
+      "id": "vcu",
+      "name": "VCU Rams",
+      "shortName": "VCU",
+      "seed": 11,
+      "region": "South",
+      "conference": "Atlantic 10",
+      "record": "25-9",
+      "color": "#000000",
+      "players": []
+    },
+    "illinois": {
+      "id": "illinois",
+      "name": "Illinois Fighting Illini",
+      "shortName": "Illinois",
+      "seed": 3,
+      "region": "South",
+      "conference": "Big Ten",
+      "record": "28-6",
+      "color": "#E84A27",
+      "players": [
+        {
+          "id": "ill-p1",
+          "name": "Keaton Wagler",
+          "team": "Illinois",
+          "teamId": "illinois",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5254165.png&w=350&h=254",
+          "position": "G",
+          "jersey": 3,
+          "stockPrice": 26,
+          "priceChange": 1.3,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 17.9,
+            "rpg": 4.8,
+            "apg": 3.6
+          },
+          "year": "Senior",
+          "height": "6'4\"",
+          "hometown": "Morton, IL",
+          "isHot": true
+        }
+      ]
+    },
+    "penn": {
+      "id": "penn",
+      "name": "Penn Quakers",
+      "shortName": "Penn",
+      "seed": 14,
+      "region": "South",
+      "conference": "Ivy",
+      "record": "18-11",
+      "color": "#990000",
+      "players": []
+    },
+    "saint-marys": {
+      "id": "saint-marys",
+      "name": "Saint Mary's Gaels",
+      "shortName": "St. Mary's",
+      "seed": 7,
+      "region": "South",
+      "conference": "WCC",
+      "record": "27-7",
+      "color": "#013586",
+      "players": []
+    },
+    "texas-am": {
+      "id": "texas-am",
+      "name": "Texas A&M Aggies",
+      "shortName": "Texas A&M",
+      "seed": 10,
+      "region": "South",
+      "conference": "SEC",
+      "record": "21-13",
+      "color": "#500000",
+      "players": []
+    },
+    "houston": {
+      "id": "houston",
+      "name": "Houston Cougars",
+      "shortName": "Houston",
+      "seed": 2,
+      "region": "South",
+      "conference": "Big 12",
+      "record": "27-7",
+      "color": "#C8102E",
+      "players": []
+    },
+    "idaho": {
+      "id": "idaho",
+      "name": "Idaho Vandals",
+      "shortName": "Idaho",
+      "seed": 15,
+      "region": "South",
+      "conference": "Big Sky",
+      "record": "21-14",
+      "color": "#B3A369",
+      "players": [
+        {
+          "id": "idho-p1",
+          "name": "Biko Johnson",
+          "team": "Idaho",
+          "teamId": "idaho",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5177021.png&w=350&h=254",
+          "position": "F",
+          "jersey": 10,
+          "stockPrice": 7,
+          "priceChange": -0.3,
+          "priceChangePercent": -4.1,
+          "stats": {
+            "ppg": 14.2,
+            "rpg": 7.1,
+            "apg": 1.5
+          },
+          "year": "Senior",
+          "height": "6'7\"",
+          "hometown": "Moscow, ID",
+          "isHot": false
+        }
+      ]
+    }
+  },
+  "bracket": [
+    {
+      "region": "East",
+      "matchups": [
+        {
+          "id": "east-1",
+          "region": "East",
+          "round": 1,
+          "gameDate": "Mar 19",
+          "gameTime": "2:00 PM ET",
+          "topSeed": {
+            "id": "duke",
+            "seed": 1,
+            "name": "Duke Blue Devils",
+            "shortName": "Duke",
+            "region": "East",
+            "conference": "ACC",
+            "record": "34-2",
+            "color": "#003087",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "siena",
+            "seed": 16,
+            "name": "Siena Saints",
+            "shortName": "Siena",
+            "region": "East",
+            "conference": "MAAC",
+            "record": "23-11",
+            "color": "#006A4E",
+            "players": []
+          },
+          "result": {
+            "winner": "duke",
+            "topScore": 71,
+            "bottomScore": 65,
+            "status": "final"
+          }
+        },
+        {
+          "id": "east-2",
+          "region": "East",
+          "round": 1,
+          "gameDate": "Mar 19",
+          "gameTime": "2:30 PM ET",
+          "topSeed": {
+            "id": "ohio-state",
+            "seed": 8,
+            "name": "Ohio State Buckeyes",
+            "shortName": "Ohio St.",
+            "region": "East",
+            "conference": "Big Ten",
+            "record": "22-13",
+            "color": "#BB0000",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "tcu",
+            "seed": 9,
+            "name": "TCU Horned Frogs",
+            "shortName": "TCU",
+            "region": "East",
+            "conference": "Big 12",
+            "record": "22-12",
+            "color": "#4D1979",
+            "players": []
+          },
+          "result": {
+            "winner": "tcu",
+            "topScore": 64,
+            "bottomScore": 66,
+            "status": "final"
+          }
+        },
+        {
+          "id": "east-3",
+          "region": "East",
+          "round": 1,
+          "gameDate": "Mar 20",
+          "gameTime": "6:10 PM ET",
+          "topSeed": {
+            "id": "st-johns",
+            "seed": 5,
+            "name": "St. John's Red Storm",
+            "shortName": "St. John's",
+            "region": "East",
+            "conference": "Big East",
+            "record": "27-7",
+            "color": "#CC0000",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "northern-iowa",
+            "seed": 12,
+            "name": "Northern Iowa Panthers",
+            "shortName": "N. Iowa",
+            "region": "East",
+            "conference": "MVC",
+            "record": "26-8",
+            "color": "#4B116F",
+            "players": []
+          },
+          "result": {
+            "winner": null,
+            "topScore": null,
+            "bottomScore": null,
+            "status": "scheduled"
+          }
+        },
+        {
+          "id": "east-4",
+          "region": "East",
+          "round": 1,
+          "gameDate": "Mar 20",
+          "gameTime": "8:45 PM ET",
+          "topSeed": {
+            "id": "kansas",
+            "seed": 4,
+            "name": "Kansas Jayhawks",
+            "shortName": "Kansas",
+            "region": "East",
+            "conference": "Big 12",
+            "record": "23-11",
+            "color": "#0051A5",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "cal-baptist",
+            "seed": 13,
+            "name": "California Baptist Lancers",
+            "shortName": "Cal Baptist",
+            "region": "East",
+            "conference": "WAC",
+            "record": "27-9",
+            "color": "#003DA5",
+            "players": []
+          },
+          "result": {
+            "winner": null,
+            "topScore": null,
+            "bottomScore": null,
+            "status": "scheduled"
+          }
+        },
+        {
+          "id": "east-5",
+          "region": "East",
+          "round": 1,
+          "gameDate": "Mar 19",
+          "gameTime": "12:30 PM ET",
+          "topSeed": {
+            "id": "louisville",
+            "seed": 6,
+            "name": "Louisville Cardinals",
+            "shortName": "Louisville",
+            "region": "East",
+            "conference": "ACC",
+            "record": "23-11",
+            "color": "#AD0000",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "south-florida",
+            "seed": 11,
+            "name": "South Florida Bulls",
+            "shortName": "S. Florida",
+            "region": "East",
+            "conference": "AAC",
+            "record": "24-10",
+            "color": "#006747",
+            "players": []
+          },
+          "result": {
+            "winner": "louisville",
+            "topScore": 83,
+            "bottomScore": 79,
+            "status": "final"
+          }
+        },
+        {
+          "id": "east-6",
+          "region": "East",
+          "round": 1,
+          "gameDate": "Mar 19",
+          "gameTime": "3:27 PM ET",
+          "topSeed": {
+            "id": "michigan-state",
+            "seed": 3,
+            "name": "Michigan State Spartans",
+            "shortName": "Mich. St.",
+            "region": "East",
+            "conference": "Big Ten",
+            "record": "24-9",
+            "color": "#18453B",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "north-dakota-state",
+            "seed": 14,
+            "name": "North Dakota State Bison",
+            "shortName": "NDSU",
+            "region": "East",
+            "conference": "Summit",
+            "record": "27-8",
+            "color": "#005643",
+            "players": []
+          },
+          "result": {
+            "winner": "michigan-state",
+            "topScore": 92,
+            "bottomScore": 67,
+            "status": "final"
+          }
+        },
+        {
+          "id": "east-7",
+          "region": "East",
+          "round": 1,
+          "gameDate": "Mar 20",
+          "gameTime": "6:25 PM ET",
+          "topSeed": {
+            "id": "ucla",
+            "seed": 7,
+            "name": "UCLA Bruins",
+            "shortName": "UCLA",
+            "region": "East",
+            "conference": "Big Ten",
+            "record": "20-13",
+            "color": "#2D68C4",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "ucf",
+            "seed": 10,
+            "name": "UCF Knights",
+            "shortName": "UCF",
+            "region": "East",
+            "conference": "Big 12",
+            "record": "21-12",
+            "color": "#BA9B37",
+            "players": []
+          },
+          "result": {
+            "winner": null,
+            "topScore": null,
+            "bottomScore": null,
+            "status": "scheduled"
+          }
+        },
+        {
+          "id": "east-8",
+          "region": "East",
+          "round": 1,
+          "gameDate": "Mar 20",
+          "gameTime": "9:00 PM ET",
+          "topSeed": {
+            "id": "uconn",
+            "seed": 2,
+            "name": "UConn Huskies",
+            "shortName": "UConn",
+            "region": "East",
+            "conference": "Big East",
+            "record": "27-7",
+            "color": "#000E2F",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "furman",
+            "seed": 15,
+            "name": "Furman Paladins",
+            "shortName": "Furman",
+            "region": "East",
+            "conference": "SoCon",
+            "record": "26-8",
+            "color": "#582C83",
+            "players": []
+          },
+          "result": {
+            "winner": null,
+            "topScore": null,
+            "bottomScore": null,
+            "status": "scheduled"
+          }
+        }
+      ]
+    },
+    {
+      "region": "West",
+      "matchups": [
+        {
+          "id": "west-1",
+          "region": "West",
+          "round": 1,
+          "gameDate": "Mar 20",
+          "gameTime": "12:35 PM ET",
+          "topSeed": {
+            "id": "arizona",
+            "seed": 1,
+            "name": "Arizona Wildcats",
+            "shortName": "Arizona",
+            "region": "West",
+            "conference": "Big 12",
+            "record": "32-2",
+            "color": "#CC0033",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "liu",
+            "seed": 16,
+            "name": "LIU Sharks",
+            "shortName": "LIU",
+            "region": "West",
+            "conference": "NEC",
+            "record": "24-10",
+            "color": "#154734",
+            "players": []
+          },
+          "result": {
+            "winner": "arizona",
+            "topScore": 92,
+            "bottomScore": 58,
+            "status": "final"
+          }
+        },
+        {
+          "id": "west-2",
+          "region": "West",
+          "round": 1,
+          "gameDate": "Mar 20",
+          "gameTime": "2:07 PM ET",
+          "topSeed": {
+            "id": "villanova",
+            "seed": 8,
+            "name": "Villanova Wildcats",
+            "shortName": "Villanova",
+            "region": "West",
+            "conference": "Big East",
+            "record": "22-12",
+            "color": "#003DA5",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "utah-state",
+            "seed": 9,
+            "name": "Utah State Aggies",
+            "shortName": "Utah St.",
+            "region": "West",
+            "conference": "Mountain West",
+            "record": "26-9",
+            "color": "#003263",
+            "players": []
+          },
+          "result": {
+            "winner": "villanova",
+            "topScore": 39,
+            "bottomScore": 37,
+            "status": "final"
+          }
+        },
+        {
+          "id": "west-3",
+          "region": "West",
+          "round": 1,
+          "gameDate": "Mar 19",
+          "gameTime": "12:50 PM ET",
+          "topSeed": {
+            "id": "wisconsin",
+            "seed": 5,
+            "name": "Wisconsin Badgers",
+            "shortName": "Wisconsin",
+            "region": "West",
+            "conference": "Big Ten",
+            "record": "22-13",
+            "color": "#C5050C",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "high-point",
+            "seed": 12,
+            "name": "High Point Panthers",
+            "shortName": "High Point",
+            "region": "West",
+            "conference": "Big South",
+            "record": "28-7",
+            "color": "#522398",
+            "players": []
+          },
+          "result": {
+            "winner": "high-point",
+            "topScore": 82,
+            "bottomScore": 83,
+            "status": "final"
+          }
+        },
+        {
+          "id": "west-4",
+          "region": "West",
+          "round": 1,
+          "gameDate": "Mar 19",
+          "gameTime": "3:27 PM ET",
+          "topSeed": {
+            "id": "arkansas",
+            "seed": 4,
+            "name": "Arkansas Razorbacks",
+            "shortName": "Arkansas",
+            "region": "West",
+            "conference": "SEC",
+            "record": "27-8",
+            "color": "#9D2235",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "hawaii",
+            "seed": 13,
+            "name": "Hawai'i Rainbow Warriors",
+            "shortName": "Hawai'i",
+            "region": "West",
+            "conference": "Big West",
+            "record": "26-8",
+            "color": "#024731",
+            "players": []
+          },
+          "result": {
+            "winner": "arkansas",
+            "topScore": 97,
+            "bottomScore": 78,
+            "status": "final"
+          }
+        },
+        {
+          "id": "west-5",
+          "region": "West",
+          "round": 1,
+          "gameDate": "Mar 19",
+          "gameTime": "6:35 PM ET",
+          "topSeed": {
+            "id": "byu",
+            "seed": 6,
+            "name": "BYU Cougars",
+            "shortName": "BYU",
+            "region": "West",
+            "conference": "Big 12",
+            "record": "23-11",
+            "color": "#002E5D",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "texas",
+            "seed": 11,
+            "name": "Texas Longhorns",
+            "shortName": "Texas",
+            "region": "West",
+            "conference": "SEC",
+            "record": "20-15",
+            "color": "#BF5700",
+            "players": []
+          },
+          "result": {
+            "winner": "texas",
+            "topScore": 71,
+            "bottomScore": 79,
+            "status": "final"
+          }
+        },
+        {
+          "id": "west-6",
+          "region": "West",
+          "round": 1,
+          "gameDate": "Mar 19",
+          "gameTime": "9:24 PM ET",
+          "topSeed": {
+            "id": "gonzaga",
+            "seed": 3,
+            "name": "Gonzaga Bulldogs",
+            "shortName": "Gonzaga",
+            "region": "West",
+            "conference": "WCC",
+            "record": "26-8",
+            "color": "#002868",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "kennesaw-state",
+            "seed": 14,
+            "name": "Kennesaw State Owls",
+            "shortName": "Kennesaw St.",
+            "region": "West",
+            "conference": "Atlantic Sun",
+            "record": "24-11",
+            "color": "#FDBB30",
+            "players": []
+          },
+          "result": {
+            "winner": "gonzaga",
+            "topScore": 73,
+            "bottomScore": 64,
+            "status": "final"
+          }
+        },
+        {
+          "id": "west-7",
+          "region": "West",
+          "round": 1,
+          "gameDate": "Mar 20",
+          "gameTime": "9:10 PM ET",
+          "topSeed": {
+            "id": "miami-fl",
+            "seed": 7,
+            "name": "Miami (FL) Hurricanes",
+            "shortName": "Miami (FL)",
+            "region": "West",
+            "conference": "ACC",
+            "record": "21-12",
+            "color": "#005030",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "missouri",
+            "seed": 10,
+            "name": "Missouri Tigers",
+            "shortName": "Missouri",
+            "region": "West",
+            "conference": "SEC",
+            "record": "22-12",
+            "color": "#F1B82D",
+            "players": []
+          },
+          "result": {
+            "winner": null,
+            "topScore": null,
+            "bottomScore": null,
+            "status": "scheduled"
+          }
+        },
+        {
+          "id": "west-8",
+          "region": "West",
+          "round": 1,
+          "gameDate": "Mar 20",
+          "gameTime": "6:35 PM ET",
+          "topSeed": {
+            "id": "purdue",
+            "seed": 2,
+            "name": "Purdue Boilermakers",
+            "shortName": "Purdue",
+            "region": "West",
+            "conference": "Big Ten",
+            "record": "27-8",
+            "color": "#CEB888",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "queens",
+            "seed": 15,
+            "name": "Queens University Royals",
+            "shortName": "Queens",
+            "region": "West",
+            "conference": "Atlantic Sun",
+            "record": "25-10",
+            "color": "#522398",
+            "players": []
+          },
+          "result": {
+            "winner": null,
+            "topScore": null,
+            "bottomScore": null,
+            "status": "scheduled"
+          }
+        }
+      ]
+    },
+    {
+      "region": "Midwest",
+      "matchups": [
+        {
+          "id": "midwest-1",
+          "region": "Midwest",
+          "round": 1,
+          "gameDate": "Mar 19",
+          "gameTime": "6:30 PM ET",
+          "topSeed": {
+            "id": "michigan",
+            "seed": 1,
+            "name": "Michigan Wolverines",
+            "shortName": "Michigan",
+            "region": "Midwest",
+            "conference": "Big Ten",
+            "record": "31-3",
+            "color": "#00274C",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "howard",
+            "seed": 16,
+            "name": "Howard Bison",
+            "shortName": "Howard",
+            "region": "Midwest",
+            "conference": "MEAC",
+            "record": "20-14",
+            "color": "#003A63",
+            "players": []
+          },
+          "result": {
+            "winner": "michigan",
+            "topScore": 101,
+            "bottomScore": 80,
+            "status": "final"
+          }
+        },
+        {
+          "id": "midwest-2",
+          "region": "Midwest",
+          "round": 1,
+          "gameDate": "Mar 19",
+          "gameTime": "9:10 PM ET",
+          "topSeed": {
+            "id": "georgia",
+            "seed": 8,
+            "name": "Georgia Bulldogs",
+            "shortName": "Georgia",
+            "region": "Midwest",
+            "conference": "SEC",
+            "record": "21-13",
+            "color": "#BA0C2F",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "saint-louis",
+            "seed": 9,
+            "name": "Saint Louis Billikens",
+            "shortName": "Saint Louis",
+            "region": "Midwest",
+            "conference": "Atlantic 10",
+            "record": "24-10",
+            "color": "#003DA5",
+            "players": []
+          },
+          "result": {
+            "winner": "saint-louis",
+            "topScore": 77,
+            "bottomScore": 102,
+            "status": "final"
+          }
+        },
+        {
+          "id": "midwest-3",
+          "region": "Midwest",
+          "round": 1,
+          "gameDate": "Mar 20",
+          "gameTime": "11:40 AM ET",
+          "topSeed": {
+            "id": "texas-tech",
+            "seed": 5,
+            "name": "Texas Tech Red Raiders",
+            "shortName": "Texas Tech",
+            "region": "Midwest",
+            "conference": "Big 12",
+            "record": "24-10",
+            "color": "#CC0000",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "akron",
+            "seed": 12,
+            "name": "Akron Zips",
+            "shortName": "Akron",
+            "region": "Midwest",
+            "conference": "MAC",
+            "record": "27-7",
+            "color": "#002147",
+            "players": []
+          },
+          "result": {
+            "winner": "texas-tech",
+            "topScore": 91,
+            "bottomScore": 71,
+            "status": "final"
+          }
+        },
+        {
+          "id": "midwest-4",
+          "region": "Midwest",
+          "round": 1,
+          "gameDate": "Mar 20",
+          "gameTime": "2:21 PM ET",
+          "topSeed": {
+            "id": "alabama",
+            "seed": 4,
+            "name": "Alabama Crimson Tide",
+            "shortName": "Alabama",
+            "region": "Midwest",
+            "conference": "SEC",
+            "record": "24-10",
+            "color": "#9E1B32",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "hofstra",
+            "seed": 13,
+            "name": "Hofstra Pride",
+            "shortName": "Hofstra",
+            "region": "Midwest",
+            "conference": "CAA",
+            "record": "26-7",
+            "color": "#003591",
+            "players": []
+          },
+          "result": {
+            "winner": null,
+            "topScore": 74,
+            "bottomScore": 66,
+            "status": "inprogress"
+          }
+        },
+        {
+          "id": "midwest-5",
+          "region": "Midwest",
+          "round": 1,
+          "gameDate": "Mar 20",
+          "gameTime": "3:32 PM ET",
+          "topSeed": {
+            "id": "tennessee",
+            "seed": 6,
+            "name": "Tennessee Volunteers",
+            "shortName": "Tennessee",
+            "region": "Midwest",
+            "conference": "SEC",
+            "record": "24-10",
+            "color": "#FF8200",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "miami-oh",
+            "seed": 11,
+            "name": "Miami (OH) RedHawks",
+            "shortName": "Miami (OH)",
+            "region": "Midwest",
+            "conference": "MAC",
+            "record": "31-5",
+            "color": "#B61E2E",
+            "players": []
+          },
+          "result": {
+            "winner": null,
+            "topScore": 37,
+            "bottomScore": 23,
+            "status": "inprogress"
+          }
+        },
+        {
+          "id": "midwest-6",
+          "region": "Midwest",
+          "round": 1,
+          "gameDate": "Mar 20",
+          "gameTime": "1:50 PM ET",
+          "topSeed": {
+            "id": "virginia",
+            "seed": 3,
+            "name": "Virginia Cavaliers",
+            "shortName": "Virginia",
+            "region": "Midwest",
+            "conference": "ACC",
+            "record": "24-10",
+            "color": "#232D4B",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "wright-state",
+            "seed": 14,
+            "name": "Wright State Raiders",
+            "shortName": "Wright St.",
+            "region": "Midwest",
+            "conference": "Horizon",
+            "record": "25-9",
+            "color": "#006341",
+            "players": []
+          },
+          "result": {
+            "winner": null,
+            "topScore": null,
+            "bottomScore": null,
+            "status": "scheduled"
+          }
+        },
+        {
+          "id": "midwest-7",
+          "region": "Midwest",
+          "round": 1,
+          "gameDate": "Mar 20",
+          "gameTime": "11:15 AM ET",
+          "topSeed": {
+            "id": "kentucky",
+            "seed": 7,
+            "name": "Kentucky Wildcats",
+            "shortName": "Kentucky",
+            "region": "Midwest",
+            "conference": "SEC",
+            "record": "20-14",
+            "color": "#0033A0",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "santa-clara",
+            "seed": 10,
+            "name": "Santa Clara Broncos",
+            "shortName": "Santa Clara",
+            "region": "Midwest",
+            "conference": "WCC",
+            "record": "25-9",
+            "color": "#862633",
+            "players": []
+          },
+          "result": {
+            "winner": "kentucky",
+            "topScore": 89,
+            "bottomScore": 84,
+            "status": "final"
+          }
+        },
+        {
+          "id": "midwest-8",
+          "region": "Midwest",
+          "round": 1,
+          "gameDate": "Mar 20",
+          "gameTime": "2:07 PM ET",
+          "topSeed": {
+            "id": "iowa-state",
+            "seed": 2,
+            "name": "Iowa State Cyclones",
+            "shortName": "Iowa State",
+            "region": "Midwest",
+            "conference": "Big 12",
+            "record": "28-7",
+            "color": "#C8102E",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "tennessee-state",
+            "seed": 15,
+            "name": "Tennessee State Tigers",
+            "shortName": "Tenn. State",
+            "region": "Midwest",
+            "conference": "Ohio Valley",
+            "record": "23-11",
+            "color": "#4F2D7F",
+            "players": []
+          },
+          "result": {
+            "winner": "iowa-state",
+            "topScore": 103,
+            "bottomScore": 67,
+            "status": "inprogress"
+          }
+        }
+      ]
+    },
+    {
+      "region": "South",
+      "matchups": [
+        {
+          "id": "south-1",
+          "region": "South",
+          "round": 1,
+          "gameDate": "Mar 20",
+          "gameTime": "8:25 PM ET",
+          "topSeed": {
+            "id": "florida",
+            "seed": 1,
+            "name": "Florida Gators",
+            "shortName": "Florida",
+            "region": "South",
+            "conference": "SEC",
+            "record": "28-7",
+            "color": "#0021A5",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "prairie-view",
+            "seed": 16,
+            "name": "Prairie View A&M Panthers",
+            "shortName": "Prairie View",
+            "region": "South",
+            "conference": "SWAC",
+            "record": "22-12",
+            "color": "#4F2D7F",
+            "players": []
+          },
+          "result": {
+            "winner": null,
+            "topScore": null,
+            "bottomScore": null,
+            "status": "scheduled"
+          }
+        },
+        {
+          "id": "south-2",
+          "region": "South",
+          "round": 1,
+          "gameDate": "Mar 20",
+          "gameTime": "5:50 PM ET",
+          "topSeed": {
+            "id": "clemson",
+            "seed": 8,
+            "name": "Clemson Tigers",
+            "shortName": "Clemson",
+            "region": "South",
+            "conference": "ACC",
+            "record": "21-12",
+            "color": "#F56600",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "iowa",
+            "seed": 9,
+            "name": "Iowa Hawkeyes",
+            "shortName": "Iowa",
+            "region": "South",
+            "conference": "Big Ten",
+            "record": "20-13",
+            "color": "#FFCD00",
+            "players": []
+          },
+          "result": {
+            "winner": null,
+            "topScore": null,
+            "bottomScore": null,
+            "status": "scheduled"
+          }
+        },
+        {
+          "id": "south-3",
+          "region": "South",
+          "round": 1,
+          "gameDate": "Mar 19",
+          "gameTime": "2:15 PM ET",
+          "topSeed": {
+            "id": "vanderbilt",
+            "seed": 5,
+            "name": "Vanderbilt Commodores",
+            "shortName": "Vanderbilt",
+            "region": "South",
+            "conference": "SEC",
+            "record": "24-10",
+            "color": "#866D4B",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "mcneese",
+            "seed": 12,
+            "name": "McNeese Cowboys",
+            "shortName": "McNeese",
+            "region": "South",
+            "conference": "Southland",
+            "record": "28-6",
+            "color": "#10539C",
+            "players": []
+          },
+          "result": {
+            "winner": "vanderbilt",
+            "topScore": 78,
+            "bottomScore": 68,
+            "status": "final"
+          }
+        },
+        {
+          "id": "south-4",
+          "region": "South",
+          "round": 1,
+          "gameDate": "Mar 19",
+          "gameTime": "11:40 AM ET",
+          "topSeed": {
+            "id": "nebraska",
+            "seed": 4,
+            "name": "Nebraska Cornhuskers",
+            "shortName": "Nebraska",
+            "region": "South",
+            "conference": "Big Ten",
+            "record": "22-12",
+            "color": "#E41C38",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "troy",
+            "seed": 13,
+            "name": "Troy Trojans",
+            "shortName": "Troy",
+            "region": "South",
+            "conference": "Sun Belt",
+            "record": "23-10",
+            "color": "#8B2232",
+            "players": []
+          },
+          "result": {
+            "winner": "nebraska",
+            "topScore": 76,
+            "bottomScore": 47,
+            "status": "final"
+          }
+        },
+        {
+          "id": "south-5",
+          "region": "South",
+          "round": 1,
+          "gameDate": "Mar 19",
+          "gameTime": "5:50 PM ET",
+          "topSeed": {
+            "id": "north-carolina",
+            "seed": 6,
+            "name": "North Carolina Tar Heels",
+            "shortName": "UNC",
+            "region": "South",
+            "conference": "ACC",
+            "record": "21-15",
+            "color": "#7BAFD4",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "vcu",
+            "seed": 11,
+            "name": "VCU Rams",
+            "shortName": "VCU",
+            "region": "South",
+            "conference": "Atlantic 10",
+            "record": "25-9",
+            "color": "#000000",
+            "players": []
+          },
+          "result": {
+            "winner": "vcu",
+            "topScore": 78,
+            "bottomScore": 82,
+            "status": "final"
+          }
+        },
+        {
+          "id": "south-6",
+          "region": "South",
+          "round": 1,
+          "gameDate": "Mar 19",
+          "gameTime": "8:55 PM ET",
+          "topSeed": {
+            "id": "illinois",
+            "seed": 3,
+            "name": "Illinois Fighting Illini",
+            "shortName": "Illinois",
+            "region": "South",
+            "conference": "Big Ten",
+            "record": "28-6",
+            "color": "#E84A27",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "penn",
+            "seed": 14,
+            "name": "Penn Quakers",
+            "shortName": "Penn",
+            "region": "South",
+            "conference": "Ivy",
+            "record": "18-11",
+            "color": "#990000",
+            "players": []
+          },
+          "result": {
+            "winner": "illinois",
+            "topScore": 105,
+            "bottomScore": 70,
+            "status": "final"
+          }
+        },
+        {
+          "id": "south-7",
+          "region": "South",
+          "round": 1,
+          "gameDate": "Mar 19",
+          "gameTime": "6:35 PM ET",
+          "topSeed": {
+            "id": "saint-marys",
+            "seed": 7,
+            "name": "Saint Mary's Gaels",
+            "shortName": "St. Mary's",
+            "region": "South",
+            "conference": "WCC",
+            "record": "27-7",
+            "color": "#013586",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "texas-am",
+            "seed": 10,
+            "name": "Texas A&M Aggies",
+            "shortName": "Texas A&M",
+            "region": "South",
+            "conference": "SEC",
+            "record": "21-13",
+            "color": "#500000",
+            "players": []
+          },
+          "result": {
+            "winner": "texas-am",
+            "topScore": 50,
+            "bottomScore": 63,
+            "status": "final"
+          }
+        },
+        {
+          "id": "south-8",
+          "region": "South",
+          "round": 1,
+          "gameDate": "Mar 19",
+          "gameTime": "9:15 PM ET",
+          "topSeed": {
+            "id": "houston",
+            "seed": 2,
+            "name": "Houston Cougars",
+            "shortName": "Houston",
+            "region": "South",
+            "conference": "Big 12",
+            "record": "27-7",
+            "color": "#C8102E",
+            "players": []
+          },
+          "bottomSeed": {
+            "id": "idaho",
+            "seed": 15,
+            "name": "Idaho Vandals",
+            "shortName": "Idaho",
+            "region": "South",
+            "conference": "Big Sky",
+            "record": "21-14",
+            "color": "#B3A369",
+            "players": []
+          },
+          "result": {
+            "winner": "houston",
+            "topScore": 78,
+            "bottomScore": 47,
+            "status": "final"
+          }
+        }
+      ]
+    }
+  ]
+}
