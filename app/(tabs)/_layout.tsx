@@ -1,9 +1,11 @@
 import { Tabs } from 'expo-router';
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, Image, View } from 'react-native';
 import { Redirect } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Shadows } from '@/constants/theme';
 import { useAuth } from '@/context/auth-context';
+
+const ONIT_LOGO = require('@/assets/onit-logo.png');
 
 export default function TabLayout() {
   const { user, isAuthLoading } = useAuth();
@@ -48,13 +50,19 @@ export default function TabLayout() {
           fontSize: 20,
           color: Colors.text,
         },
+        headerTitle: () => (
+          <Image
+            source={ONIT_LOGO}
+            style={{ width: 300, height: 100 }}
+            resizeMode="contain"
+          />
+        ),
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
           title: 'Bracket',
-          headerTitle: 'OnIt',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="trophy-outline" size={24} color={color} />
           ),
@@ -64,7 +72,6 @@ export default function TabLayout() {
         name="marketplace"
         options={{
           title: 'Market',
-          headerTitle: 'OnIt',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="trending-up" size={24} color={color} />
           ),
@@ -74,7 +81,6 @@ export default function TabLayout() {
         name="play"
         options={{
           title: 'Play',
-          headerTitle: 'OnIt',
           tabBarIcon: ({ color }) => (
             <Ionicons name="game-controller-outline" size={24} color={color} />
           ),
@@ -84,7 +90,6 @@ export default function TabLayout() {
         name="account"
         options={{
           title: 'Account',
-          headerTitle: 'OnIt',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person-outline" size={24} color={color} />
           ),

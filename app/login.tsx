@@ -15,6 +15,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, FontSize, BorderRadius, Shadows } from '@/constants/theme';
 import { useAuth } from '@/context/auth-context';
 
+const ONIT_LOGO = require('@/assets/onit-logo.png');
+
 export default function LoginScreen() {
   const { user, isAuthLoading, signInAsGuest } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -48,10 +50,9 @@ export default function LoginScreen() {
       <View style={styles.glowTop} />
       <View style={styles.content}>
         <View style={styles.logoBlock}>
-          <View style={styles.logoRing}>
-            <Image source={require('@/assets/icon.png')} style={styles.logoImage} resizeMode="contain" />
+          <View style={styles.logoFrame}>
+            <Image source={ONIT_LOGO} style={styles.logoImage} resizeMode="contain" />
           </View>
-          <Text style={styles.brand}>OnIt</Text>
           <Text style={styles.tagline}>Trade the tournament. Track every move.</Text>
         </View>
 
@@ -122,27 +123,18 @@ const styles = StyleSheet.create({
   logoBlock: {
     alignItems: 'center',
     gap: Spacing.md,
+    transform: [{ translateY: 50 }],
   },
-  logoRing: {
-    width: 140,
-    height: 140,
-    borderRadius: 70,
+  logoFrame: {
+    width: 340,
+    height: 130,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Colors.surface,
-    borderWidth: 1,
-    borderColor: Colors.border,
-    ...Shadows.card,
   },
   logoImage: {
-    width: 88,
-    height: 88,
-  },
-  brand: {
-    color: Colors.text,
-    fontSize: 44,
-    fontWeight: '800',
-    letterSpacing: 0.4,
+    width: 340,
+    height: 130,
+    transform: [{ scale: 2.8 }],
   },
   tagline: {
     color: Colors.textSecondary,
@@ -150,6 +142,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     maxWidth: 260,
     lineHeight: 22,
+    transform: [{ translateY: 20 }],
   },
   optionsCard: {
     backgroundColor: Colors.card,
@@ -158,6 +151,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.border,
     gap: Spacing.md,
+    transform: [{ translateY: 50 }],
     ...Shadows.card,
   },
   optionsTitle: {

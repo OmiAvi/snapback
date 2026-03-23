@@ -229,6 +229,7 @@ const styles = StyleSheet.create({
     padding: Spacing.lg,
     borderWidth: 1,
     borderColor: Colors.border,
+    transform: [{ translateY: 12 }],
     ...Shadows.card,
   },
   headerEyebrow: {
