@@ -21,5 +21,5 @@ export default function IndexScreen() {
     );
   }
 
-  return <Redirect href={user ? '/(tabs)' : '/login'} />;
+  return <Redirect href={user ? '/(tabs)/marketplace' : '/login'} />;
 }

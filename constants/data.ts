@@ -102,8 +102,8 @@ export const ALL_PLAYERS: Player[] = [];
 
 export const MOCK_USER = {
   id: 'user1',
-  name: 'Omer Aviram',
-  email: 'omeravi2005@gmail.com',
+  name: 'Guest User',
+  email: 'guest@onit.app',
   balance: 1250.0,
   portfolioValue: 842.5,
 };

@@ -25,6 +25,11 @@ const BUNDLED_HIGHLIGHTS: Record<string, number> = {
 };
 
 const ADEN_HOLLOWAY_ID = 'ala-p2';
+const BENNETT_STIRTZ_ID = 'iowa-p1';
+const BUY_EFFECT_EMOJIS: Record<string, string> = {
+  [ADEN_HOLLOWAY_ID]: '🍃',
+  [BENNETT_STIRTZ_ID]: '🧱',
+};
 const PLAYER_NEWS: Record<
   string,
   { title: string; source: string; body: string; url: string }[]
@@ -229,9 +234,9 @@ export default function PlayerProfileScreen() {
   const [shares, setShares] = useState(1);
   const [tradeAction, setTradeAction] = useState<'buy' | 'sell' | null>(null);
   const [tradeMessage, setTradeMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
-  const [showLeafBurst, setShowLeafBurst] = useState(false);
+  const [showBuyEffect, setShowBuyEffect] = useState(false);
   const { balance, buyShares, sellShares, getHolding } = useTrading();
-  const leafAnimations = React.useRef(LEAF_FALLERS.map(() => new Animated.Value(0))).current;
+  const buyEffectAnimations = React.useRef(LEAF_FALLERS.map(() => new Animated.Value(0))).current;
 
   const player = allPlayers.find(p => p.id === id);
 
@@ -254,6 +259,7 @@ export default function PlayerProfileScreen() {
   const holding = getHolding(player.id);
   const ownedShares = holding?.shares ?? 0;
   const canSellSelectedShares = ownedShares >= shares;
+  const buyEffectEmoji = BUY_EFFECT_EMOJIS[player.id];
   const nilSupportUrl =
     PLAYER_NIL_URLS[player.id] ??
     `https://www.google.com/search?q=${encodeURIComponent(`${player.name} ${player.team} NIL donation`)}`;
@@ -262,17 +268,17 @@ export default function PlayerProfileScreen() {
     setTradeAction(null);
   };
 
-  const triggerLeafBurst = () => {
-    if (player.id !== ADEN_HOLLOWAY_ID) {
+  const triggerBuyEffect = () => {
+    if (!buyEffectEmoji) {
       return;
     }
 
-    setShowLeafBurst(true);
-    leafAnimations.forEach((value) => value.setValue(0));
+    setShowBuyEffect(true);
+    buyEffectAnimations.forEach((value) => value.setValue(0));
 
     Animated.parallel(
       LEAF_FALLERS.map((leaf, index) =>
-        Animated.timing(leafAnimations[index], {
+        Animated.timing(buyEffectAnimations[index], {
           toValue: 1,
           duration: leaf.duration,
           delay: leaf.delay,
@@ -280,7 +286,7 @@ export default function PlayerProfileScreen() {
         })
       )
     ).start(() => {
-      setShowLeafBurst(false);
+      setShowBuyEffect(false);
     });
   };
 
@@ -319,7 +325,7 @@ export default function PlayerProfileScreen() {
           : `Sold ${shares} share${shares !== 1 ? 's' : ''} of ${player.name} for $${result.total.toFixed(2)}. You now own ${result.sharesOwned} share${result.sharesOwned !== 1 ? 's' : ''}.`,
     });
     if (tradeAction === 'buy') {
-      triggerLeafBurst();
+      triggerBuyEffect();
     }
     dismissTradeModal();
   };
@@ -540,10 +546,10 @@ export default function PlayerProfileScreen() {
         </Text>
       </ScrollView>
 
-      {showLeafBurst ? (
+      {showBuyEffect && buyEffectEmoji ? (
         <View pointerEvents="none" style={styles.leafOverlay}>
           {LEAF_FALLERS.map((leaf, index) => {
-            const animation = leafAnimations[index];
+            const animation = buyEffectAnimations[index];
 
             return (
               <Animated.Text
@@ -587,7 +593,7 @@ export default function PlayerProfileScreen() {
                   },
                 ]}
               >
-                🍃
+                {buyEffectEmoji}
               </Animated.Text>
             );
           })}

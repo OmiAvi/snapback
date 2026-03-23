@@ -22,7 +22,7 @@ export default function LoginScreen() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isAuthLoading && user) {
-    return <Redirect href="/(tabs)" />;
+    return <Redirect href="/(tabs)/marketplace" />;
   }
 
   const handleGuestSignIn = async () => {
@@ -77,21 +77,23 @@ export default function LoginScreen() {
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.secondaryOption}
+            style={[styles.secondaryOption, styles.secondaryOptionDisabled]}
             onPress={() => handleComingSoon('Sign in with Google')}
             activeOpacity={0.8}
+            disabled
           >
-            <Ionicons name="logo-google" size={18} color={Colors.text} />
-            <Text style={styles.secondaryOptionText}>Sign in with Google</Text>
+            <Ionicons name="logo-google" size={18} color={Colors.textMuted} />
+            <Text style={[styles.secondaryOptionText, styles.secondaryOptionTextDisabled]}>Sign in with Google</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.secondaryOption}
+            style={[styles.secondaryOption, styles.secondaryOptionDisabled]}
             onPress={() => handleComingSoon('Sign in with Apple')}
             activeOpacity={0.8}
+            disabled
           >
-            <Ionicons name="logo-apple" size={18} color={Colors.text} />
-            <Text style={styles.secondaryOptionText}>Sign in with Apple</Text>
+            <Ionicons name="logo-apple" size={18} color={Colors.textMuted} />
+            <Text style={[styles.secondaryOptionText, styles.secondaryOptionTextDisabled]}>Sign in with Apple</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -191,9 +193,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.border,
   },
+  secondaryOptionDisabled: {
+    opacity: 0.55,
+  },
   secondaryOptionText: {
     color: Colors.text,
     fontSize: FontSize.md,
     fontWeight: '600',
+  },
+  secondaryOptionTextDisabled: {
+    color: Colors.textMuted,
   },
 });
