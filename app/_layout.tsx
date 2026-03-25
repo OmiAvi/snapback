@@ -5,6 +5,7 @@ import { TradingProvider } from '@/context/trading-context';
 import { AuthProvider } from '@/context/auth-context';
 import { AppDataProvider } from '@/context/app-data-context';
 import { PlayProvider } from '@/context/play-context';
+import { Analytics } from '@vercel/analytics/react';
 
 const theme = {
   ...MD3LightTheme,
@@ -68,6 +69,7 @@ export default function RootLayout() {
                   }}
                 />
               </Stack>
+              <Analytics />
             </PaperProvider>
           </PlayProvider>
         </TradingProvider>
