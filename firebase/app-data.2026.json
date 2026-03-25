@@ -287,6 +287,27 @@
           "height": "6'9\"",
           "hometown": "Haltom City, TX",
           "isHot": true
+        },
+        {
+          "id": "stj-p2",
+          "name": "Dylan Darling",
+          "team": "St. John's",
+          "teamId": "st-johns",
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5105658.png&w=350&h=254",
+          "position": "G",
+          "jersey": 0,
+          "stockPrice": 18,
+          "priceChange": 0.8,
+          "priceChangePercent": 4.7,
+          "stats": {
+            "ppg": 7.2,
+            "rpg": 2.5,
+            "apg": 2.3
+          },
+          "year": "Junior",
+          "height": "6'1\"",
+          "hometown": "Spokane, WA",
+          "isHot": false
         }
       ]
     },
