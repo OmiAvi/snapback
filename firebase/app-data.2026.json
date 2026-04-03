@@ -677,6 +677,48 @@
           "height": "6'4\"",
           "hometown": "Charlotte, NC",
           "isHot": false
+        },
+        {
+          "id": "uconn-p4",
+          "name": "Solo Ball",
+          "team": "UConn",
+          "teamId": "uconn",
+          "position": "G",
+          "jersey": 1,
+          "stockPrice": 26,
+          "priceChange": 1.4,
+          "priceChangePercent": 5.7,
+          "stats": {
+            "ppg": 13.5,
+            "rpg": 3.3,
+            "apg": 2.1
+          },
+          "year": "Junior",
+          "height": "6'4\"",
+          "hometown": "Leesburg, VA",
+          "isHot": true,
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4895737.png&w=350&h=254"
+        },
+        {
+          "id": "uconn-p5",
+          "name": "Braylon Mullins",
+          "team": "UConn",
+          "teamId": "uconn",
+          "position": "G",
+          "jersey": 24,
+          "stockPrice": 21,
+          "priceChange": 1.2,
+          "priceChangePercent": 6.1,
+          "stats": {
+            "ppg": 12.0,
+            "rpg": 3.5,
+            "apg": 1.4
+          },
+          "year": "Freshman",
+          "height": "6'6\"",
+          "hometown": "Greenfield, IN",
+          "isHot": true,
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5196916.png&w=350&h=254"
         }
       ]
     },
@@ -763,6 +805,48 @@
           "height": "6'8\"",
           "hometown": "Gilbert, AZ",
           "isHot": true
+        },
+        {
+          "id": "ariz-p4",
+          "name": "Ivan Kharchenkov",
+          "team": "Arizona",
+          "teamId": "arizona",
+          "position": "F",
+          "jersey": 8,
+          "stockPrice": 21,
+          "priceChange": 1.0,
+          "priceChangePercent": 5.0,
+          "stats": {
+            "ppg": 9.8,
+            "rpg": 4.0,
+            "apg": 1.5
+          },
+          "year": "Freshman",
+          "height": "6'7\"",
+          "hometown": "Munich, Germany",
+          "isHot": false,
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5311896.png&w=350&h=254"
+        },
+        {
+          "id": "ariz-p5",
+          "name": "Motiejus Krivas",
+          "team": "Arizona",
+          "teamId": "arizona",
+          "position": "C",
+          "jersey": 13,
+          "stockPrice": 27,
+          "priceChange": 1.5,
+          "priceChangePercent": 5.9,
+          "stats": {
+            "ppg": 10.8,
+            "rpg": 8.2,
+            "apg": 1.0
+          },
+          "year": "Junior",
+          "height": "7'2\"",
+          "hometown": "Siauliai, Lithuania",
+          "isHot": true,
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5174954.png&w=350&h=254"
         }
       ]
     },
@@ -2004,6 +2088,90 @@
           "height": "6'4\"",
           "hometown": "Morton, IL",
           "isHot": true
+        },
+        {
+          "id": "ill-p2",
+          "name": "Kylan Boswell",
+          "team": "Illinois",
+          "teamId": "illinois",
+          "position": "G",
+          "jersey": 4,
+          "stockPrice": 24,
+          "priceChange": 1.2,
+          "priceChangePercent": 5.3,
+          "stats": {
+            "ppg": 10.8,
+            "rpg": 2.8,
+            "apg": 3.8
+          },
+          "year": "Senior",
+          "height": "6'2\"",
+          "hometown": "Champaign, IL",
+          "isHot": false,
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/4684269.png&w=350&h=254"
+        },
+        {
+          "id": "ill-p3",
+          "name": "Jake Davis",
+          "team": "Illinois",
+          "teamId": "illinois",
+          "position": "F",
+          "jersey": 15,
+          "stockPrice": 16,
+          "priceChange": 0.7,
+          "priceChangePercent": 4.6,
+          "stats": {
+            "ppg": 8.0,
+            "rpg": 3.0,
+            "apg": 0.4
+          },
+          "year": "Junior",
+          "height": "6'6\"",
+          "hometown": "McCordsville, IN",
+          "isHot": false,
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5176150.png&w=350&h=254"
+        },
+        {
+          "id": "ill-p4",
+          "name": "David Mirkovic",
+          "team": "Illinois",
+          "teamId": "illinois",
+          "position": "F",
+          "jersey": 0,
+          "stockPrice": 25,
+          "priceChange": 1.4,
+          "priceChangePercent": 5.9,
+          "stats": {
+            "ppg": 14.0,
+            "rpg": 7.2,
+            "apg": 2.8
+          },
+          "year": "Freshman",
+          "height": "6'9\"",
+          "hometown": "Niksic, Montenegro",
+          "isHot": true,
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5311832.png&w=350&h=254"
+        },
+        {
+          "id": "ill-p5",
+          "name": "Tomislav Ivisic",
+          "team": "Illinois",
+          "teamId": "illinois",
+          "position": "C",
+          "jersey": 13,
+          "stockPrice": 20,
+          "priceChange": 0.9,
+          "priceChangePercent": 4.7,
+          "stats": {
+            "ppg": 7.8,
+            "rpg": 5.2,
+            "apg": 2.0
+          },
+          "year": "Junior",
+          "height": "7'1\"",
+          "hometown": "Vodice, Croatia",
+          "isHot": false,
+          "headshotUrl": "https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/5214642.png&w=350&h=254"
         }
       ]
     },

@@ -19,6 +19,8 @@ import { usePlay } from '@/context/play-context';
 import { getPlayerImageUri } from '@/utils/player-images';
 import { getDraftPrice, getRosterScore } from '@/utils/play';
 
+const FINAL_FOUR_TEAMS = new Set(['Illinois', 'UConn', 'Michigan', 'Arizona']);
+
 function SegmentButton({
   label,
   active,
@@ -180,6 +182,179 @@ function RosterCard({
   );
 }
 
+function DraftCenter({
+  title,
+  subtitle,
+  allPlayers,
+  rostersCount,
+  isDrafting,
+  draftRosterName,
+  draftSearch,
+  selectedPlayerIds,
+  playersById,
+  draftCandidates,
+  draftBudgetUsed,
+  budgetRemaining,
+  isBudgetExceeded,
+  onToggleDrafting,
+  onChangeRosterName,
+  onChangeSearch,
+  onTogglePlayer,
+  onSaveRoster,
+}: {
+  title: string;
+  subtitle: string;
+  allPlayers: Player[];
+  rostersCount: number;
+  isDrafting: boolean;
+  draftRosterName: string;
+  draftSearch: string;
+  selectedPlayerIds: string[];
+  playersById: Map<string, Player>;
+  draftCandidates: Player[];
+  draftBudgetUsed: number;
+  budgetRemaining: number;
+  isBudgetExceeded: boolean;
+  onToggleDrafting: () => void;
+  onChangeRosterName: (value: string) => void;
+  onChangeSearch: (value: string) => void;
+  onTogglePlayer: (playerId: string) => void;
+  onSaveRoster: () => void;
+}) {
+  return (
+    <View style={styles.panel}>
+      <View style={styles.draftHeader}>
+        <View style={styles.draftHeaderTextWrap}>
+          <Text style={styles.panelTitle}>{title}</Text>
+          <Text style={styles.panelSubtitle}>{subtitle}</Text>
+        </View>
+        <TouchableOpacity
+          style={styles.primaryButtonCompact}
+          onPress={onToggleDrafting}
+          activeOpacity={0.85}
+        >
+          <Text style={styles.primaryButtonCompactText}>{isDrafting ? 'Close Draft' : 'Draft'}</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.budgetRow}>
+        <View style={styles.budgetTile}>
+          <Text style={styles.budgetLabel}>Budget Used</Text>
+          <Text style={styles.budgetValue}>${draftBudgetUsed.toFixed(1)}</Text>
+        </View>
+        <View style={styles.budgetTile}>
+          <Text style={styles.budgetLabel}>Remaining</Text>
+          <Text style={[styles.budgetValue, isBudgetExceeded && styles.budgetExceededValue]}>
+            ${budgetRemaining.toFixed(1)}
+          </Text>
+        </View>
+        <View style={styles.budgetTile}>
+          <Text style={styles.budgetLabel}>Picks</Text>
+          <Text style={styles.budgetValue}>{selectedPlayerIds.length}/5</Text>
+        </View>
+      </View>
+
+      {isBudgetExceeded ? (
+        <Text style={styles.budgetExceededText}>
+          Budget exceeded. Remove a player to get back under the $100 cap.
+        </Text>
+      ) : null}
+
+      {isDrafting ? (
+        <View style={styles.draftComposer}>
+          <TextInput
+            value={draftRosterName}
+            onChangeText={onChangeRosterName}
+            placeholder={`My Madness Five or leave blank for Roster ${rostersCount + 1}`}
+            placeholderTextColor={Colors.textMuted}
+            style={styles.input}
+          />
+          <TextInput
+            value={draftSearch}
+            onChangeText={onChangeSearch}
+            placeholder="Search players or teams"
+            placeholderTextColor={Colors.textMuted}
+            style={styles.input}
+          />
+
+          <View style={styles.selectedRow}>
+            {selectedPlayerIds.length === 0 ? (
+              <Text style={styles.selectedHint}>Select 5 players to build your roster.</Text>
+            ) : (
+              selectedPlayerIds.map((playerId) => {
+                const player = playersById.get(playerId);
+                if (!player) {
+                  return null;
+                }
+
+                return (
+                  <View key={player.id} style={styles.selectedChip}>
+                    <Text style={styles.selectedChipText}>{player.name}</Text>
+                  </View>
+                );
+              })
+            )}
+          </View>
+
+          <ScrollView
+            style={styles.draftList}
+            contentContainerStyle={styles.draftListContent}
+            nestedScrollEnabled
+            showsVerticalScrollIndicator={false}
+          >
+            {draftCandidates.map((player) => {
+              const isSelected = selectedPlayerIds.includes(player.id);
+              const draftCost = getDraftPrice(player, allPlayers);
+
+              return (
+                <TouchableOpacity
+                  key={player.id}
+                  style={[styles.draftRow, isSelected && styles.draftRowSelected]}
+                  onPress={() => onTogglePlayer(player.id)}
+                  activeOpacity={0.8}
+                >
+                  <Image
+                    source={{ uri: getPlayerImageUri(player) }}
+                    style={styles.draftPlayerImage}
+                    resizeMode="cover"
+                  />
+                  <View style={styles.draftPlayerInfo}>
+                    <Text style={styles.draftPlayerName}>{player.name}</Text>
+                    <Text style={styles.draftPlayerMeta}>
+                      {player.team} · Stock ${player.stockPrice.toFixed(2)}
+                    </Text>
+                  </View>
+                  <View style={styles.draftPlayerRight}>
+                    <Text style={styles.draftPrice}>${draftCost.toFixed(1)}</Text>
+                    <Ionicons
+                      name={isSelected ? 'checkmark-circle' : 'add-circle-outline'}
+                      size={20}
+                      color={isSelected ? Colors.green : Colors.accent}
+                    />
+                  </View>
+                </TouchableOpacity>
+              );
+            })}
+          </ScrollView>
+
+          <TouchableOpacity
+            style={[
+              styles.primaryButton,
+              styles.saveButton,
+              (isBudgetExceeded || selectedPlayerIds.length !== 5) && styles.primaryButtonDisabled,
+            ]}
+            onPress={onSaveRoster}
+            activeOpacity={0.85}
+            disabled={isBudgetExceeded || selectedPlayerIds.length !== 5}
+          >
+            <Text style={styles.primaryButtonText}>Save Roster</Text>
+          </TouchableOpacity>
+        </View>
+      ) : null}
+    </View>
+  );
+}
+
 export default function PlayScreen() {
   const router = useRouter();
   const { allPlayers } = useAppData();
@@ -201,6 +376,10 @@ export default function PlayScreen() {
   const [draftRosterName, setDraftRosterName] = useState('');
   const [draftSearch, setDraftSearch] = useState('');
   const [selectedPlayerIds, setSelectedPlayerIds] = useState<string[]>([]);
+  const [isFinalFourDrafting, setIsFinalFourDrafting] = useState(false);
+  const [finalFourDraftRosterName, setFinalFourDraftRosterName] = useState('');
+  const [finalFourDraftSearch, setFinalFourDraftSearch] = useState('');
+  const [finalFourSelectedPlayerIds, setFinalFourSelectedPlayerIds] = useState<string[]>([]);
   const [linkingRosterId, setLinkingRosterId] = useState<string | null>(null);
   const [expandedRosterId, setExpandedRosterId] = useState<string | null>(null);
 
@@ -219,6 +398,16 @@ export default function PlayScreen() {
   );
   const budgetRemaining = Number((100 - draftBudgetUsed).toFixed(1));
   const isBudgetExceeded = budgetRemaining < 0;
+  const finalFourDraftBudgetUsed = useMemo(
+    () =>
+      finalFourSelectedPlayerIds.reduce((sum, playerId) => {
+        const player = playersById.get(playerId);
+        return sum + (player ? getDraftPrice(player, allPlayers) : 0);
+      }, 0),
+    [allPlayers, finalFourSelectedPlayerIds, playersById]
+  );
+  const finalFourBudgetRemaining = Number((100 - finalFourDraftBudgetUsed).toFixed(1));
+  const isFinalFourBudgetExceeded = finalFourBudgetRemaining < 0;
 
   const draftCandidates = useMemo(() => {
     const query = draftSearch.trim().toLowerCase();
@@ -233,12 +422,33 @@ export default function PlayScreen() {
         player.name.toLowerCase().includes(query) || player.team.toLowerCase().includes(query)
     );
   }, [allPlayers, draftSearch]);
+  const finalFourDraftCandidates = useMemo(() => {
+    const query = finalFourDraftSearch.trim().toLowerCase();
+    const nextPlayers = allPlayers
+      .filter((player) => FINAL_FOUR_TEAMS.has(player.team))
+      .sort((a, b) => b.stockPrice - a.stockPrice);
+
+    if (!query) {
+      return nextPlayers;
+    }
+
+    return nextPlayers.filter(
+      (player) =>
+        player.name.toLowerCase().includes(query) || player.team.toLowerCase().includes(query)
+    );
+  }, [allPlayers, finalFourDraftSearch]);
 
   const resetDraft = () => {
     setIsDrafting(false);
     setDraftRosterName('');
     setDraftSearch('');
     setSelectedPlayerIds([]);
+  };
+  const resetFinalFourDraft = () => {
+    setIsFinalFourDrafting(false);
+    setFinalFourDraftRosterName('');
+    setFinalFourDraftSearch('');
+    setFinalFourSelectedPlayerIds([]);
   };
 
   const handleCreateGroup = async () => {
@@ -290,6 +500,26 @@ export default function PlayScreen() {
 
     setSelectedPlayerIds((prev) => [...prev, playerId]);
   };
+  const handleToggleFinalFourPlayer = (playerId: string) => {
+    const isSelected = finalFourSelectedPlayerIds.includes(playerId);
+
+    if (isSelected) {
+      setFinalFourSelectedPlayerIds((prev) => prev.filter((entry) => entry !== playerId));
+      return;
+    }
+
+    if (finalFourSelectedPlayerIds.length >= 5) {
+      Alert.alert('Roster full', 'You can only draft 5 players.');
+      return;
+    }
+
+    const player = playersById.get(playerId);
+    if (!player || !FINAL_FOUR_TEAMS.has(player.team)) {
+      return;
+    }
+
+    setFinalFourSelectedPlayerIds((prev) => [...prev, playerId]);
+  };
 
   const handleSaveRoster = async () => {
     try {
@@ -305,6 +535,27 @@ export default function PlayScreen() {
       setActiveTab('roster');
       setExpandedRosterId(result.rosterId ?? null);
       Alert.alert('Roster saved', 'Your drafted roster is ready to join a group.');
+    } catch {
+      Alert.alert('Save roster', 'We could not save that roster right now.');
+    }
+  };
+  const handleSaveFinalFourRoster = async () => {
+    try {
+      const fallbackName = `Final Four Roster ${rosters.length + 1}`;
+      const result = await createRoster(
+        finalFourDraftRosterName || fallbackName,
+        finalFourSelectedPlayerIds
+      );
+
+      if (!result.ok) {
+        Alert.alert('Save roster', result.reason);
+        return;
+      }
+
+      resetFinalFourDraft();
+      setActiveTab('roster');
+      setExpandedRosterId(result.rosterId ?? null);
+      Alert.alert('Roster saved', 'Your Final Four roster is ready to join a group.');
     } catch {
       Alert.alert('Save roster', 'We could not save that roster right now.');
     }
@@ -436,136 +687,47 @@ export default function PlayScreen() {
         </View>
       ) : (
         <View style={styles.section}>
-          <View style={styles.panel}>
-            <View style={styles.draftHeader}>
-              <View style={styles.draftHeaderTextWrap}>
-                <Text style={styles.panelTitle}>Draft Center</Text>
-                <Text style={styles.panelSubtitle}>Pick the best 5-player stock roster you can build.</Text>
-              </View>
-              <TouchableOpacity
-                style={styles.primaryButtonCompact}
-                onPress={() => setIsDrafting((prev) => !prev)}
-                activeOpacity={0.85}
-              >
-                <Text style={styles.primaryButtonCompactText}>{isDrafting ? 'Close Draft' : 'Draft'}</Text>
-              </TouchableOpacity>
-            </View>
+          <DraftCenter
+            title="Draft Center"
+            subtitle="Pick the best 5-player stock roster you can build."
+            allPlayers={allPlayers}
+            rostersCount={rosters.length}
+            isDrafting={isDrafting}
+            draftRosterName={draftRosterName}
+            draftSearch={draftSearch}
+            selectedPlayerIds={selectedPlayerIds}
+            playersById={playersById}
+            draftCandidates={draftCandidates}
+            draftBudgetUsed={draftBudgetUsed}
+            budgetRemaining={budgetRemaining}
+            isBudgetExceeded={isBudgetExceeded}
+            onToggleDrafting={() => setIsDrafting((prev) => !prev)}
+            onChangeRosterName={setDraftRosterName}
+            onChangeSearch={setDraftSearch}
+            onTogglePlayer={handleTogglePlayer}
+            onSaveRoster={handleSaveRoster}
+          />
 
-            <View style={styles.budgetRow}>
-              <View style={styles.budgetTile}>
-                <Text style={styles.budgetLabel}>Budget Used</Text>
-                <Text style={styles.budgetValue}>${draftBudgetUsed.toFixed(1)}</Text>
-              </View>
-              <View style={styles.budgetTile}>
-                <Text style={styles.budgetLabel}>Remaining</Text>
-                <Text style={[styles.budgetValue, isBudgetExceeded && styles.budgetExceededValue]}>
-                  ${budgetRemaining.toFixed(1)}
-                </Text>
-              </View>
-              <View style={styles.budgetTile}>
-                <Text style={styles.budgetLabel}>Picks</Text>
-                <Text style={styles.budgetValue}>{selectedPlayerIds.length}/5</Text>
-              </View>
-            </View>
-
-            {isBudgetExceeded ? (
-              <Text style={styles.budgetExceededText}>
-                Budget exceeded. Remove a player to get back under the $100 cap.
-              </Text>
-            ) : null}
-
-            {isDrafting ? (
-              <View style={styles.draftComposer}>
-                <TextInput
-                  value={draftRosterName}
-                  onChangeText={setDraftRosterName}
-                  placeholder={`My Madness Five or leave blank for Roster ${rosters.length + 1}`}
-                  placeholderTextColor={Colors.textMuted}
-                  style={styles.input}
-                />
-                <TextInput
-                  value={draftSearch}
-                  onChangeText={setDraftSearch}
-                  placeholder="Search players or teams"
-                  placeholderTextColor={Colors.textMuted}
-                  style={styles.input}
-                />
-
-                <View style={styles.selectedRow}>
-                  {selectedPlayerIds.length === 0 ? (
-                    <Text style={styles.selectedHint}>Select 5 players to build your roster.</Text>
-                  ) : (
-                    selectedPlayerIds.map((playerId) => {
-                      const player = playersById.get(playerId);
-                      if (!player) {
-                        return null;
-                      }
-
-                      return (
-                        <View key={player.id} style={styles.selectedChip}>
-                          <Text style={styles.selectedChipText}>{player.name}</Text>
-                        </View>
-                      );
-                    })
-                  )}
-                </View>
-
-                <ScrollView
-                  style={styles.draftList}
-                  contentContainerStyle={styles.draftListContent}
-                  nestedScrollEnabled
-                  showsVerticalScrollIndicator={false}
-                >
-                  {draftCandidates.map((player) => {
-                    const isSelected = selectedPlayerIds.includes(player.id);
-                    const draftCost = getDraftPrice(player, allPlayers);
-
-                    return (
-                      <TouchableOpacity
-                        key={player.id}
-                        style={[styles.draftRow, isSelected && styles.draftRowSelected]}
-                        onPress={() => handleTogglePlayer(player.id)}
-                        activeOpacity={0.8}
-                      >
-                        <Image
-                          source={{ uri: getPlayerImageUri(player) }}
-                          style={styles.draftPlayerImage}
-                          resizeMode="cover"
-                        />
-                        <View style={styles.draftPlayerInfo}>
-                          <Text style={styles.draftPlayerName}>{player.name}</Text>
-                          <Text style={styles.draftPlayerMeta}>
-                            {player.team} · Stock ${player.stockPrice.toFixed(2)}
-                          </Text>
-                        </View>
-                        <View style={styles.draftPlayerRight}>
-                          <Text style={styles.draftPrice}>${draftCost.toFixed(1)}</Text>
-                          <Ionicons
-                            name={isSelected ? 'checkmark-circle' : 'add-circle-outline'}
-                            size={20}
-                            color={isSelected ? Colors.green : Colors.accent}
-                          />
-                        </View>
-                      </TouchableOpacity>
-                    );
-                  })}
-                </ScrollView>
-
-                <TouchableOpacity
-                  style={[
-                    styles.primaryButton,
-                    styles.saveButton,
-                    (isBudgetExceeded || selectedPlayerIds.length !== 5) && styles.primaryButtonDisabled,
-                  ]}
-                  onPress={handleSaveRoster}
-                  activeOpacity={0.85}
-                  disabled={isBudgetExceeded || selectedPlayerIds.length !== 5}
-                >
-                  <Text style={styles.primaryButtonText}>Save Roster</Text>
-                </TouchableOpacity>
-              </View>
-            ) : null}
-          </View>
+          <DraftCenter
+            title="Final Four Draft"
+            subtitle="Pick the best 5-player stock roster using only Illinois, UConn, Michigan, and Arizona."
+            allPlayers={allPlayers}
+            rostersCount={rosters.length}
+            isDrafting={isFinalFourDrafting}
+            draftRosterName={finalFourDraftRosterName}
+            draftSearch={finalFourDraftSearch}
+            selectedPlayerIds={finalFourSelectedPlayerIds}
+            playersById={playersById}
+            draftCandidates={finalFourDraftCandidates}
+            draftBudgetUsed={finalFourDraftBudgetUsed}
+            budgetRemaining={finalFourBudgetRemaining}
+            isBudgetExceeded={isFinalFourBudgetExceeded}
+            onToggleDrafting={() => setIsFinalFourDrafting((prev) => !prev)}
+            onChangeRosterName={setFinalFourDraftRosterName}
+            onChangeSearch={setFinalFourDraftSearch}
+            onTogglePlayer={handleToggleFinalFourPlayer}
+            onSaveRoster={handleSaveFinalFourRoster}
+          />
 
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>Saved Rosters</Text>
