@@ -45,17 +45,24 @@ export default function TabLayout() {
         },
         headerShadowVisible: false,
         headerTintColor: Colors.text,
+        headerTitleAlign: 'center',
+        headerTitleContainerStyle: {
+          left: 0,
+          right: 0,
+        },
         headerTitleStyle: { 
           fontWeight: '700', 
           fontSize: 20,
           color: Colors.text,
         },
         headerTitle: () => (
-          <Image
-            source={ONIT_LOGO}
-            style={{ width: 300, height: 100 }}
-            resizeMode="contain"
-          />
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Image
+              source={ONIT_LOGO}
+              style={{ width: 300, height: 100 }}
+              resizeMode="contain"
+            />
+          </View>
         ),
       }}
     >

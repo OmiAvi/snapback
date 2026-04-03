@@ -239,16 +239,34 @@ function DraftCenter({
 
       <View style={styles.budgetRow}>
         <View style={styles.budgetTile}>
+          <View style={[styles.budgetIconWrap, styles.budgetIconWrapUsed]}>
+            <Ionicons name="wallet-outline" size={16} color={Colors.accent} />
+          </View>
           <Text style={styles.budgetLabel}>Budget Used</Text>
           <Text style={styles.budgetValue}>${draftBudgetUsed.toFixed(1)}</Text>
         </View>
         <View style={styles.budgetTile}>
+          <View
+            style={[
+              styles.budgetIconWrap,
+              isBudgetExceeded ? styles.budgetIconWrapDanger : styles.budgetIconWrapSuccess,
+            ]}
+          >
+            <Ionicons
+              name={isBudgetExceeded ? 'warning-outline' : 'cash-outline'}
+              size={16}
+              color={isBudgetExceeded ? Colors.red : Colors.green}
+            />
+          </View>
           <Text style={styles.budgetLabel}>Remaining</Text>
           <Text style={[styles.budgetValue, isBudgetExceeded && styles.budgetExceededValue]}>
             ${budgetRemaining.toFixed(1)}
           </Text>
         </View>
         <View style={styles.budgetTile}>
+          <View style={[styles.budgetIconWrap, styles.budgetIconWrapPicks]}>
+            <Ionicons name="sparkles-outline" size={16} color={Colors.primaryDark} />
+          </View>
           <Text style={styles.budgetLabel}>Picks</Text>
           <Text style={styles.budgetValue}>{selectedPlayerIds.length}/5</Text>
         </View>
@@ -710,7 +728,7 @@ export default function PlayScreen() {
 
           <DraftCenter
             title="Final Four Draft"
-            subtitle="Pick the best 5-player stock roster using only Illinois, UConn, Michigan, and Arizona."
+            subtitle="Pick the best 5-player porfolio using only the Final Four Teams."
             allPlayers={allPlayers}
             rostersCount={rosters.length}
             isDrafting={isFinalFourDrafting}
@@ -1028,25 +1046,57 @@ const styles = StyleSheet.create({
   budgetRow: {
     flexDirection: 'row',
     gap: Spacing.sm,
+    alignItems: 'stretch',
   },
   budgetTile: {
     flex: 1,
-    backgroundColor: Colors.surface,
+    backgroundColor: Colors.card,
     borderRadius: BorderRadius.lg,
-    padding: Spacing.md,
+    paddingHorizontal: Spacing.sm,
+    paddingVertical: 10,
     borderWidth: 1,
     borderColor: Colors.border,
+    minHeight: 84,
+    justifyContent: 'center',
+    alignItems: 'center',
+    ...Shadows.sm,
+  },
+  budgetIconWrap: {
+    width: 28,
+    height: 28,
+    borderRadius: BorderRadius.round,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 6,
+  },
+  budgetIconWrapUsed: {
+    backgroundColor: Colors.surface,
+  },
+  budgetIconWrapSuccess: {
+    backgroundColor: Colors.surface,
+  },
+  budgetIconWrapDanger: {
+    backgroundColor: Colors.surface,
+  },
+  budgetIconWrapPicks: {
+    backgroundColor: Colors.surface,
   },
   budgetLabel: {
     color: Colors.textMuted,
-    fontSize: FontSize.sm,
+    fontSize: FontSize.xs,
     fontWeight: '700',
-    marginBottom: Spacing.xs,
+    marginBottom: 4,
+    minHeight: 22,
+    letterSpacing: 0.3,
+    textTransform: 'uppercase',
+    textAlign: 'center',
   },
   budgetValue: {
     color: Colors.text,
     fontSize: FontSize.xl,
-    fontWeight: '800',
+    fontWeight: '900',
+    lineHeight: 24,
+    textAlign: 'center',
   },
   budgetExceededValue: {
     color: Colors.red,
